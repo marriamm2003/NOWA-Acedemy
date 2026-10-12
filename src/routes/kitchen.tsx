@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { money } from "@/components/humm/Shell";
 
 export const Route = createFileRoute("/kitchen")({
-  validateSearch: (s: Record<string, unknown>): { order?: string } => ({ order: typeof s.order === "string" ? s.order : undefined }),
+  validateSearch: (s: Record<string, unknown>): { order?: string | undefined } => ({ order: typeof s["order"] === "string" ? s["order"] : undefined }),
   head: () => ({
     meta: [
       { title: "HUMM Kitchen — My Learning Dashboard" },

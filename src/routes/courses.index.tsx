@@ -3,14 +3,14 @@ import { useMemo } from "react";
 import { categories, courses, levels, fromPrice, getChef } from "@/lib/data";
 import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 
-type S = { q?: string; cat?: string; level?: string; sort?: string };
+type S = { q?: string | undefined; cat?: string | undefined; level?: string | undefined; sort?: string | undefined };
 
 export const Route = createFileRoute("/courses/")({
   validateSearch: (s: Record<string, unknown>): S => ({
-    q: typeof s.q === "string" ? s.q.slice(0, 80) : undefined,
-    cat: typeof s.cat === "string" ? s.cat : undefined,
-    level: typeof s.level === "string" ? s.level : undefined,
-    sort: typeof s.sort === "string" ? s.sort : undefined,
+    q: typeof s["q"] === "string" ? s["q"].slice(0, 80) : undefined,
+    cat: typeof s["cat"] === "string" ? s["cat"] : undefined,
+    level: typeof s["level"] === "string" ? s["level"] : undefined,
+    sort: typeof s["sort"] === "string" ? s["sort"] : undefined,
   }),
   head: () => ({
     meta: [

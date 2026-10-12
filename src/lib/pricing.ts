@@ -11,11 +11,11 @@ export type Quote = {
   total: number;
   eligibleCount: number;
   bonusUnlocked: boolean;
-  bonusModule?: Module;
+  bonusModule?: Module | undefined;
   discountApplied: boolean;
   /** module ids included in the order (selected + auto-added bonus, deduped) */
   lineIds: string[];
-  nextHint?: string;
+  nextHint?: string | undefined;
 };
 
 const round = (n: number) => Math.round(n * 100) / 100;
