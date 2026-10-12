@@ -55,9 +55,9 @@ function Checkout() {
       <form onSubmit={submit} noValidate className="space-y-4">
         <h1 className="text-4xl font-extrabold">Checkout</h1>
         <p className="rounded-2xl bg-mustard/50 p-4 text-sm"><b>Demo payment.</b> No payment provider is connected — no real money is charged. Use card <code>4242 4242 4242 4242</code>.</p>
-        <label className="block font-bold">Name<input name="name" maxLength={100} className={field} /></label>{err.name && <p className="text-sm font-bold text-tomato">{err.name}</p>}
-        <label className="block font-bold">Email<input name="email" type="email" maxLength={255} className={field} /></label>{err.email && <p className="text-sm font-bold text-tomato">{err.email}</p>}
-        <label className="block font-bold">Card number<input name="card" inputMode="numeric" maxLength={19} placeholder="4242 4242 4242 4242" className={field} /></label>{err.card && <p className="text-sm font-bold text-tomato">{err.card}</p>}
+        <label className="block font-bold">Name<input name="name" maxLength={100} className={field} /></label>{err["name"] && <p className="text-sm font-bold text-tomato">{err["name"]}</p>}
+        <label className="block font-bold">Email<input name="email" type="email" maxLength={255} className={field} /></label>{err["email"] && <p className="text-sm font-bold text-tomato">{err["email"]}</p>}
+        <label className="block font-bold">Card number<input name="card" inputMode="numeric" maxLength={19} placeholder="4242 4242 4242 4242" className={field} /></label>{err["card"] && <p className="text-sm font-bold text-tomato">{err["card"]}</p>}
         <button disabled={busy} className="w-full rounded-full bg-tomato py-4 text-lg font-extrabold text-primary-foreground shadow-pop disabled:opacity-60">{busy ? "Processing…" : `Pay ${money(bagQuote.total)} (demo)`}</button>
       </form>
       <aside className="h-fit rounded-[2rem] bg-card p-6 shadow-soft">

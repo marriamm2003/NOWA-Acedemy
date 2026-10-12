@@ -30,7 +30,7 @@ function Finder() {
   const done = exp && goal !== undefined;
   const recs = done
     ? courses
-        .filter((c) => goals[goal!].cats.includes(c.category) && fromPrice(c) <= budget)
+        .filter((c) => goals[goal!]!.cats.includes(c.category) && fromPrice(c) <= budget)
         .sort((a, b) => Number(b.level === exp) - Number(a.level === exp))
         .slice(0, 3)
     : [];
