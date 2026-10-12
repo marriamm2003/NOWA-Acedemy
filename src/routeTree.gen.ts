@@ -10,33 +10,154 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CreatorsRouteImport } from './routes/creators'
+import { Route as KitchenRouteImport } from './routes/kitchen'
+import { Route as MarketRouteImport } from './routes/market'
+import { Route as PathsRouteImport } from './routes/paths'
+import { Route as ChefsIndexRouteImport } from './routes/chefs.index'
+import { Route as ChefsSlugRouteImport } from './routes/chefs.$slug'
+import { Route as CoursesIndexRouteImport } from './routes/courses.index'
+import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorsRoute = CreatorsRouteImport.update({
+  id: '/creators',
+  path: '/creators',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KitchenRoute = KitchenRouteImport.update({
+  id: '/kitchen',
+  path: '/kitchen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketRoute = MarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathsRoute = PathsRouteImport.update({
+  id: '/paths',
+  path: '/paths',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChefsIndexRoute = ChefsIndexRouteImport.update({
+  id: '/chefs/',
+  path: '/chefs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChefsSlugRoute = ChefsSlugRouteImport.update({
+  id: '/chefs/$slug',
+  path: '/chefs/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesIndexRoute = CoursesIndexRouteImport.update({
+  id: '/courses/',
+  path: '/courses/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesSlugRoute = CoursesSlugRouteImport.update({
+  id: '/courses/$slug',
+  path: '/courses/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/creators': typeof CreatorsRoute
+  '/kitchen': typeof KitchenRoute
+  '/market': typeof MarketRoute
+  '/paths': typeof PathsRoute
+  '/chefs/$slug': typeof ChefsSlugRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/chefs/': typeof ChefsIndexRoute
+  '/courses/': typeof CoursesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/creators': typeof CreatorsRoute
+  '/kitchen': typeof KitchenRoute
+  '/market': typeof MarketRoute
+  '/paths': typeof PathsRoute
+  '/chefs/$slug': typeof ChefsSlugRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/chefs': typeof ChefsIndexRoute
+  '/courses': typeof CoursesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/creators': typeof CreatorsRoute
+  '/kitchen': typeof KitchenRoute
+  '/market': typeof MarketRoute
+  '/paths': typeof PathsRoute
+  '/chefs/$slug': typeof ChefsSlugRoute
+  '/courses/$slug': typeof CoursesSlugRoute
+  '/chefs/': typeof ChefsIndexRoute
+  '/courses/': typeof CoursesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/checkout'
+    | '/creators'
+    | '/kitchen'
+    | '/market'
+    | '/paths'
+    | '/chefs/$slug'
+    | '/courses/$slug'
+    | '/chefs/'
+    | '/courses/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/checkout'
+    | '/creators'
+    | '/kitchen'
+    | '/market'
+    | '/paths'
+    | '/chefs/$slug'
+    | '/courses/$slug'
+    | '/chefs'
+    | '/courses'
+  id:
+    | '__root__'
+    | '/'
+    | '/checkout'
+    | '/creators'
+    | '/kitchen'
+    | '/market'
+    | '/paths'
+    | '/chefs/$slug'
+    | '/courses/$slug'
+    | '/chefs/'
+    | '/courses/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CheckoutRoute: typeof CheckoutRoute
+  CreatorsRoute: typeof CreatorsRoute
+  KitchenRoute: typeof KitchenRoute
+  MarketRoute: typeof MarketRoute
+  PathsRoute: typeof PathsRoute
+  ChefsSlugRoute: typeof ChefsSlugRoute
+  CoursesSlugRoute: typeof CoursesSlugRoute
+  ChefsIndexRoute: typeof ChefsIndexRoute
+  CoursesIndexRoute: typeof CoursesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +169,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creators': {
+      id: '/creators'
+      path: '/creators'
+      fullPath: '/creators'
+      preLoaderRoute: typeof CreatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kitchen': {
+      id: '/kitchen'
+      path: '/kitchen'
+      fullPath: '/kitchen'
+      preLoaderRoute: typeof KitchenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/market': {
+      id: '/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof MarketRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paths': {
+      id: '/paths'
+      path: '/paths'
+      fullPath: '/paths'
+      preLoaderRoute: typeof PathsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chefs/': {
+      id: '/chefs/'
+      path: '/chefs'
+      fullPath: '/chefs/'
+      preLoaderRoute: typeof ChefsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chefs/$slug': {
+      id: '/chefs/$slug'
+      path: '/chefs/$slug'
+      fullPath: '/chefs/$slug'
+      preLoaderRoute: typeof ChefsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/': {
+      id: '/courses/'
+      path: '/courses'
+      fullPath: '/courses/'
+      preLoaderRoute: typeof CoursesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses/$slug': {
+      id: '/courses/$slug'
+      path: '/courses/$slug'
+      fullPath: '/courses/$slug'
+      preLoaderRoute: typeof CoursesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CheckoutRoute: CheckoutRoute,
+  CreatorsRoute: CreatorsRoute,
+  KitchenRoute: KitchenRoute,
+  MarketRoute: MarketRoute,
+  PathsRoute: PathsRoute,
+  ChefsSlugRoute: ChefsSlugRoute,
+  CoursesSlugRoute: CoursesSlugRoute,
+  ChefsIndexRoute: ChefsIndexRoute,
+  CoursesIndexRoute: CoursesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
