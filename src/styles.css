@@ -142,3 +142,58 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---------- HUMM brand system ---------- */
+:root {
+  --cream: oklch(0.977 0.008 125);
+  --leaf: oklch(0.78 0.09 130);
+  --mustard: oklch(0.75 0.15 70);
+  --forest: oklch(0.4 0.04 150);
+  --deep: oklch(0.29 0.025 150);
+  --tomato: oklch(0.64 0.2 32);
+  --background: var(--cream);
+  --foreground: var(--deep);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--deep);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--deep);
+  --primary: var(--tomato);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: var(--mustard);
+  --secondary-foreground: var(--deep);
+  --accent: var(--leaf);
+  --accent-foreground: var(--deep);
+  --muted: oklch(0.94 0.012 125);
+  --muted-foreground: oklch(0.5 0.02 150);
+  --border: oklch(0.91 0.012 125);
+  --input: oklch(0.88 0.015 125);
+  --ring: var(--tomato);
+  --radius: 1rem;
+  --shadow-pop: 0 6px 0 color-mix(in oklab, var(--tomato) 75%, black);
+  --shadow-soft: 0 18px 50px color-mix(in oklab, var(--deep) 10%, transparent);
+}
+@theme inline {
+  --color-cream: var(--cream);
+  --color-leaf: var(--leaf);
+  --color-mustard: var(--mustard);
+  --color-forest: var(--forest);
+  --color-deep: var(--deep);
+  --color-tomato: var(--tomato);
+  --font-display: "Bricolage Grotesque", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --shadow-pop: var(--shadow-pop);
+  --shadow-soft: var(--shadow-soft);
+}
+html[dir="rtl"] body { font-family: "Tajawal", "Bricolage Grotesque", sans-serif; }
+body { font-family: var(--font-sans); }
+
+@keyframes humm-marquee { to { transform: translateX(-50%); } }
+@keyframes humm-float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-14px) rotate(8deg); } }
+@keyframes humm-spin { to { transform: rotate(360deg); } }
+@utility animate-marquee { animation: humm-marquee 28s linear infinite; }
+@utility animate-float { animation: humm-float 6s ease-in-out infinite; }
+@utility animate-slowspin { animation: humm-spin 40s linear infinite; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
