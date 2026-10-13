@@ -15,7 +15,7 @@ export const Route = createFileRoute("/chefs/")({
   }),
   component: () => (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="Chefs" title="Chefs with a" accent="story." />
+      <SectionTitle eyebrow="Chefs" title="Chefs with a" accent="story" />
       <div className="mt-8 grid gap-6 md:grid-cols-3">{chefs.map((c) => <ChefCard key={c.slug} chef={c} />)}</div>
     </div>
   ),

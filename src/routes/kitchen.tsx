@@ -35,7 +35,7 @@ function Kitchen() {
     <div className="mx-auto max-w-7xl px-5 py-12">
       <p className="mb-4 rounded-2xl bg-mustard/40 p-3 text-sm"><b>Prototype dashboard.</b> Accounts aren't connected yet, so access is based on demo orders stored in this browser — not verified payments.</p>
       {order && <p className="mb-6 rounded-2xl bg-leaf p-4 font-bold" role="status">Demo order {order} confirmed — your new modules are unlocked below.</p>}
-      <SectionTitle eyebrow="HUMM Kitchen" title="Welcome back," accent="chef." />
+      <SectionTitle eyebrow="HUMM Kitchen" title="Welcome back," accent="chef" />
       <Tabs defaultValue="courses" className="mt-8">
         <TabsList className="flex h-auto flex-wrap justify-start bg-transparent p-0">
           {["courses", "saved", "recipes", "certificates", "orders", "settings"].map((t) => <TabsTrigger key={t} value={t} className="rounded-full capitalize data-[state=active]:bg-tomato data-[state=active]:text-primary-foreground">{t === "courses" ? "My courses" : t}</TabsTrigger>)}
@@ -101,7 +101,7 @@ function Kitchen() {
           <p className="font-bold">Account settings</p>
           <p className="text-sm text-muted-foreground">Sign-in, profile and language preferences will live here once accounts are enabled. Use the language switch in the top bar for English / العربية.</p>
           <p className="font-bold">Help & support</p>
-          <p className="text-sm text-muted-foreground">Ask Humm (bottom corner) or email support@humm.academy (placeholder).</p>
+          <p className="text-sm text-muted-foreground">Ask the HUMM assistant (bottom corner) or email support@humm.academy (placeholder address).</p>
         </TabsContent>
       </Tabs>
     </div>
