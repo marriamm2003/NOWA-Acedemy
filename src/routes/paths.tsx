@@ -56,7 +56,7 @@ function Finder() {
 function Paths() {
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="Learning paths" title="Three ways to" accent="grow." />
+      <SectionTitle eyebrow="Learning paths" title="Three ways to" accent="grow" />
       <div className="mt-10 space-y-10">
         {paths.map((p, i) => (
           <section key={p.id} id={p.id} className="scroll-mt-28 rounded-[2rem] bg-card p-8 shadow-soft">

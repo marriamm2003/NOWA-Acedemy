@@ -8,13 +8,13 @@ const en = {
   market: "Market",
   creators: "For Creators",
   kitchen: "My Kitchen",
-  heroEyebrow: "Learn. Create. Grow.",
-  heroA: "Make Food.",
+  heroEyebrow: "Learn · Create · Grow",
+  heroA: "Make Food,",
   heroB: "Make Your",
-  heroC: "Mark.",
+  heroC: "Mark",
   heroCopy: "From your first perfect pizza to the food business you've been dreaming about. Learn from chefs who bring every recipe to life.",
-  ctaFind: "Find Your Flavour",
-  ctaPaths: "Explore Learning Paths",
+  ctaFind: "Find your flavour",
+  ctaPaths: "Explore learning paths",
   bag: "Bag",
   search: "Search courses, chefs, dishes…",
   featured: "Featured courses",
@@ -30,7 +30,7 @@ const en = {
   owned: "Owned",
   checkout: "Checkout",
   emptyBag: "Your bag is empty. Build a course to get started.",
-  chatHi: "Hi! I'm Humm, the HUMM helper. Ask me about courses, bundles or creator applications.",
+  chatHi: "Hi, I'm the HUMM demo assistant. Ask me about courses, bundles or creator applications.",
 };
 
 const ar: typeof en = {
@@ -41,10 +41,10 @@ const ar: typeof en = {
   market: "المتجر",
   creators: "للمبدعين",
   kitchen: "مطبخي",
-  heroEyebrow: "تعلّم. ابتكر. انمُ.",
-  heroA: "اصنع الطعام.",
+  heroEyebrow: "تعلّم · ابتكر · انمُ",
+  heroA: "اصنع الطعام،",
   heroB: "واترك",
-  heroC: "بصمتك.",
+  heroC: "بصمتك",
   heroCopy: "من أول بيتزا مثالية إلى مشروع الطعام الذي تحلم به. تعلّم من طهاة يحيون كل وصفة.",
   ctaFind: "اكتشف نكهتك",
   ctaPaths: "استكشف المسارات",
@@ -63,7 +63,7 @@ const ar: typeof en = {
   owned: "مملوكة",
   checkout: "الدفع",
   emptyBag: "حقيبتك فارغة. صمّم دورتك للبدء.",
-  chatHi: "مرحباً! أنا همّ، مساعد HUMM. اسألني عن الدورات أو العروض أو طلبات المبدعين.",
+  chatHi: "مرحباً، أنا المساعد التجريبي لـ HUMM. اسألني عن الدورات أو العروض أو طلبات المبدعين.",
 };
 
 export const dict = { en, ar };

@@ -22,11 +22,11 @@ const steps = ["Apply", "Discovery call", "Plan & produce", "Launch & grow"];
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  type: z.enum(["Chef", "Food creator", "Small food business"], { message: "Choose one" }),
+  email: z.string().trim().email("Please enter a valid email").max(255),
+  type: z.enum(["Chef", "Food creator", "Small food business"], { message: "Please choose one" }),
   idea: z.string().trim().min(20, "Tell us a bit more (20+ characters)").max(1000),
-  link: z.union([z.literal(""), z.string().trim().url("Enter a full URL, e.g. https://…").max(255)]),
-  consent: z.literal(true, { message: "Please confirm" }),
+  link: z.union([z.literal(""), z.string().trim().url("Please enter a full URL, e.g. https://…").max(255)]),
+  consent: z.literal(true, { message: "Please confirm you agree to be contacted" }),
 });
 
 function Creators() {
@@ -48,7 +48,7 @@ function Creators() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="From passion to business" title="Got the recipe? We'll help" accent="build the business." />
+      <SectionTitle eyebrow="From passion to business" title="Got the recipe? We'll help" accent="build the business" />
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => <div key={s} className={`rounded-2xl p-5 font-bold ${["bg-leaf", "bg-mustard", "bg-card"][i % 3]}`}>{s}</div>)}
       </div>

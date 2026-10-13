@@ -74,7 +74,7 @@ function CoursePage() {
       </section>
 
       <section id="builder" className="mx-auto mt-16 max-w-7xl scroll-mt-28 px-5">
-        <SectionTitle eyebrow="Modular course builder" title="Pick only the" accent="levels you need." />
+        <SectionTitle eyebrow="Modular course builder" title="Pick only the" accent="levels you need" />
         <p className="mt-3 max-w-2xl text-muted-foreground">Every module is sold on its own. Recorded lessons are self-paced; modules marked LIVE add an instructor feedback session.</p>
         <div className="mt-8"><CourseBuilder course={c} /></div>
       </section>

@@ -3,13 +3,15 @@ import { useState, type ReactNode } from "react";
 import { Heart, Menu, MessageCircle, Search, ShoppingBag, X } from "lucide-react";
 import { useStore } from "@/lib/store";
 import { courses, findModule, getCourse } from "@/lib/data";
+import logoForest from "@/assets/humm-logo-forest.png.asset.json";
+import logoMustard from "@/assets/humm-logo-mustard.png.asset.json";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
-export function Logo() {
+export function Logo({ variant = "dark", className = "h-11" }: { variant?: "dark" | "light"; className?: string }) {
+  const src = variant === "light" ? logoMustard.url : logoForest.url;
   return (
-    <Link to="/" className="leading-none text-forest" aria-label="HUMM Academy home">
-      <span className="text-3xl font-extrabold tracking-tighter">HUMM<span className="text-tomato">.</span></span>
-      <small className="block text-[8px] font-bold tracking-[0.3em]">ACADEMY</small>
+    <Link to="/" className="inline-block shrink-0" aria-label="HUMM Academy home">
+      <img src={src} alt="HUMM Academy" width={840} height={320} className={`${className} w-auto`} />
     </Link>
   );
 }
@@ -137,13 +139,13 @@ function Chatbot() {
     <div className="fixed bottom-5 end-5 z-40">
       {open && (
         <div className="mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
-          <div className="flex items-center justify-between bg-forest px-4 py-3 text-cream"><b>Humm · demo assistant</b><button onClick={() => setOpen(false)} aria-label="Close chat"><X className="size-4" /></button></div>
+          <div className="flex items-center justify-between bg-forest px-4 py-3 text-cream"><b>HUMM · Demo assistant</b><button onClick={() => setOpen(false)} aria-label="Close chat"><X className="size-4" /></button></div>
           <div className="flex-1 space-y-2 overflow-auto p-3 text-sm">
             <p className="rounded-2xl bg-muted p-3">{t("chatHi")}</p>
             {msgs.map((m, i) => <p key={i} className={`rounded-2xl p-3 ${m.me ? "ms-8 bg-mustard" : "me-8 bg-muted"}`}>{m.text}</p>)}
           </div>
           <form className="flex gap-2 border-t border-border p-2" onSubmit={(e) => { e.preventDefault(); const q = v.trim().slice(0, 300); if (!q) return; setMsgs((m) => [...m, { me: true, text: q }, { me: false, text: reply(q) }]); setV(""); }}>
-            <input value={v} onChange={(e) => setV(e.target.value)} maxLength={300} className="flex-1 rounded-full bg-muted px-3 text-sm outline-none" placeholder="Ask Humm…" aria-label="Message" />
+            <input value={v} onChange={(e) => setV(e.target.value)} maxLength={300} className="flex-1 rounded-full bg-muted px-3 text-sm outline-none" placeholder="Ask HUMM…" aria-label="Message" />
             <button className="rounded-full bg-tomato px-3 py-2 text-xs font-bold text-primary-foreground">Send</button>
           </form>
         </div>
@@ -159,7 +161,7 @@ function Footer() {
     <footer className="mt-24 bg-deep text-cream">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4">
         <div>
-          <p className="text-4xl font-extrabold tracking-tighter">HUMM<span className="text-tomato">.</span></p>
+          <Logo variant="light" className="h-14" />
           <p className="mt-3 text-sm opacity-70">{t("footerTag")}</p>
         </div>
         <div className="grid gap-2 text-sm"><b className="text-mustard">Learn</b><Link to="/courses">{t("courses")}</Link><Link to="/paths">{t("paths")}</Link><Link to="/chefs">{t("chefs")}</Link></div>

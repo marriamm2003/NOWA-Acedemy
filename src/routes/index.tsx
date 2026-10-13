@@ -45,7 +45,7 @@ function Home() {
           <img src={images.pizza} alt="Blistered Neapolitan pizza on a wooden peel" width={1280} height={1280} className="relative aspect-square w-full rounded-full object-cover shadow-soft" />
           <span className="absolute -start-2 top-10 animate-float rounded-full bg-mustard px-4 py-2 text-sm font-extrabold shadow-soft">🍅 72h dough</span>
           <span className="absolute -end-2 bottom-16 animate-float rounded-full bg-cream px-4 py-2 text-sm font-extrabold shadow-soft [animation-delay:1.5s]">🌿 Fresh basil</span>
-          <span className="absolute bottom-0 start-10 rotate-[-6deg] rounded-2xl bg-forest px-4 py-3 text-cream shadow-soft"><b className="block text-2xl">2 + 1</b><small>pick 2 levels, sauces free</small></span>
+          <span className="absolute bottom-0 start-10 rotate-[-6deg] rounded-2xl bg-forest px-4 py-3 text-cream shadow-soft"><b className="block text-2xl">2 + 1</b><small>Pick 2 levels, get sauces free</small></span>
         </div>
       </section>
 
@@ -64,13 +64,13 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5">
-        <div className="flex items-end justify-between gap-4"><SectionTitle eyebrow={t("featured")} title="Cook what" accent="excites you." /><Link to="/courses" className="font-bold underline">{t("browseAll")}</Link></div>
+        <div className="flex items-end justify-between gap-4"><SectionTitle eyebrow={t("featured")} title="Cook what" accent="excites you" /><Link to="/courses" className="font-bold underline">{t("browseAll")}</Link></div>
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{courses.slice(0, 3).map((c) => <CourseCard key={c.slug} c={c} />)}</div>
       </section>
 
       <section className="mt-24 bg-leaf py-20">
         <div className="mx-auto max-w-7xl px-5">
-          <SectionTitle eyebrow={t("paths")} title="Three ways to" accent="grow." />
+          <SectionTitle eyebrow={t("paths")} title="Three ways to" accent="grow" />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {paths.map((p, i) => (
               <Link key={p.id} to="/paths" hash={p.id} className={`rounded-[1.75rem] p-7 transition hover:-translate-y-1 ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}>
@@ -85,12 +85,12 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <SectionTitle eyebrow={t("meetChefs")} title="Chefs with a" accent="story." />
+        <SectionTitle eyebrow={t("meetChefs")} title="Chefs with a" accent="story" />
         <div className="mt-8 grid gap-6 md:grid-cols-3">{chefs.map((c) => <ChefCard key={c.slug} chef={c} />)}</div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5">
-        <div className="flex items-end justify-between"><SectionTitle eyebrow={t("curated")} title="The Chef's" accent="Market." /><Link to="/market" className="font-bold underline">{t("browseAll")}</Link></div>
+        <div className="flex items-end justify-between"><SectionTitle eyebrow={t("curated")} title="The Chef's" accent="Market" /><Link to="/market" className="font-bold underline">{t("browseAll")}</Link></div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{products.slice(0, 4).map((p) => <ProductCard key={p.id} p={p} />)}</div>
       </section>
 
@@ -104,7 +104,7 @@ function Home() {
         <div className="relative overflow-hidden rounded-[2.5rem] bg-deep p-10 text-cream md:p-16">
           <div className="absolute -end-20 -top-20 size-72 rounded-full bg-mustard/30" aria-hidden />
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-mustard">{t("passion")}</p>
-          <h2 className="mt-3 max-w-2xl text-4xl font-extrabold md:text-6xl">Your recipe could be <em className="font-serif font-normal text-mustard">the next big thing.</em></h2>
+          <h2 className="mt-3 max-w-2xl text-4xl font-extrabold md:text-6xl">Your recipe could be <em className="font-serif font-normal text-mustard">the next big thing</em></h2>
           <p className="mt-4 max-w-xl opacity-80">{t("passionCopy")}</p>
           <Link to="/creators" className="mt-8 inline-block rounded-full bg-tomato px-6 py-3.5 font-extrabold text-primary-foreground shadow-pop">{t("apply")}</Link>
         </div>

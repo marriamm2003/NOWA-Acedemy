@@ -23,7 +23,7 @@ function Market() {
   const list = products.filter((p) => !cat || p.category === cat);
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="HUMM Market" title="Tools our chefs" accent="actually use." />
+      <SectionTitle eyebrow="HUMM Market" title="Tools our chefs" accent="actually use" />
       <p className="mt-4 max-w-2xl rounded-2xl bg-mustard/40 p-4 text-sm"><b>Affiliate disclosure:</b> products are sold and shipped by independent sellers. HUMM or the recommending chef may earn a commission. In this prototype, links are simulated and no commission is tracked.</p>
       <div className="mt-6 flex flex-wrap gap-2">
         <button onClick={() => setCat(undefined)} className={`rounded-full px-4 py-2 text-sm font-bold ${!cat ? "bg-tomato text-primary-foreground" : "bg-card"}`}>All</button>

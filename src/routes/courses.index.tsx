@@ -48,7 +48,7 @@ function Discover() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="Discover" title="Find your" accent="flavour." />
+      <SectionTitle eyebrow="Discover" title="Find your" accent="flavour" />
       <div className="mt-8 flex flex-col gap-4 md:flex-row">
         <input
           value={s.q ?? ""}
@@ -77,7 +77,7 @@ function Discover() {
         <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{list.map((c) => <CourseCard key={c.slug} c={c} />)}</div>
       ) : (
         <div className="mt-6 rounded-3xl bg-card p-10 text-center">
-          <p className="text-xl font-extrabold">No courses match yet.</p>
+          <p className="text-xl font-extrabold">No courses match yet</p>
           <p className="text-muted-foreground">New categories are coming soon — try clearing filters.</p>
           <button onClick={() => nav({ search: {} })} className="mt-4 rounded-full bg-forest px-5 py-2 font-bold text-cream">Clear filters</button>
         </div>
