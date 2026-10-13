@@ -2,6 +2,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { findModule, getCourse } from "@/lib/data";
+import { localizeCourse } from "@/lib/localized";
+import { interpolate } from "@/lib/i18n";
 import type { ContactMethod } from "@/lib/store";
 import { useStore } from "@/lib/store";
 import { money } from "@/components/humm/Shell";
@@ -24,16 +26,8 @@ export const Route = createFileRoute("/checkout")({
   component: Checkout,
 });
 
-const schema = z.object({
-  name: z.string().trim().min(2, "Enter your name").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  card: z
-    .string()
-    .regex(/^4242 ?4242 ?4242 ?4242$/, "Demo mode: use test card 4242 4242 4242 4242"),
-});
-
 function Checkout() {
-  const { bag, bagQuote, placeOrder, t } = useStore();
+  const { bag, bagQuote, placeOrder, t, lang } = useStore();
   const nav = useNavigate();
   const [err, setErr] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
@@ -42,12 +36,12 @@ function Checkout() {
   if (!bag.length)
     return (
       <div className="mx-auto max-w-xl px-5 py-24 text-center">
-        <h1 className="text-4xl font-extrabold">Your bag is empty</h1>
+        <h1 className="text-4xl font-extrabold">{t("emptyCheckout")}</h1>
         <Link
           to="/courses"
           className="mt-4 inline-block rounded-full bg-tomato px-6 py-3 font-bold text-primary-foreground"
         >
-          Find a course
+          {t("browseCourses")}
         </Link>
       </div>
     );
@@ -55,6 +49,11 @@ function Checkout() {
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
+    const schema = z.object({
+      name: z.string().trim().min(2, t("enterName")).max(100),
+      email: z.string().trim().email(t("validEmail")).max(255),
+      card: z.string().regex(/^4242 ?4242 ?4242$/, t("testCard")),
+    });
     const r = schema.safeParse({
       name: f.get("name"),
       email: f.get("email"),
@@ -76,23 +75,22 @@ function Checkout() {
   return (
     <div className="mx-auto grid max-w-6xl gap-10 px-5 py-12 lg:grid-cols-2">
       <form onSubmit={submit} noValidate className="space-y-4">
-        <h1 className="text-4xl font-extrabold">Checkout</h1>
+        <h1 className="text-4xl font-extrabold">{t("checkoutTitle")}</h1>
         <p className="rounded-2xl bg-mustard/50 p-4 text-sm">
-          <b>Demo payment.</b> No payment provider is connected — no real money is charged. Use card{" "}
-          <code>4242 4242 4242 4242</code>.
+          <b>{t("demoPayment")}</b> {t("demoPaymentCopy")} <code>4242 4242 4242 4242</code>.
         </p>
         <label className="block font-bold">
-          Name
+          {t("name")}
           <input name="name" maxLength={100} className={field} />
         </label>
         {err["name"] && <p className="text-sm font-bold text-tomato">{err["name"]}</p>}
         <label className="block font-bold">
-          Email
+          {t("email")}
           <input name="email" type="email" maxLength={255} className={field} />
         </label>
         {err["email"] && <p className="text-sm font-bold text-tomato">{err["email"]}</p>}
         <label className="block font-bold">
-          Card number
+          {t("cardNumber")}
           <input
             name="card"
             inputMode="numeric"
@@ -129,26 +127,28 @@ function Checkout() {
           disabled={busy}
           className="w-full rounded-full bg-tomato py-4 text-lg font-extrabold text-primary-foreground shadow-pop disabled:opacity-60"
         >
-          {busy ? "Processing…" : `Pay ${money(bagQuote.total)} (demo)`}
+          {busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total) })}
         </button>
       </form>
       <aside className="h-fit rounded-[2rem] bg-card p-6 shadow-soft">
-        <h2 className="text-2xl font-extrabold">Order summary</h2>
+        <h2 className="text-2xl font-extrabold">{t("orderSummary")}</h2>
         {bagQuote.groups.map((g) => (
           <div key={g.slug} className="mt-4 border-b border-border pb-4">
-            <b>{getCourse(g.slug)!.title}</b>
+            <b>{localizeCourse(getCourse(g.slug)!, lang).title}</b>
             {g.quote.lineIds.map((id) => {
               const m = findModule(id)!.module;
+              const displayCourse = localizeCourse(getCourse(g.slug)!, lang);
+              const displayModule = displayCourse.modules.find((item) => item.id === id) ?? m;
               return (
                 <p key={id} className="flex justify-between text-sm">
-                  <span>{m.title}</span>
-                  <span>{m.bonus && g.quote.bonusUnlocked ? "FREE" : money(m.price)}</span>
+                  <span>{displayModule.title}</span>
+                  <span>{m.bonus && g.quote.bonusUnlocked ? t("free") : money(m.price)}</span>
                 </p>
               );
             })}
             {g.quote.discountApplied && (
               <p className="flex justify-between text-sm font-bold text-forest">
-                <span>Bundle discount</span>
+                <span>{t("bundleDiscount")}</span>
                 <span>−{money(g.quote.discount)}</span>
               </p>
             )}
@@ -161,11 +161,11 @@ function Checkout() {
           </div>
         ))}
         <p className="mt-4 flex justify-between text-sm">
-          <span>Original</span>
+          <span>{t("original")}</span>
           <s>{money(bagQuote.original)}</s>
         </p>
         <p className="flex justify-between text-2xl font-extrabold">
-          <span>Total</span>
+          <span>{t("total")}</span>
           <span>{money(bagQuote.total)}</span>
         </p>
         <p className="mt-3 text-xs text-muted-foreground">

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Download, Lock, Unlock, Award } from "lucide-react";
 import { courses, getCourse } from "@/lib/data";
+import { localizeCourse, label as localizeLabel } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,13 +14,13 @@ export const Route = createFileRoute("/kitchen")({
   }),
   head: () => ({
     meta: [
-      { title: "HUMM Kitchen — My Learning Dashboard" },
+      { title: "NOWA Kitchen — My Learning Dashboard" },
       {
         name: "description",
         content: "Your purchased modules, progress, saved courses, recipe cards and orders.",
       },
-      { property: "og:title", content: "HUMM Kitchen — Learner Dashboard" },
-      { property: "og:description", content: "Track your culinary learning on HUMM." },
+      { property: "og:title", content: "NOWA Kitchen — Learner Dashboard" },
+      { property: "og:description", content: "Track your culinary learning on NOWA." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
@@ -32,31 +33,30 @@ const demoProgress: Record<string, number> = { "pt-1": 100, "pt-2": 60, "pt-4": 
 
 function Kitchen() {
   const { order } = Route.useSearch();
-  const { owned, orders, wishlist } = useStore();
+  const { owned, orders, wishlist, t, lang } = useStore();
   const myCourses = courses.filter((c) => c.modules.some((m) => owned.has(m.id)));
   const saved = courses.filter((c) => wishlist.includes(c.slug));
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
       <p className="mb-4 rounded-2xl bg-mustard/40 p-3 text-sm">
-        <b>Prototype dashboard.</b> Accounts aren't connected yet, so access is based on demo orders
-        stored in this browser — not verified payments.
+        <b>{t("dashboardNotice")}</b> {t("dashboardCopy")}
       </p>
       {order && (
         <p className="mb-6 rounded-2xl bg-leaf p-4 font-bold" role="status">
-          Demo order {order} confirmed — your new modules are unlocked below.
+          {t("orderConfirmed").replace("{order}", order)}
         </p>
       )}
-      <SectionTitle eyebrow="HUMM Kitchen" title="Welcome back," accent="chef" />
+      <SectionTitle eyebrow={t("kitchen")} title={t("welcome")} accent={t("chef")}  />
       <Tabs defaultValue="courses" className="mt-8">
         <TabsList className="flex h-auto flex-wrap justify-start bg-transparent p-0">
-          {["courses", "saved", "recipes", "certificates", "orders", "settings"].map((t) => (
+          {["courses", "saved", "recipes", "certificates", "orders", "settings"].map((tab) => (
             <TabsTrigger
-              key={t}
-              value={t}
+              key={tab}
+              value={tab}
               className="rounded-full capitalize data-[state=active]:bg-tomato data-[state=active]:text-primary-foreground"
             >
-              {t === "courses" ? "My courses" : t}
+              {tab === "courses" ? t("myCourses") : t(tab as "saved" | "recipes" | "certificates" | "orders" | "settings")}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -64,9 +64,9 @@ function Kitchen() {
         <TabsContent value="courses" className="mt-6 space-y-6">
           {myCourses.length === 0 && (
             <p>
-              No modules yet.{" "}
+              {t("noModules")} {" "}
               <Link to="/courses" className="underline">
-                Browse courses
+                {t("browse")}
               </Link>
             </p>
           )}
@@ -79,10 +79,10 @@ function Kitchen() {
               <div key={c.slug} className="rounded-[1.75rem] bg-card p-6 shadow-soft">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <h3 className="text-2xl font-extrabold">{c.title}</h3>
+                    <h3 className="text-2xl font-extrabold">{localizeCourse(c, lang).title}</h3>
                     <p className="text-sm text-muted-foreground">
-                      {done.length}/{c.modules.length} modules owned · subtitles:{" "}
-                      {c.subtitles.join(", ")}
+                      {done.length}/{c.modules.length} {t("modulesOwned")} · {t("subtitles")}:{" "}
+                      {c.subtitles.map((x) => localizeLabel(x, lang)).join(", ")}
                     </p>
                   </div>
                   <Link
@@ -91,7 +91,7 @@ function Kitchen() {
                     hash="builder"
                     className="rounded-full bg-forest px-4 py-2 text-sm font-bold text-cream"
                   >
-                    Add modules
+                    {t("addModules")}
                   </Link>
                 </div>
                 <Progress value={pct} className="mt-4" />
@@ -104,7 +104,7 @@ function Kitchen() {
                         className={`flex items-center gap-3 rounded-xl p-3 text-sm ${has ? "bg-leaf/50" : "bg-muted text-muted-foreground"}`}
                       >
                         {has ? <Unlock className="size-4" /> : <Lock className="size-4" />}
-                        <span className="flex-1">{m.title}</span>
+                        <span className="flex-1">{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</span>
                         {has ? <b>{demoProgress[m.id] ?? 0}%</b> : <span>{money(m.price)}</span>}
                       </li>
                     );
@@ -123,7 +123,7 @@ function Kitchen() {
               ))}
             </div>
           ) : (
-            <p>Tap the heart on any course to save it here.</p>
+            <p>{t("savedHint")}</p>
           )}
         </TabsContent>
 
@@ -133,16 +133,16 @@ function Kitchen() {
               .filter((m) => owned.has(m.id))
               .map((m) => (
                 <div key={m.id} className="rounded-2xl bg-card p-5">
-                  <b>{m.title}</b>
-                  <p className="text-xs text-muted-foreground">{c.title}</p>
+                  <b>{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</b>
+                  <p className="text-xs text-muted-foreground">{localizeCourse(c, lang).title}</p>
                   <button
                     onClick={() =>
-                      alert("Demo: recipe card PDFs aren't generated in this prototype.")
+                      alert(t("recipeDemo"))
                     }
                     className="mt-3 flex items-center gap-2 text-sm font-bold text-tomato"
                   >
                     <Download className="size-4" />
-                    Recipe card & ingredient list
+                    {t("recipeDownload")}
                   </button>
                 </div>
               )),
@@ -157,14 +157,14 @@ function Kitchen() {
                 <div key={m.id} className="flex items-center gap-4 rounded-2xl bg-mustard p-5">
                   <Award className="size-8" />
                   <div>
-                    <b>Certificate of completion</b>
-                    <p className="text-sm">{m.title}</p>
+                    <b>{t("certificate")}</b>
+                    <p className="text-sm">{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</p>
                   </div>
                 </div>
               )),
           )}
           <p className="mt-3 text-sm text-muted-foreground">
-            Finish a module to 100% to earn its certificate.
+            {t("certificateHint")}
           </p>
         </TabsContent>
 
@@ -175,7 +175,7 @@ function Kitchen() {
                 <b>{o.id}</b>
                 <span>
                   {o.date} · {money(o.total)} ·{" "}
-                  <span className="text-xs font-bold text-tomato">DEMO</span>
+                  <span className="text-xs font-bold text-tomato">{t("demo")}</span>
                 </span>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">
@@ -186,24 +186,22 @@ function Kitchen() {
                     ),
                   ),
                 )
-                  .map((s) => getCourse(s!)?.title)
+                  .map((s) => localizeCourse(getCourse(s!)!, lang).title)
                   .join(", ")}{" "}
-                — {o.moduleIds.length} modules
+                — {o.moduleIds.length} {t("modulesOwned")}
               </p>
             </div>
           ))}
         </TabsContent>
 
         <TabsContent value="settings" className="mt-6 max-w-lg space-y-3 rounded-2xl bg-card p-6">
-          <p className="font-bold">Account settings</p>
+          <p className="font-bold">{t("accountSettings")}</p>
           <p className="text-sm text-muted-foreground">
-            Sign-in, profile and language preferences will live here once accounts are enabled. Use
-            the language switch in the top bar for English / العربية.
+            {t("accountCopy")}
           </p>
-          <p className="font-bold">Help & support</p>
+          <p className="font-bold">{t("help")}</p>
           <p className="text-sm text-muted-foreground">
-            Ask the HUMM assistant (bottom corner) or email support@humm.academy (placeholder
-            address).
+            {t("helpCopy")}
           </p>
         </TabsContent>
       </Tabs>

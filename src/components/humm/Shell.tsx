@@ -3,6 +3,8 @@ import { useState, type ReactNode } from "react";
 import { Heart, Menu, MessageCircle, Search, ShoppingBag, X } from "lucide-react";
 import { useStore } from "@/lib/store";
 import { courses, findModule, getCourse } from "@/lib/data";
+import { localizeCourse } from "@/lib/localized";
+import { interpolate } from "@/lib/i18n";
 import { WORKBOOK_PRICE } from "@/lib/pricing";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
@@ -73,7 +75,7 @@ function Nav() {
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder={t("search")}
-                aria-label="Search"
+                aria-label={t("search")}
                 className="w-40 bg-transparent text-sm outline-none"
               />
             </form>
@@ -85,7 +87,7 @@ function Nav() {
             </button>
             <Link
               to="/kitchen"
-              aria-label="Saved"
+              aria-label={t("saved")}
               className="relative rounded-full border border-border p-2.5"
             >
               <Heart className="size-4" />
@@ -113,7 +115,7 @@ function Nav() {
             >
               {t("kitchen")}
             </Link>
-            <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
+            <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label={t("message")}>
               {open ? <X /> : <Menu />}
             </button>
           </div>
@@ -136,7 +138,7 @@ function Nav() {
 }
 
 function BagSheet() {
-  const { bagOpen, setBagOpen, bag, toggleBag, bagQuote, t, workbooks, toggleWorkbook } =
+  const { bagOpen, setBagOpen, bag, toggleBag, bagQuote, t, lang, workbooks, toggleWorkbook } =
     useStore();
   const nav = useNavigate();
   return (
@@ -150,7 +152,7 @@ function BagSheet() {
         ) : (
           <div className="flex-1 space-y-5 overflow-auto px-4">
             {bagQuote.groups.map((g) => {
-              const c = getCourse(g.slug)!;
+              const c = localizeCourse(getCourse(g.slug)!, lang);
               return (
                 <div key={g.slug} className="rounded-2xl bg-card p-4">
                   <p className="font-extrabold">{c.title}</p>
@@ -160,13 +162,13 @@ function BagSheet() {
                       const free = m.bonus && g.quote.bonusUnlocked;
                       return (
                         <li key={id} className="flex items-center justify-between gap-2">
-                          <span>{m.title}</span>
+                          <span>{c.modules.find((item) => item.id === id)?.title ?? m.title}</span>
                           <span className="flex items-center gap-2 whitespace-nowrap">
-                            {free ? <b className="text-tomato">FREE</b> : money(m.price)}
+                            {free ? <b className="text-tomato">{t("free")}</b> : money(m.price)}
                             {bag.includes(id) && (
                               <button
                                 onClick={() => toggleBag(id)}
-                                aria-label={`Remove ${m.title}`}
+                                aria-label={`${t("remove")} ${m.title}`}
                               >
                                 <X className="size-3" />
                               </button>
@@ -178,7 +180,7 @@ function BagSheet() {
                   </ul>
                   {g.quote.discountApplied && (
                     <p className="mt-2 text-xs font-bold text-forest">
-                      Bundle −{money(g.quote.discount)}
+                      {t("bundleDiscount")} −{money(g.quote.discount)}
                     </p>
                   )}
                   {g.quote.workbookPrice > 0 && (
@@ -193,7 +195,7 @@ function BagSheet() {
                         onClick={() => toggleWorkbook(g.slug)}
                         className="font-bold text-tomato"
                       >
-                        Remove
+                        {t("remove")}
                       </button>
                     </div>
                   )}
@@ -208,7 +210,7 @@ function BagSheet() {
                           {money(WORKBOOK_PRICE)} · {t("workbookCopy")}
                         </span>
                       </span>
-                      <span className="font-bold text-forest">Add</span>
+                      <span className="font-bold text-forest">{t("add")}</span>
                     </button>
                   )}
                 </div>
@@ -219,11 +221,11 @@ function BagSheet() {
         {bag.length > 0 && (
           <div className="border-t border-border p-4">
             <div className="flex justify-between text-sm text-muted-foreground">
-              <span>Original</span>
+              <span>{t("original")}</span>
               <s>{money(bagQuote.original)}</s>
             </div>
             <div className="flex justify-between text-xl font-extrabold">
-              <span>Total</span>
+              <span>{t("total")}</span>
               <span>{money(bagQuote.total)}</span>
             </div>
             <button
@@ -243,28 +245,28 @@ function BagSheet() {
 }
 
 function Chatbot() {
-  const { t } = useStore();
+  const { t, lang } = useStore();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<{ me: boolean; text: string }[]>([]);
   const [v, setV] = useState("");
   const reply = (q: string) => {
     const s = q.toLowerCase();
-    if (s.includes("bundle") || s.includes("free"))
-      return "Pick 2 eligible modules in a course and its bonus mini-course is added free. Pick 3 and you also save 15% on them.";
-    if (s.includes("creator") || s.includes("apply"))
-      return "Head to For Creators and fill in the application — our team reviews every one.";
+    if (s.includes("bundle") || s.includes("free") || s.includes("باقة") || s.includes("مجاني"))
+      return t("chatbotBundle");
+    if (s.includes("creator") || s.includes("apply") || s.includes("مبدع") || s.includes("تقديم"))
+      return t("chatbotCreator");
     const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0] ?? ""));
     if (c)
-      return `Try “${c.title}” — modules start from $${Math.min(...c.modules.map((m) => m.price))}.`;
-    return "I'm a demo assistant with scripted answers. Try asking about pizza, desserts, bundles or creators.";
+      return interpolate(t("chatbotCourse"), { course: localizeCourse(c, lang).title, amount: money(Math.min(...c.modules.map((m) => m.price))) });
+    return t("chatbotFallback");
   };
   return (
     <div className="fixed bottom-5 end-5 z-40">
       {open && (
         <div className="mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
           <div className="flex items-center justify-between bg-forest px-4 py-3 text-cream">
-            <b>NOWA · Demo assistant</b>
-            <button onClick={() => setOpen(false)} aria-label="Close chat">
+            <b>{t("demoAssistant")}</b>
+            <button onClick={() => setOpen(false)} aria-label={t("close")}>
               <X className="size-4" />
             </button>
           </div>
@@ -294,18 +296,18 @@ function Chatbot() {
               onChange={(e) => setV(e.target.value)}
               maxLength={300}
               className="flex-1 rounded-full bg-muted px-3 text-sm outline-none"
-              placeholder="Ask NOWA…"
-              aria-label="Message"
+              placeholder={t("askNowa")}
+              aria-label={t("message")} 
             />
             <button className="rounded-full bg-tomato px-3 py-2 text-xs font-bold text-primary-foreground">
-              Send
+              {t("send")}
             </button>
           </form>
         </div>
       )}
       <button
         onClick={() => setOpen(!open)}
-        aria-label="Open chat"
+        aria-label={t("openChat")}
         className="ms-auto grid size-14 place-items-center rounded-full bg-tomato text-primary-foreground shadow-pop"
       >
         <MessageCircle />
@@ -324,22 +326,19 @@ function Footer() {
           <p className="mt-3 text-sm opacity-70">{t("footerTag")}</p>
         </div>
         <div className="grid gap-2 text-sm">
-          <b className="text-mustard">Learn</b>
+          <b className="text-mustard">{t("learn")}</b>
           <Link to="/courses">{t("courses")}</Link>
           <Link to="/paths">{t("paths")}</Link>
           <Link to="/chefs">{t("chefs")}</Link>
         </div>
         <div className="grid gap-2 text-sm">
-          <b className="text-mustard">Grow</b>
+          <b className="text-mustard">{t("growColumn")}</b>
           <Link to="/creators">{t("creators")}</Link>
           <Link to="/market">{t("market")}</Link>
           <Link to="/kitchen">{t("kitchen")}</Link>
         </div>
         <div className="text-xs opacity-70">
-          <p>
-            Prototype notice: payments, accounts, affiliate tracking and the chatbot are demo
-            simulations. No real money is taken and no commission is tracked.
-          </p>
+          <p>{t("footerNotice")}</p>
           <p className="mt-3">© 2026 NOWA Studio</p>
         </div>
       </div>

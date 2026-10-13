@@ -647,7 +647,16 @@ export const products: Product[] = [
   },
 ];
 
-export const paths = [
+export type Path = {
+  id: string;
+  title: string;
+  blurb: string;
+  weeks: number;
+  courses: string[];
+  tone: "tomato" | "green" | "mustard";
+};
+
+export const paths: Path[] = [
   {
     id: "dish-master",
     title: "The Dish Master",

@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { categories, courses, levels, fromPrice, getChef } from "@/lib/data";
+import { label as localizeLabel } from "@/lib/localized";
+import { useStore } from "@/lib/store";
 import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 
 type S = {
@@ -19,13 +21,13 @@ export const Route = createFileRoute("/courses/")({
   }),
   head: () => ({
     meta: [
-      { title: "Culinary Courses — HUMM Academy" },
+      { title: "Culinary Courses — NOWA Studio" },
       {
         name: "description",
         content:
           "Browse pizza, dessert, baking, plant-based and food business courses. Filter by category and skill level.",
       },
-      { property: "og:title", content: "Culinary Courses — HUMM Academy" },
+      { property: "og:title", content: "Culinary Courses — NOWA Studio" },
       {
         property: "og:description",
         content: "Find your flavour: modular courses from chefs who teach every technique.",
@@ -38,6 +40,7 @@ export const Route = createFileRoute("/courses/")({
 });
 
 function Discover() {
+  const { lang, t } = useStore();
   const s = Route.useSearch();
   const nav = useNavigate({ from: "/courses/" });
   const set = (patch: Partial<S>) => nav({ search: (p: S) => ({ ...p, ...patch }) });
@@ -65,31 +68,31 @@ function Discover() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="Discover" title="Find your" accent="flavour" />
+      <SectionTitle eyebrow={t("discover")} title={t("findYour")} accent={t("flavour")} />
       <div className="mt-8 flex flex-col gap-4 md:flex-row">
         <input
           value={s.q ?? ""}
           onChange={(e) => set({ q: e.target.value || undefined })}
-          placeholder="Search courses, chefs, dishes…"
-          aria-label="Search courses"
+          placeholder={t("search")}
+          aria-label={t("search")} 
           maxLength={80}
           className="flex-1 rounded-full border border-border bg-card px-5 py-3 outline-none focus:border-tomato"
         />
         <select
           value={s.sort ?? ""}
           onChange={(e) => set({ sort: e.target.value || undefined })}
-          aria-label="Sort"
+          aria-label={t("sort")}
           className="rounded-full border border-border bg-card px-4 py-3 font-bold"
         >
-          <option value="">Most popular</option>
-          <option value="rating">Top rated</option>
-          <option value="price">Lowest price</option>
-          <option value="new">Newest</option>
+          <option value="">{t("mostPopular")}</option>
+          <option value="rating">{t("topRated")}</option>
+          <option value="price">{t("lowestPrice")}</option>
+          <option value="new">{t("newest")}</option>
         </select>
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
         <button className={chip(!s.cat)} onClick={() => set({ cat: undefined })}>
-          All
+          {t("all")}
         </button>
         {categories.map((c) => (
           <button
@@ -97,7 +100,7 @@ function Discover() {
             className={chip(s.cat === c)}
             onClick={() => set({ cat: s.cat === c ? undefined : c })}
           >
-            {c}
+            {localizeLabel(c, lang)}
           </button>
         ))}
       </div>
@@ -108,12 +111,12 @@ function Discover() {
             className={chip(s.level === l)}
             onClick={() => set({ level: s.level === l ? undefined : l })}
           >
-            {l}
+            {localizeLabel(l, lang)}
           </button>
         ))}
       </div>
       <p className="mt-6 text-sm text-muted-foreground">
-        {list.length} course{list.length === 1 ? "" : "s"}
+        {list.length} {list.length === 1 ? t("course") : t("coursesCount")}
       </p>
       {list.length ? (
         <div className="mt-4 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -123,15 +126,15 @@ function Discover() {
         </div>
       ) : (
         <div className="mt-6 rounded-3xl bg-card p-10 text-center">
-          <p className="text-xl font-extrabold">No courses match yet</p>
+          <p className="text-xl font-extrabold">{t("noCourses")}</p>
           <p className="text-muted-foreground">
-            New categories are coming soon — try clearing filters.
+            {t("noCoursesCopy")}
           </p>
           <button
             onClick={() => nav({ search: {} })}
             className="mt-4 rounded-full bg-forest px-5 py-2 font-bold text-cream"
           >
-            Clear filters
+            {t("clearFilters")}
           </button>
         </div>
       )}

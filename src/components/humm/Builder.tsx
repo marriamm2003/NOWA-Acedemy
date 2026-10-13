@@ -8,10 +8,13 @@ import {
   WORKBOOK_PRICE,
 } from "@/lib/pricing";
 import { useStore } from "@/lib/store";
+import { localizeCourse } from "@/lib/localized";
+import { interpolate } from "@/lib/i18n";
 import { money } from "./Shell";
 
 export function CourseBuilder({ course }: { course: Course }) {
-  const { bag, toggleBag, owned, setBagOpen, workbooks, toggleWorkbook } = useStore();
+  const { bag, toggleBag, owned, setBagOpen, workbooks, toggleWorkbook, lang, t } = useStore();
+  const displayCourse = localizeCourse(course, lang);
   const selected = bag.filter((id) => course.modules.some((m) => m.id === id));
   const withWorkbook = workbooks.includes(course.slug);
   const q = quoteCourse(course.modules, selected, withWorkbook);
@@ -21,6 +24,7 @@ export function CourseBuilder({ course }: { course: Course }) {
     <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
       <ol className="space-y-3">
         {course.modules.map((m, i) => {
+          const displayModule = displayCourse.modules[i] ?? m;
           const isOwned = owned.has(m.id);
           const on = selected.includes(m.id);
           const freeBonus = m.bonus && q.bonusUnlocked;
@@ -44,28 +48,28 @@ export function CourseBuilder({ course }: { course: Course }) {
                   )}
                 </span>
                 <span className="flex-1">
-                  <b className="block">{m.title}</b>
+                  <b className="block">{displayModule.title}</b>
                   <span className="text-xs text-muted-foreground">
-                    {m.lessons} recorded lessons · {m.minutes} min
+                    {m.lessons} {t("lessons")} · {m.minutes} {t("minutes")}
                     {m.live && (
                       <span className="ms-2 inline-flex items-center gap-1 font-bold text-forest">
                         <Radio className="size-3" />
-                        LIVE feedback
+                        {t("liveFeedback")}
                       </span>
                     )}
                     {m.eligible && (
-                      <span className="ms-2 font-bold text-forest">· bundle eligible</span>
+                      <span className="ms-2 font-bold text-forest">· {t("eligible")}</span>
                     )}
-                    {m.bonus && <span className="ms-2 font-bold text-tomato">· bonus</span>}
+                    {m.bonus && <span className="ms-2 font-bold text-tomato">· {t("bonus")}</span>}
                   </span>
                 </span>
                 <span className="text-end font-extrabold">
                   {isOwned ? (
-                    "Owned"
+                    t("owned")
                   ) : freeBonus ? (
                     <>
                       <s className="block text-xs text-muted-foreground">{money(m.price)}</s>
-                      <span className="text-tomato">FREE</span>
+                      <span className="text-tomato">{t("free")}</span>
                     </>
                   ) : (
                     money(m.price)
@@ -78,7 +82,7 @@ export function CourseBuilder({ course }: { course: Course }) {
       </ol>
 
       <aside className="h-fit rounded-[1.75rem] bg-deep p-6 text-cream lg:sticky lg:top-28">
-        <p className="text-xs font-bold uppercase tracking-widest text-mustard">Your build</p>
+        <p className="text-xs font-bold uppercase tracking-widest text-mustard">{t("yourBuild")}</p>
         <button
           type="button"
           onClick={() => toggleWorkbook(course.slug)}
@@ -88,41 +92,38 @@ export function CourseBuilder({ course }: { course: Course }) {
         >
           <BookOpen className="size-5 shrink-0 text-mustard" />
           <span className="flex-1">
-            <b className="block">Printable course workbook</b>
-            <span className="text-xs opacity-75">Recipes, practice notes and progress pages</span>
+            <b className="block">{t("workbook")}</b>
+            <span className="text-xs opacity-75">{t("workbookCopy")}</span>
           </span>
           <span className="text-sm font-extrabold">+{money(WORKBOOK_PRICE)}</span>
         </button>
         <div className="mt-4 space-y-2 text-sm">
-          <Row label="Original price" value={<s className="opacity-70">{money(q.original)}</s>} />
-          {q.bonusUnlocked && <Row label="Bonus mini-course" value={`−${money(q.bonusSavings)}`} />}
+          <Row label={t("originalPrice")} value={<s className="opacity-70">{money(q.original)}</s>} />
+          {q.bonusUnlocked && <Row label={t("bonusCourse")} value={`−${money(q.bonusSavings)}`} />}
           {q.discountApplied && (
-            <Row label={`Bundle ${BUNDLE_DISCOUNT * 100}% off`} value={`−${money(q.discount)}`} />
+            <Row label={interpolate(t("bundleOff"), { percent: BUNDLE_DISCOUNT * 100 })} value={`−${money(q.discount)}`} />
           )}
           {q.workbookPrice > 0 && (
-            <Row label="Course workbook" value={`+${money(q.workbookPrice)}`} />
+            <Row label={t("workbookPrice")} value={`+${money(q.workbookPrice)}`} />
           )}
         </div>
         <div className="mt-4 flex items-end justify-between border-t border-cream/20 pt-4">
-          <span>Total</span>
+          <span>{t("total")}</span>
           <span className="text-4xl font-extrabold">{money(q.total)}</span>
         </div>
         {q.original - q.total > 0 && (
           <p className="mt-1 text-end text-sm font-bold text-mustard">
-            You save {money(q.original - q.total)}
+            {t("youSave")} {money(q.original - q.total)}
           </p>
         )}
-        {q.nextHint && <p className="mt-4 rounded-xl bg-forest p-3 text-sm">{q.nextHint}</p>}
+        {q.nextHint && <p className="mt-4 rounded-xl bg-forest p-3 text-sm">{interpolate(q.eligibleCount < BONUS_THRESHOLD ? t("bonusRule") : t("discountRule"), { count: q.eligibleCount < BONUS_THRESHOLD ? BONUS_THRESHOLD - q.eligibleCount : DISCOUNT_THRESHOLD - q.eligibleCount, percent: BUNDLE_DISCOUNT * 100 })}</p>}
         <div className="mt-4 space-y-1 text-xs opacity-80">
           {hasBonus && (
-            <p>• Pick {BONUS_THRESHOLD} eligible modules → bonus mini-course free (added once).</p>
+            <p>• {interpolate(t("bonusRule"), { count: BONUS_THRESHOLD })}</p>
           )}
-          <p>
-            • Pick {DISCOUNT_THRESHOLD}+ eligible modules → {BUNDLE_DISCOUNT * 100}% off those
-            modules.
-          </p>
-          <p>• The bonus module itself doesn't count toward eligibility.</p>
-          <p>• Workbooks are optional and added per course.</p>
+          <p>• {interpolate(t("discountRule"), { count: DISCOUNT_THRESHOLD, percent: BUNDLE_DISCOUNT * 100 })}</p>
+          <p>• {t("bonusRuleTwo")}</p>
+          <p>• {t("workbookRule")}</p>
         </div>
         <button
           disabled={!selected.length}
@@ -130,11 +131,11 @@ export function CourseBuilder({ course }: { course: Course }) {
           className="mt-5 w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground shadow-pop disabled:opacity-40"
         >
           {selected.length ? (
-            "Review bag"
+            t("reviewBag")
           ) : (
             <span className="inline-flex items-center gap-2">
               <Lock className="size-4" />
-              Select a module
+              {t("selectModule")}
             </span>
           )}
         </button>

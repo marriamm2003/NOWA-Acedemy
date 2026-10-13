@@ -1,18 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { courses, fromPrice, getChef, getCourse, paths, type Category } from "@/lib/data";
+import { label as localizeLabel, localizeChef, localizeCourse, localizePath } from "@/lib/localized";
+import { useStore } from "@/lib/store";
+import { interpolate } from "@/lib/i18n";
 import { CourseCard, SectionTitle, toneBg } from "@/components/humm/Cards";
 
 export const Route = createFileRoute("/paths")({
   head: () => ({
     meta: [
-      { title: "Learning Paths & Course Finder — HUMM Academy" },
+      { title: "Learning Paths & Course Finder — NOWA Studio" },
       {
         name: "description",
         content:
           "The Dish Master, The Feel-Good Cook and The Food Founder — plus a smart course finder.",
       },
-      { property: "og:title", content: "Learning Paths — HUMM Academy" },
+      { property: "og:title", content: "Learning Paths — NOWA Studio" },
       {
         property: "og:description",
         content: "Guided culinary journeys and a quick quiz to find your next class.",
@@ -31,6 +34,7 @@ const goals: { label: string; cats: Category[] }[] = [
 ];
 
 function Finder() {
+  const { t, lang } = useStore();
   const [exp, setExp] = useState<string>();
   const [goal, setGoal] = useState<number>();
   const [budget, setBudget] = useState(50);
@@ -45,25 +49,25 @@ function Finder() {
     `rounded-full px-4 py-2 font-bold ${on ? "bg-tomato text-primary-foreground" : "bg-cream"}`;
   return (
     <div className="rounded-[2rem] bg-leaf p-8">
-      <h2 className="text-3xl font-extrabold">Smart Course Finder</h2>
-      <p className="mt-4 font-bold">1. Your experience</p>
+      <h2 className="text-3xl font-extrabold">{t("smartFinder")}</h2>
+      <p className="mt-4 font-bold">1. {t("experience")}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {["Beginner", "Intermediate", "Advanced"].map((l) => (
           <button key={l} className={btn(exp === l)} onClick={() => setExp(l)}>
-            {l}
+            {localizeLabel(l, lang)}
           </button>
         ))}
       </div>
-      <p className="mt-4 font-bold">2. Your goal</p>
+      <p className="mt-4 font-bold">2. {t("goal")}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {goals.map((g, i) => (
-          <button key={g.label} className={btn(goal === i)} onClick={() => setGoal(i)}>
-            {g.label}
+          <button key={lang === "ar" ? [t("masterDish"), t("healthier"), t("foodBusinessGoal")][i] : g.label} className={btn(goal === i)} onClick={() => setGoal(i)}>
+            {lang === "ar" ? [t("masterDish"), t("healthier"), t("foodBusinessGoal")][i] : g.label}
           </button>
         ))}
       </div>
       <label className="mt-4 block font-bold" htmlFor="budget">
-        3. Budget per module: ${budget}
+        3. {t("budget")}: ${budget}
       </label>
       <input
         id="budget"
@@ -84,7 +88,7 @@ function Finder() {
             </div>
           ) : (
             <p className="rounded-2xl bg-cream p-4">
-              No match under ${budget}. Try raising your budget a little.
+              {interpolate(t("noMatch"), { amount: `${budget}` })}
             </p>
           )}
         </div>
@@ -94,11 +98,14 @@ function Finder() {
 }
 
 function Paths() {
+  const { t, lang } = useStore();
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow="Learning paths" title="Three ways to" accent="grow" />
+      <SectionTitle eyebrow={t("learningPaths")} title={t("threeWays")} accent={t("grow")} />
       <div className="mt-10 space-y-10">
-        {paths.map((p, i) => (
+        {paths.map((p, i) => {
+          const displayPath = localizePath(p, lang);
+          return (
           <section
             key={p.id}
             id={p.id}
@@ -111,9 +118,9 @@ function Paths() {
                 0{i + 1}
               </span>
               <div>
-                <h2 className="text-3xl font-extrabold">{p.title}</h2>
+                <h2 className="text-3xl font-extrabold">{displayPath.title}</h2>
                 <p className="text-muted-foreground">
-                  {p.blurb} · ~{p.weeks} weeks
+                  {displayPath.blurb} · ~{p.weeks} {t("weeks")}
                 </p>
               </div>
             </div>
@@ -127,10 +134,10 @@ function Paths() {
                       params={{ slug: s }}
                       className="block rounded-2xl bg-muted p-5 hover:bg-leaf"
                     >
-                      <small className="font-bold text-tomato">Step {k + 1}</small>
-                      <b className="block text-lg">{c.title}</b>
+                      <small className="font-bold text-tomato">{t("step")} {k + 1}</small>
+                      <b className="block text-lg">{localizeCourse(c, lang).title}</b>
                       <small>
-                        {c.hours}h · with {getChef(c.chef)!.name}
+                        {c.hours}h · {t("with")} {localizeChef(getChef(c.chef)!, lang).name}
                       </small>
                     </Link>
                   </li>
@@ -138,7 +145,8 @@ function Paths() {
               })}
             </ol>
           </section>
-        ))}
+          );
+        })}
         <Finder />
       </div>
     </div>

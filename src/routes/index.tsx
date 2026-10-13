@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses, chefs, products, paths, categories, images } from "@/lib/data";
+import { label as localizeLabel, localizeChef, localizePath } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseCard, ChefCard, ProductCard, SectionTitle, toneBg } from "@/components/humm/Cards";
 
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const testimonials = [
+const testimonialsEn = [
   {
     q: "I bought just the dough level first. Two weeks later I had the whole masterclass — and my family won't order pizza anymore.",
     n: "Omar K., Riyadh",
@@ -35,7 +36,12 @@ const testimonials = [
 ];
 
 function Home() {
-  const { t } = useStore();
+  const { t, lang } = useStore();
+  const testimonials = lang === "ar" ? [
+    { q: "اشتريت مستوى العجين أولاً. وبعد أسبوعين أكملت الكورس كله — وعائلتي لم تعد تطلب البيتزا.", n: "عمر ك.، الرياض" },
+    { q: "دورة حساب التكاليف مع ليلى دفعت ثمنها من أول طلب كيك.", n: "سارة م.، القاهرة" },
+    { q: "أخيراً أكل نباتي بطعم أكلات جدتي.", n: "هناء أ.، عمّان" },
+  ] : testimonialsEn;
   return (
     <>
       <section className="relative mx-auto grid max-w-7xl items-center gap-10 overflow-hidden px-5 py-14 lg:grid-cols-2">
@@ -67,7 +73,7 @@ function Home() {
             </Link>
           </div>
           <p className="mt-8 text-sm text-muted-foreground">
-            <b className="text-foreground">4.9★</b> from 3,900+ learners · 3 chefs · 6 courses
+            <b className="text-foreground">4.9★</b> {t("statLearners")} · 3 {t("statChefs")} · 6 {t("statCourses")}
           </p>
         </div>
         <div className="relative">
@@ -83,14 +89,14 @@ function Home() {
             className="relative aspect-square w-full rounded-full object-cover shadow-soft"
           />
           <span className="absolute -start-2 top-10 animate-float rounded-full bg-mustard px-4 py-2 text-sm font-extrabold shadow-soft">
-            🍅 72h dough
+            🍅 {t("dough")}
           </span>
           <span className="absolute -end-2 bottom-16 animate-float rounded-full bg-cream px-4 py-2 text-sm font-extrabold shadow-soft [animation-delay:1.5s]">
-            🌿 Fresh basil
+            🌿 {t("basil")}
           </span>
           <span className="absolute bottom-0 start-10 rotate-[-6deg] rounded-2xl bg-forest px-4 py-3 text-cream shadow-soft">
             <b className="block text-2xl">2 + 1</b>
-            <small>Pick 2 levels, get sauces free</small>
+            <small>{t("offer")}</small>
           </span>
         </div>
       </section>
@@ -99,15 +105,15 @@ function Home() {
         <div className="flex w-max animate-marquee gap-10 whitespace-nowrap text-3xl font-extrabold tracking-tight">
           {Array.from({ length: 2 }).flatMap((_, k) =>
             [
-              "Knead it",
+              t("marqKnead"),
               "✺",
-              "Taste it",
+              t("marqTaste"),
               "✺",
-              "Plate it",
+              t("marqPlate"),
               "✺",
-              "Sell it",
+              t("marqSell"),
               "✺",
-              "Learn. Create. Grow.",
+              t("marqLearn"),
               "✺",
             ].map((w, i) => <span key={`${k}${i}`}>{w}</span>),
           )}
@@ -123,7 +129,7 @@ function Home() {
               search={{ cat: c }}
               className={`rounded-full px-5 py-3 font-bold transition hover:-translate-y-1 hover:rotate-[-2deg] ${["bg-leaf", "bg-mustard", "bg-card", "bg-forest text-cream"][i % 4]}`}
             >
-              {c}
+              {localizeLabel(c, lang)}
             </Link>
           ))}
         </div>
@@ -131,7 +137,7 @@ function Home() {
 
       <section className="mx-auto max-w-7xl px-5">
         <div className="flex items-end justify-between gap-4">
-          <SectionTitle eyebrow={t("featured")} title="Cook what" accent="excites you" />
+          <SectionTitle eyebrow={t("featured")} title={lang === "ar" ? "اطبخ ما" : "Cook what"} accent={lang === "ar" ? "يحمّسك" : "excites you"} />
           <Link to="/courses" className="font-bold underline">
             {t("browseAll")}
           </Link>
@@ -145,9 +151,11 @@ function Home() {
 
       <section className="mt-24 bg-leaf py-20">
         <div className="mx-auto max-w-7xl px-5">
-          <SectionTitle eyebrow={t("paths")} title="Three ways to" accent="grow" />
+          <SectionTitle eyebrow={t("paths")} title={t("threeWays")} accent={t("grow")} />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {paths.map((p, i) => (
+            {paths.map((p, i) => {
+              const displayPath = localizePath(p, lang);
+              return (
               <Link
                 key={p.id}
                 to="/paths"
@@ -155,19 +163,20 @@ function Home() {
                 className={`rounded-[1.75rem] p-7 transition hover:-translate-y-1 ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}
               >
                 <span className="font-serif text-6xl">0{i + 1}</span>
-                <h3 className="mt-3 text-2xl font-extrabold">{p.title}</h3>
-                <p className="mt-2">{p.blurb}</p>
+                <h3 className="mt-3 text-2xl font-extrabold">{displayPath.title}</h3>
+                <p className="mt-2">{displayPath.blurb}</p>
                 <p className="mt-4 text-sm font-bold">
-                  ~{p.weeks} weeks · {p.courses.length} courses
+                  ~{p.weeks} {t("weeks")} · {p.courses.length} {t("coursesCount")}
                 </p>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <SectionTitle eyebrow={t("meetChefs")} title="Chefs with a" accent="story" />
+        <SectionTitle eyebrow={t("meetChefs")} title={lang === "ar" ? "شيفات لديهم" : "Chefs with a"} accent={lang === "ar" ? "حكاية" : "story"} />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {chefs.map((c) => (
             <ChefCard key={c.slug} chef={c} />
@@ -177,7 +186,7 @@ function Home() {
 
       <section className="mx-auto max-w-7xl px-5">
         <div className="flex items-end justify-between">
-          <SectionTitle eyebrow={t("curated")} title="The Chef's" accent="Market" />
+          <SectionTitle eyebrow={t("curated")} title={t("marketTitle")} accent={t("marketAccent")} />
           <Link to="/market" className="font-bold underline">
             {t("browseAll")}
           </Link>
@@ -208,8 +217,7 @@ function Home() {
             {t("passion")}
           </p>
           <h2 className="mt-3 max-w-2xl text-4xl font-extrabold md:text-6xl">
-            Your recipe could be{" "}
-            <em className="font-serif font-normal text-mustard">the next big thing</em>
+            {t("nextBigThing")}
           </h2>
           <p className="mt-4 max-w-xl opacity-80">{t("passionCopy")}</p>
           <Link
