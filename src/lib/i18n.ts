@@ -1,7 +1,8 @@
 export type Lang = "en" | "ar";
 
 const en = {
-  announce: "New: build your own Pizza Masterclass — pick 2 levels, get the Sauces mini-course free.",
+  announce:
+    "New: build your own Pizza Masterclass — pick two levels and get the Sauces mini-course free.",
   courses: "Courses",
   paths: "Learning Paths",
   chefs: "Chefs",
@@ -12,7 +13,8 @@ const en = {
   heroA: "Make Food,",
   heroB: "Make Your",
   heroC: "Mark",
-  heroCopy: "From your first perfect pizza to the food business you've been dreaming about. Learn from chefs who bring every recipe to life.",
+  heroCopy:
+    "From your first perfect pizza to the food business you've been dreaming about. Learn from chefs who bring every recipe to life.",
   ctaFind: "Find your flavour",
   ctaPaths: "Explore learning paths",
   bag: "Bag",
@@ -22,7 +24,8 @@ const en = {
   meetChefs: "Meet the chefs",
   curated: "Curated by our chefs",
   passion: "From passion to business",
-  passionCopy: "Have a recipe people beg for? HUMM helps talented creators produce courses, build a brand and launch food products.",
+  passionCopy:
+    "Have a recipe people ask for? NOWA helps talented creators produce courses, build a brand and launch food products.",
   apply: "Apply as a creator",
   footerTag: "Culinary education, chef talent and creator commerce.",
   addToBag: "Add to bag",
@@ -30,7 +33,13 @@ const en = {
   owned: "Owned",
   checkout: "Checkout",
   emptyBag: "Your bag is empty. Build a course to get started.",
-  chatHi: "Hi, I'm the HUMM demo assistant. Ask me about courses, bundles or creator applications.",
+  chatHi: "Hi, I'm the NOWA demo assistant. Ask me about courses, bundles or creator applications.",
+  workbook: "Printable course workbook",
+  workbookCopy: "Recipes, practice notes and progress pages",
+  contactChoice: "How would you like us to contact you?",
+  whatsapp: "WhatsApp",
+  websiteMessage: "Website message",
+  demoNotice: "Demo only — no real message will be sent.",
 };
 
 const ar: typeof en = {
@@ -55,7 +64,8 @@ const ar: typeof en = {
   meetChefs: "تعرّف على الطهاة",
   curated: "مختارات طهاتنا",
   passion: "من الشغف إلى المشروع",
-  passionCopy: "لديك وصفة يطلبها الجميع؟ تساعد HUMM المبدعين على إنتاج الدورات وبناء العلامة وإطلاق المنتجات.",
+  passionCopy:
+    "لديك وصفة يطلبها الجميع؟ تساعد NOWA المبدعين على إنتاج الدورات وبناء العلامة وإطلاق المنتجات.",
   apply: "قدّم كمبدع",
   footerTag: "تعليم الطهي، مواهب الطهاة، وتجارة المبدعين.",
   addToBag: "أضف إلى الحقيبة",
@@ -63,7 +73,13 @@ const ar: typeof en = {
   owned: "مملوكة",
   checkout: "الدفع",
   emptyBag: "حقيبتك فارغة. صمّم دورتك للبدء.",
-  chatHi: "مرحباً، أنا المساعد التجريبي لـ HUMM. اسألني عن الدورات أو العروض أو طلبات المبدعين.",
+  chatHi: "مرحباً، أنا المساعد التجريبي لـ NOWA. اسألني عن الدورات أو العروض أو طلبات المبدعين.",
+  workbook: "كتيّب الدورة القابل للطباعة",
+  workbookCopy: "وصفات وملاحظات تطبيق وصفحات متابعة",
+  contactChoice: "كيف تفضّل أن نتواصل معك؟",
+  whatsapp: "واتساب",
+  websiteMessage: "رسالة عبر الموقع",
+  demoNotice: "تجريبي فقط — لن يتم إرسال رسالة حقيقية.",
 };
 
 export const dict = { en, ar };
