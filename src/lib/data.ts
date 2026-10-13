@@ -2,8 +2,12 @@ import pizza from "@/assets/hero-pizza.jpg";
 import dessert from "@/assets/dessert.jpg";
 import plant from "@/assets/plant.jpg";
 import tools from "@/assets/tools.jpg";
+import sauces from "@/assets/sauces.jpg";
+import business from "@/assets/business.jpg";
+import plating from "@/assets/plating.jpg";
+import pastryTools from "@/assets/pastry-tools.jpg";
 
-export const images = { pizza, dessert, plant, tools };
+export const images = { pizza, dessert, plant, tools, sauces, business, plating, pastryTools };
 
 export const categories = [
   "Pizza",
@@ -152,7 +156,7 @@ export const courses: Course[] = [
     category: "Sauces",
     level: "Intermediate",
     chef: "marco-bellini",
-    image: tools,
+    image: sauces,
     rating: 4.8,
     reviews: 503,
     hours: 7,
@@ -176,7 +180,7 @@ export const courses: Course[] = [
     category: "Food Business",
     level: "Beginner",
     chef: "layla-haddad",
-    image: dessert,
+    image: business,
     rating: 4.9,
     reviews: 390,
     hours: 8,
@@ -201,7 +205,7 @@ export const courses: Course[] = [
     category: "Food Presentation",
     level: "Advanced",
     chef: "noor-alami",
-    image: plant,
+    image: plating,
     rating: 4.6,
     reviews: 274,
     hours: 5,

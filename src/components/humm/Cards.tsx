@@ -63,7 +63,7 @@ export function ProductCard({ p, label }: { p: Product; label?: string }) {
   return (
     <article className="flex flex-col overflow-hidden rounded-[1.5rem] bg-card shadow-soft">
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img src={images.tools} alt={p.name} loading="lazy" width={1024} height={768} className="size-full object-cover" />
+        <img src={p.category === "Pastry tools" ? images.pastryTools : p.category === "Chef knives" ? images.plating : images.tools} alt={p.name} loading="lazy" width={1024} height={768} className="size-full object-cover" />
         <span className="absolute start-3 top-3 rounded-full bg-mustard px-2 py-1 text-[11px] font-bold">{label ?? p.badge}</span>
       </div>
       <div className="flex flex-1 flex-col p-4">
