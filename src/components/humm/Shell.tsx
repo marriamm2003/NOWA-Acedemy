@@ -129,7 +129,7 @@ function Chatbot() {
     const s = q.toLowerCase();
     if (s.includes("bundle") || s.includes("free")) return "Pick 2 eligible modules in a course and its bonus mini-course is added free. Pick 3 and you also save 15% on them.";
     if (s.includes("creator") || s.includes("apply")) return "Head to For Creators and fill in the application — our team reviews every one.";
-    const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0]));
+    const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0] ?? ""));
     if (c) return `Try “${c.title}” — modules start from $${Math.min(...c.modules.map((m) => m.price))}.`;
     return "I'm a demo assistant with scripted answers. Try asking about pizza, desserts, bundles or creators.";
   };
