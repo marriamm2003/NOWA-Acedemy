@@ -25,16 +25,21 @@ export const Route = createFileRoute("/chefs/$slug")({
         ]
       : [{ title: "Chef not found — NOWA Studio" }, { name: "robots", content: "noindex" }],
   }),
-  notFoundComponent: () => (
+  notFoundComponent: ChefNotFound,
+  component: ChefPage,
+});
+
+function ChefNotFound() {
+  const { t } = useStore();
+  return (
     <div className="py-24 text-center">
       <h1 className="text-4xl font-extrabold">{t("chefNotFound")}</h1>
       <Link to="/chefs" className="underline">
         {t("allChefs")}
       </Link>
     </div>
-  ),
-  component: ChefPage,
-});
+  );
+}
 
 function ChefPage() {
   const { slug } = Route.useParams();
@@ -99,7 +104,7 @@ function ChefPage() {
           ))}
         </p>
       )}
-      <h2 className="mt-14 text-3xl font-extrabold">{t("inKitchen")} {displayChef.name.split(" ")[0]}'s</h2>
+      <h2 className="mt-14 text-3xl font-extrabold">{t("inKitchen")} {displayChef.name.split(" ")[0]}{lang === "ar" ? "" : "'s"}</h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {chef.products.map((id) => (
           <ProductCard key={id} p={getProduct(id)!} label={t("chefRecommended")} />

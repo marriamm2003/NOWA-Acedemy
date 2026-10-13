@@ -3,6 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { SectionTitle } from "@/components/humm/Cards";
 import { useStore } from "@/lib/store";
+import { interpolate } from "@/lib/i18n";
 
 export const Route = createFileRoute("/creators")({
   head: () => ({
@@ -25,18 +26,7 @@ export const Route = createFileRoute("/creators")({
   component: Creators,
 });
 
-const services = [
-  "Talent discovery & representation",
-  "Project management",
-  "Course production",
-  "Personal branding",
-  "Food photography & content planning",
-  "Product development support",
-  "Pricing & costing guidance",
-  "Launch strategy",
-  "Brand & product partnerships",
-];
-const steps = ["Apply", "Discovery call", "Plan & produce", "Launch & grow"];
+
 
 function Creators() {
   const { t, lang } = useStore();
@@ -109,7 +99,7 @@ function Creators() {
         {sent ? (
           <div className="text-center" role="status">
             <p className="text-5xl">🎉</p>
-            <h2 className="mt-3 text-3xl font-extrabold">{t("thanks").replace("{name}", sent)}</h2>
+            <h2 className="mt-3 text-3xl font-extrabold">{interpolate(t("thanks"), { name: sent })}</h2>
             <p className="mt-2 text-muted-foreground">
               {t("applicationCaptured")}
             </p>
@@ -129,7 +119,7 @@ function Creators() {
             </label>
             <Err k="name" />
             <label className="block font-bold">
-              Email
+              {t("email")}
               <input name="email" type="email" maxLength={255} className={field} />
             </label>
             <Err k="email" />

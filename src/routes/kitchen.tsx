@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Download, Lock, Unlock, Award } from "lucide-react";
 import { courses, getCourse } from "@/lib/data";
-import { localizeCourse, label as localizeLabel } from "@/lib/localized";
+import { localizeCourse, languageLabel } from "@/lib/localized";
 import { useStore } from "@/lib/store";
+import { interpolate } from "@/lib/i18n";
 import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
@@ -44,7 +45,7 @@ function Kitchen() {
       </p>
       {order && (
         <p className="mb-6 rounded-2xl bg-leaf p-4 font-bold" role="status">
-          {t("orderConfirmed").replace("{order}", order)}
+          {interpolate(t("orderConfirmed"), { order })}
         </p>
       )}
       <SectionTitle eyebrow={t("kitchen")} title={t("welcome")} accent={t("chef")}  />
@@ -82,7 +83,7 @@ function Kitchen() {
                     <h3 className="text-2xl font-extrabold">{localizeCourse(c, lang).title}</h3>
                     <p className="text-sm text-muted-foreground">
                       {done.length}/{c.modules.length} {t("modulesOwned")} · {t("subtitles")}:{" "}
-                      {c.subtitles.map((x) => localizeLabel(x, lang)).join(", ")}
+                      {c.subtitles.map((x) => languageLabel(x, lang)).join(", ")}
                     </p>
                   </div>
                   <Link

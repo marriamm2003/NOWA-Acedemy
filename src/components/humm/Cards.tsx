@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ExternalLink, Heart, Star } from "lucide-react";
 import { fromPrice, getChef, type Chef, type Course, type Product, images } from "@/lib/data";
-import { localizeChef, localizeCourse, localizeProduct, label as localizeLabel } from "@/lib/localized";
+import { localizeChef, localizeCourse, localizeProduct, label as localizeLabel, languageLabel } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { money } from "./Shell";
 
@@ -50,7 +50,7 @@ export function CourseCard({ c }: { c: Course }) {
               <Star className="size-4 fill-mustard text-mustard" />
               {c.rating}{" "}
               <span className="text-muted-foreground">
-                ({c.reviews}) · {c.hours} {t("hoursTotal")} · {c.languages.map((x) => localizeLabel(x, lang)).join("/")}
+                ({c.reviews}) · {c.hours} {t("hoursTotal")} · {c.languages.map((x) => languageLabel(x, lang)).join("/")}
               </span>
             </span>
             <b>{t("from")} {money(fromPrice(c))}</b>
@@ -91,7 +91,7 @@ export function ChefCard({ chef }: { chef: Chef }) {
 export function ProductCard({ p, label }: { p: Product; label?: string }) {
   const { lang, t } = useStore();
   const localizedProduct = localizeProduct(p, lang);
-  const badge = label ? (label === "Used in This Course" ? t("usedCourse") : label === "Chef Recommended" ? t("chefRecommended") : label) : p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended");
+  const badge = label ?? (p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended"));
   return (
     <article className="flex flex-col overflow-hidden rounded-[1.5rem] bg-card shadow-soft">
       <div className="relative aspect-[4/3] overflow-hidden">

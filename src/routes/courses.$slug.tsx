@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Heart, PlayCircle, Star } from "lucide-react";
 import { courses, getChef, getCourse, getProduct } from "@/lib/data";
-import { localizeChef, localizeCourse, label as localizeLabel } from "@/lib/localized";
+import { localizeChef, localizeCourse, label as localizeLabel, languageLabel } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseBuilder } from "@/components/humm/Builder";
 import { ChefAvatar, CourseCard, ProductCard, SectionTitle } from "@/components/humm/Cards";
@@ -30,22 +30,32 @@ export const Route = createFileRoute("/courses/$slug")({
         ]
       : [{ title: "Course not found — NOWA Studio" }, { name: "robots", content: "noindex" }],
   }),
-  notFoundComponent: () => (
+  notFoundComponent: CourseNotFound,
+  component: CoursePage,
+});
+
+const reviewsAr = [
+  { n: "رانية", r: 5, t: "شراء مستوى واحد في كل مرة جعل البداية سهلة جداً." },
+  { n: "دانيال", r: 5, t: "شرح واضح ودافئ. جلسة التقييم المباشر كانت تستحق كل قرش." },
+  { n: "منى", r: 4, t: "أحببته — أتمنى لقطات أقرب أكثر." },
+];
+const reviewsEn = [
+  { n: "Rania", r: 5, t: "Buying one level at a time made it so easy to start." },
+  { n: "Daniel", r: 5, t: "Clear, warm teaching. The live feedback session was worth it." },
+  { n: "Mona", r: 4, t: "Loved it — I'd like even more close-up shots." },
+];
+
+function CourseNotFound() {
+  const { t } = useStore();
+  return (
     <div className="mx-auto max-w-xl px-5 py-24 text-center">
       <h1 className="text-4xl font-extrabold">{t("courseNotFound")}</h1>
       <Link to="/courses" className="mt-4 inline-block underline">
         {t("browseCourses")}
       </Link>
     </div>
-  ),
-  component: CoursePage,
-});
-
-const reviews = [
-  { n: "رانية", r: 5, t: "شراء مستوى واحد في كل مرة جعل البداية سهلة جداً." },
-  { n: "دانيال", r: 5, t: "شرح واضح ودافئ. جلسة التقييم المباشر كانت تستحق كل قرش." },
-  { n: "منى", r: 4, t: "أحببته — أتمنى لقطات أقرب أكثر." },
-];
+  );
+}
 
 function CoursePage() {
   const { slug } = Route.useParams();
@@ -81,8 +91,8 @@ function CoursePage() {
             </span>
             <span>{localizeLabel(c.level, lang)}</span>
             <span>{c.hours} {t("hoursTotal")}</span>
-            <span>{t("audio")}: {c.languages.join(", ")}</span>
-            <span>{t("subtitles")}: {c.subtitles.join(", ")}</span>
+            <span>{t("audio")}: {c.languages.map((x) => languageLabel(x, lang)).join(", ")}</span>
+            <span>{t("subtitles")}: {c.subtitles.map((x) => languageLabel(x, lang)).join(", ")}</span>
           </div>
           <Link
             to="/chefs/$slug"
@@ -159,8 +169,7 @@ function CoursePage() {
           accent={t("builderAccent")} 
         />
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          Every module is sold on its own. Recorded lessons are self-paced; modules marked LIVE add
-          an instructor feedback session.
+          {t("builderCopy")}
         </p>
         <div className="mt-8">
           <CourseBuilder course={c} />
@@ -173,7 +182,7 @@ function CoursePage() {
           <p className="mt-3 leading-relaxed">{displayChef.story}</p>
           <h2 className="mt-10 text-3xl font-extrabold">{t("reviewsTitle")}</h2>
           <div className="mt-3 space-y-3">
-            {reviews.map((r) => (
+            {(lang === "ar" ? reviewsAr : reviewsEn).map((r) => (
               <div key={r.n} className="rounded-2xl bg-card p-4">
                 <b>{r.n}</b> <span className="text-mustard">{"★".repeat(r.r)}</span>
                 <p className="text-sm">{r.t}</p>

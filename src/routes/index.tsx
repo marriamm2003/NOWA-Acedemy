@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses, chefs, products, paths, categories, images } from "@/lib/data";
-import { label as localizeLabel, localizeChef, localizePath } from "@/lib/localized";
+import { label as localizeLabel, localizePath } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseCard, ChefCard, ProductCard, SectionTitle, toneBg } from "@/components/humm/Cards";
 
@@ -83,7 +83,7 @@ function Home() {
           />
           <img
             src={images.pizza}
-            alt="Blistered Neapolitan pizza on a wooden peel"
+            alt={lang === "ar" ? "بيتزا نابولية متفحمة الأطراف على لوح خشبي" : "Blistered Neapolitan pizza on a wooden peel"}
             width={1280}
             height={1280}
             className="relative aspect-square w-full rounded-full object-cover shadow-soft"

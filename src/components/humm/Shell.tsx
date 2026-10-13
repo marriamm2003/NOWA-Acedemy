@@ -115,7 +115,7 @@ function Nav() {
             >
               {t("kitchen")}
             </Link>
-            <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label={t("message")}>
+            <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label={t("menu")}>
               {open ? <X /> : <Menu />}
             </button>
           </div>

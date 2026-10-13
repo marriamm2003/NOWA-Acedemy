@@ -137,7 +137,7 @@ function Paths() {
                       <small className="font-bold text-tomato">{t("step")} {k + 1}</small>
                       <b className="block text-lg">{localizeCourse(c, lang).title}</b>
                       <small>
-                        {c.hours}h · {t("with")} {localizeChef(getChef(c.chef)!, lang).name}
+                        {c.hours}{lang === "ar" ? "س" : "h"} · {t("with")} {localizeChef(getChef(c.chef)!, lang).name}
                       </small>
                     </Link>
                   </li>
