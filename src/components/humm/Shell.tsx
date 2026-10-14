@@ -58,10 +58,15 @@ function Nav() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="hover:text-tomato"
+                className="relative py-1 transition-colors hover:text-tomato"
                 activeProps={{ className: "text-tomato" }}
               >
-                {l.label}
+                {({ isActive }) => (
+                  <>
+                    {l.label}
+                    {isActive && <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-tomato" />}
+                  </>
+                )}
               </Link>
             ))}
           </nav>
@@ -124,13 +129,24 @@ function Nav() {
           </div>
         </div>
         {open && (
-          <nav className="grid gap-3 border-t border-border px-5 py-4 font-bold lg:hidden">
+          <nav className="mobile-menu-enter grid gap-1 border-t border-border px-5 py-4 font-bold lg:hidden">
             {links.map((l) => (
-              <Link key={l.to} to={l.to} onClick={() => setOpen(false)}>
+              <Link
+                key={l.to}
+                to={l.to}
+                onClick={() => setOpen(false)}
+                activeProps={{ className: "text-tomato" }}
+                className="rounded-lg px-3 py-2.5 transition-colors hover:bg-muted"
+              >
                 {l.label}
               </Link>
             ))}
-            <Link to="/kitchen" onClick={() => setOpen(false)}>
+            <Link
+              to="/kitchen"
+              onClick={() => setOpen(false)}
+              activeProps={{ className: "text-tomato" }}
+              className="rounded-lg px-3 py-2.5 transition-colors hover:bg-muted"
+            >
               {t("kitchen")}
             </Link>
           </nav>
@@ -266,7 +282,7 @@ function Chatbot() {
   return (
     <div className="fixed bottom-5 end-5 z-40">
       {open && (
-        <div className="mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
+        <div className="mobile-menu-enter mb-3 flex h-96 w-[min(20rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
           <div className="flex items-center justify-between bg-forest px-4 py-3 text-cream">
             <b>{t("demoAssistant")}</b>
             <button onClick={() => setOpen(false)} aria-label={t("close")}>
@@ -323,24 +339,24 @@ function Footer() {
   const { t } = useStore();
   return (
     <footer className="mt-24 bg-deep text-cream">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo variant="light" className="h-14" />
-          <p className="mt-3 text-sm opacity-70">{t("footerTag")}</p>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed opacity-70">{t("footerTag")}</p>
         </div>
         <div className="grid gap-2 text-sm">
-          <b className="text-mustard">{t("learn")}</b>
-          <Link to="/courses">{t("courses")}</Link>
-          <Link to="/paths">{t("paths")}</Link>
-          <Link to="/chefs">{t("chefs")}</Link>
+          <b className="mb-1 text-mustard">{t("learn")}</b>
+          <Link to="/courses" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("courses")}</Link>
+          <Link to="/paths" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("paths")}</Link>
+          <Link to="/chefs" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("chefs")}</Link>
         </div>
         <div className="grid gap-2 text-sm">
-          <b className="text-mustard">{t("growColumn")}</b>
-          <Link to="/creators">{t("creators")}</Link>
-          <Link to="/market">{t("market")}</Link>
-          <Link to="/kitchen">{t("kitchen")}</Link>
+          <b className="mb-1 text-mustard">{t("growColumn")}</b>
+          <Link to="/creators" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("creators")}</Link>
+          <Link to="/market" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("market")}</Link>
+          <Link to="/kitchen" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("kitchen")}</Link>
         </div>
-        <div className="text-xs opacity-70">
+        <div className="text-xs leading-relaxed opacity-70">
           <p>{t("footerNotice")}</p>
           <p className="mt-3">© 2026 NOWA Studio</p>
         </div>

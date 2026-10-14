@@ -1,10 +1,10 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { a as courses, d as getProduct, h as paths, l as getChef, v as useStore } from "./store-C5BeBkQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { l as localizePath, s as localizeChef } from "./Shell-Ha3YYJf2.mjs";
-import { t as Route } from "./chefs._slug-PIKx7Wo3.mjs";
-import { i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-C5UTE-ge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-Vt7DEqpV.js
+import { l as localizePath, s as localizeChef } from "./Shell-CxGIj84P.mjs";
+import { t as Route } from "./chefs._slug-38dY11b9.mjs";
+import { i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DJrCx6ne.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-Czsz61J9.js
 var import_jsx_runtime = require_jsx_runtime();
 function ChefPage() {
 	const { slug } = Route.useParams();

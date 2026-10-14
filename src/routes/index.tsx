@@ -32,30 +32,30 @@ function Home() {
 
   return (
     <>
-      <section className="relative mx-auto grid max-w-7xl items-center gap-10 overflow-hidden px-5 py-14 lg:grid-cols-2">
-        <div className="relative z-10">
-          <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-forest">
+      <section className="relative mx-auto grid max-w-7xl items-center gap-10 overflow-hidden px-5 py-12 md:py-16 lg:grid-cols-2 lg:gap-16">
+        <div className="relative z-10 text-center lg:text-start">
+          <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.2em] text-forest lg:justify-start">
             <span className="h-[3px] w-7 bg-tomato" />
             {t("heroEyebrow")}
           </p>
-          <h1 className="mt-5 text-6xl font-extrabold leading-[0.92] tracking-tighter md:text-8xl">
+          <h1 className="mt-5 text-5xl font-extrabold leading-[0.95] tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
             {t("heroA")}
             <br />
             {t("heroB")} <em className="font-serif font-normal text-tomato">{t("heroC")}</em>
           </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-muted-foreground lg:mx-0">
             {t("heroCopy")}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
             <Link
               to="/courses"
-              className="rounded-full bg-tomato px-6 py-3.5 font-extrabold text-primary-foreground shadow-pop transition hover:-translate-y-1"
+              className="rounded-full bg-tomato px-6 py-3.5 font-extrabold text-primary-foreground shadow-pop transition hover:-translate-y-1 hover:shadow-lg active:translate-y-0"
             >
               {t("ctaFind")}
             </Link>
             <Link
               to="/paths"
-              className="rounded-full bg-mustard px-6 py-3.5 font-extrabold transition hover:-translate-y-1"
+              className="rounded-full bg-mustard px-6 py-3.5 font-extrabold transition hover:-translate-y-1 active:translate-y-0"
             >
               {t("ctaPaths")}
             </Link>
@@ -64,7 +64,7 @@ function Home() {
             <b className="text-foreground">4.9★</b> {t("statLearners")} · 3 {t("statChefs")} · 6 {t("statCourses")}
           </p>
         </div>
-        <div className="relative">
+        <div className="relative mx-auto max-w-md lg:max-w-none">
           <div
             className="absolute -inset-6 animate-slowspin rounded-full border-[18px] border-dashed border-leaf/60"
             aria-hidden
@@ -108,14 +108,14 @@ function Home() {
         </div>
       </div>
 
-      <section className="mx-auto max-w-7xl px-5 py-16">
-        <div className="flex flex-wrap gap-3">
+      <section className="mx-auto max-w-7xl px-5 py-12 md:py-16">
+        <div className="flex flex-wrap justify-center gap-3">
           {categories.map((c, i) => (
             <Link
               key={c}
               to="/courses"
               search={{ cat: c }}
-              className={`rounded-full px-5 py-3 font-bold transition hover:-translate-y-1 hover:rotate-[-2deg] ${["bg-leaf", "bg-mustard", "bg-card", "bg-forest text-cream"][i % 4]}`}
+              className={`rounded-full px-5 py-3 font-bold transition hover:-translate-y-1 hover:rotate-[-2deg] ${["bg-leaf", "bg-mustard", "bg-card shadow-soft", "bg-forest text-cream"][i % 4]}`}
             >
               {localizeLabel(c, lang)}
             </Link>
@@ -137,7 +137,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="mt-24 bg-leaf py-20">
+      <section className="mt-20 bg-leaf py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-5">
           <SectionTitle eyebrow={t("paths")} title={t("threeWays")} accent={t("grow")} />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -148,11 +148,11 @@ function Home() {
                 key={p.id}
                 to="/paths"
                 hash={p.id}
-                className={`rounded-[1.75rem] p-7 transition hover:-translate-y-1 ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}
+                className={`rounded-[1.75rem] p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-lg ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}
               >
-                <span className="font-serif text-6xl">0{i + 1}</span>
+                <span className="font-serif text-5xl md:text-6xl">0{i + 1}</span>
                 <h3 className="mt-3 text-2xl font-extrabold">{displayPath.title}</h3>
-                <p className="mt-2">{displayPath.blurb}</p>
+                <p className="mt-2 leading-relaxed">{displayPath.blurb}</p>
                 <p className="mt-4 text-sm font-bold">
                   ~{p.weeks} {t("weeks")} · {p.courses.length} {t("coursesCount")}
                 </p>
@@ -188,7 +188,7 @@ function Home() {
 
       <section className="mx-auto mt-20 grid max-w-7xl gap-6 px-5 md:grid-cols-3">
         {testimonials.map((x) => (
-          <blockquote key={x.n} className="rounded-[1.75rem] bg-card p-7 shadow-soft">
+          <blockquote key={x.n} className="flex flex-col rounded-[1.75rem] bg-card p-7 shadow-soft">
             <p className="font-serif text-2xl leading-snug">“{x.q}”</p>
             <footer className="mt-4 text-sm font-bold">{x.n}</footer>
           </blockquote>

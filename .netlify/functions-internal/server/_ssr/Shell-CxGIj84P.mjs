@@ -6,7 +6,7 @@ import { i as Search, o as MessageCircle, r as ShoppingBag, s as Menu, t as X, u
 import { a as DialogOverlay, i as DialogDescription, n as DialogClose, o as DialogPortal, r as DialogContent, s as DialogTitle, t as Dialog } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Shell-Ha3YYJf2.js
+//#region node_modules/.nitro/vite/services/ssr/assets/Shell-CxGIj84P.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var categoryAr = {
@@ -530,9 +530,9 @@ function Nav() {
 					className: "hidden items-center gap-6 text-sm font-bold lg:flex",
 					children: links.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 						to: l.to,
-						className: "hover:text-tomato",
+						className: "relative py-1 transition-colors hover:text-tomato",
 						activeProps: { className: "text-tomato" },
-						children: l.label
+						children: ({ isActive }) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [l.label, isActive && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-tomato" })] })
 					}, l.to))
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -593,14 +593,18 @@ function Nav() {
 				})
 			]
 		}), open && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("nav", {
-			className: "grid gap-3 border-t border-border px-5 py-4 font-bold lg:hidden",
+			className: "mobile-menu-enter grid gap-1 border-t border-border px-5 py-4 font-bold lg:hidden",
 			children: [links.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 				to: l.to,
 				onClick: () => setOpen(false),
+				activeProps: { className: "text-tomato" },
+				className: "rounded-lg px-3 py-2.5 transition-colors hover:bg-muted",
 				children: l.label
 			}, l.to)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 				to: "/kitchen",
 				onClick: () => setOpen(false),
+				activeProps: { className: "text-tomato" },
+				className: "rounded-lg px-3 py-2.5 transition-colors hover:bg-muted",
 				children: t("kitchen")
 			})]
 		})]
@@ -742,7 +746,7 @@ function Chatbot() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "fixed bottom-5 end-5 z-40",
 		children: [open && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mb-3 flex h-96 w-80 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft",
+			className: "mobile-menu-enter mb-3 flex h-96 w-[min(20rem,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-soft",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex items-center justify-between bg-forest px-4 py-3 text-cream",
@@ -807,32 +811,35 @@ function Footer() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("footer", {
 		className: "mt-24 bg-deep text-cream",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-4",
+			className: "mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-2 lg:grid-cols-4",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Logo, {
 					variant: "light",
 					className: "h-14"
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "mt-3 text-sm opacity-70",
+					className: "mt-3 max-w-xs text-sm leading-relaxed opacity-70",
 					children: t("footerTag")
 				})] }),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "grid gap-2 text-sm",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", {
-							className: "text-mustard",
+							className: "mb-1 text-mustard",
 							children: t("learn")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/courses",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("courses")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/paths",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("paths")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/chefs",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("chefs")
 						})
 					]
@@ -841,25 +848,28 @@ function Footer() {
 					className: "grid gap-2 text-sm",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", {
-							className: "text-mustard",
+							className: "mb-1 text-mustard",
 							children: t("growColumn")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/creators",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("creators")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/market",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("market")
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 							to: "/kitchen",
+							className: "w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard",
 							children: t("kitchen")
 						})
 					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-xs opacity-70",
+					className: "text-xs leading-relaxed opacity-70",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: t("footerNotice") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "mt-3",
 						children: "© 2026 NOWA Studio"
