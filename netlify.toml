@@ -1,2 +1,3 @@
 [build]
-  publish = "dist/client"
+publish = "dist/client"
+command = "npx vite build"
