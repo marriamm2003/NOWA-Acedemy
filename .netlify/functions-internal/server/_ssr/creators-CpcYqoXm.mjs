@@ -1,10 +1,10 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { p as interpolate, v as useStore } from "./store-j1dqSumQ.mjs";
+import { p as interpolate, v as useStore } from "./store-C5BeBkQw.mjs";
 import { a as unionType, i as stringType, n as literalType, r as objectType, t as enumType } from "../_libs/zod.mjs";
-import { a as SectionTitle } from "./Cards-DWXfb0u1.mjs";
+import { a as SectionTitle } from "./Cards-C5UTE-ge.mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/creators-DehuV2Qe.js
+//#region node_modules/.nitro/vite/services/ssr/assets/creators-CpcYqoXm.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var url = {
@@ -90,37 +90,22 @@ function Creators() {
 		}
 		setSent(r.data.name.split(" ")[0]);
 	};
-	const services = lang === "ar" ? [
-		"اكتشاف المواهب وتمثيلها",
-		"إدارة المشروعات",
-		"إنتاج الكورسات",
-		"بناء العلامة الشخصية",
-		"تصوير الطعام وتخطيط المحتوى",
-		"دعم تطوير المنتجات",
-		"إرشاد التسعير وحساب التكاليف",
-		"استراتيجية الإطلاق",
-		"شراكات العلامات والمنتجات"
-	] : [
-		"Talent discovery & representation",
-		"Project management",
-		"Course production",
-		"Personal branding",
-		"Food photography & content planning",
-		"Product development support",
-		"Pricing & costing guidance",
-		"Launch strategy",
-		"Brand & product partnerships"
+	const services = [
+		t("svcTalent"),
+		t("svcProject"),
+		t("svcCourse"),
+		t("svcBranding"),
+		t("svcPhoto"),
+		t("svcProduct"),
+		t("svcPricing"),
+		t("svcLaunch"),
+		t("svcPartners")
 	];
-	const steps = lang === "ar" ? [
-		"قدّم الطلب",
-		"مكالمة تعارف",
-		"خطط ونفّذ",
-		"أطلق وطوّر"
-	] : [
-		"Apply",
-		"Discovery call",
-		"Plan & produce",
-		"Launch & grow"
+	const steps = [
+		t("stepApply"),
+		t("stepCall"),
+		t("stepPlan"),
+		t("stepLaunch")
 	];
 	const field = "mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 outline-none focus:border-tomato";
 	const Err = ({ k }) => errors[k] ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {

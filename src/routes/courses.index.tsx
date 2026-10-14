@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { categories, courses, levels, fromPrice, getChef } from "@/lib/data";
-import { label as localizeLabel } from "@/lib/localized";
+import { label as localizeLabel, localizeCourse, localizeChef } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 
@@ -52,7 +52,7 @@ function Discover() {
         (!s.cat || c.category === s.cat) &&
         (!s.level || c.level === s.level) &&
         (!q ||
-          [c.title, c.tagline, c.category, getChef(c.chef)!.name]
+          [localizeCourse(c, lang).title, localizeCourse(c, lang).tagline, localizeLabel(c.category, lang), localizeChef(getChef(c.chef)!, lang).name]
             .join(" ")
             .toLowerCase()
             .includes(q)),
@@ -61,7 +61,7 @@ function Discover() {
     else if (s.sort === "rating") r = [...r].sort((a, b) => b.rating - a.rating);
     else if (s.sort === "new") r = [...r].sort((a, b) => b.createdAt - a.createdAt);
     return r;
-  }, [s]);
+  }, [s, lang]);
 
   const chip = (on: boolean) =>
     `rounded-full px-4 py-2 text-sm font-bold transition ${on ? "bg-tomato text-primary-foreground" : "bg-card hover:bg-muted"}`;

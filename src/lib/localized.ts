@@ -94,9 +94,9 @@ const courseAr: Record<string, CourseTranslation> = {
 };
 
 const chefAr: Record<string, Partial<Chef>> = {
-  "marco-bellini": { specialty: "البيتزا النابولية والصلصات الكلاسيكية", city: "نابولي ← دبي", bio: "شيف بيتزا من الجيل الثالث يدرّب طهاة البيتزا المحترفين في أنحاء الخليج.", story: "نشأ ماركو وهو يشكّل العجين في مطعم جده. وبعد عقد من إدارة مطابخ الحطب، بدأ التدريس واكتشف أن أكثر ما يحبه هو رؤية طلابه يخرجون أول قاعدة بيتزا مرقطة من فرن المنزل.", achievements: ["شهادة شيف بيتزا نابولي", "أفضل 50 بيتزا في آسيا 2024", "استشاري لـ 14 مطعماً"], signature: ["عجين مخمّر على البارد 72 ساعة", "صلصة طماطم سان مارزانو", "توقيت جبن فيور دي لاتيه"] },
-  "layla-haddad": { specialty: "الحلويات العصرية وريادة مشروعات الطعام", city: "بيروت ← القاهرة", bio: "شيف حلويات ومؤسسة علامة كيك انتقلت من مطبخ المنزل إلى ثلاثة فروع.", story: "بدأت ليلى بيع كيك الفستق من شقتها. ومن دون تدريب في إدارة الأعمال، تعلمت حساب التكاليف وبناء العلامة بالطريقة الصعبة، والآن تدرّس الحرفة والتجارة معاً.", achievements: ["دبلوم حلويات لو كوردون بلو", "مؤسسة Maison Layla", "ظهور على فتافيت"], signature: ["كيك طبقات ببراليني الفستق", "تغطية لامعة", "ورقة حساب تكلفة الوصفة"] },
-  "noor-alami": { specialty: "الطبخ النباتي والصحي", city: "عمّان", bio: "شيف مدرّبة في التغذية تجعل الخضروات بطلة المائدة للعائلات والمطاعم.", story: "بعد أزمة صحية في عائلتها، أعادت نور بناء الأكلات التي نشأت عليها حول الخضروات والبقوليات. فلسفتها: لا تحذف النكهة أبداً.", achievements: ["دبلوم الشيف النباتي", "مؤلفة كتاب المزة الخضراء", "استشارية قوائم لـ 6 مقاهٍ"], signature: ["قرنبيط مشوي على طريقة الشاورما", "تتبيلة الطحينة لكل شيء", "طبق فريكة متكامل"] },
+  "marco-bellini": { name: "ماركو بيليني", specialty: "البيتزا النابولية والصلصات الكلاسيكية", city: "نابولي ← دبي", bio: "شيف بيتزا من الجيل الثالث يدرّب طهاة البيتزا المحترفين في أنحاء الخليج.", story: "نشأ ماركو وهو يشكّل العجين في مطعم جده. وبعد عقد من إدارة مطابخ الحطب، بدأ التدريس واكتشف أن أكثر ما يحبه هو رؤية طلابه يخرجون أول قاعدة بيتزا مرقطة من فرن المنزل.", achievements: ["شهادة شيف بيتزا نابولي", "أفضل 50 بيتزا في آسيا 2024", "استشاري لـ 14 مطعماً"], signature: ["عجين مخمّر على البارد 72 ساعة", "صلصة طماطم سان مارزانو", "توقيت جبن فيور دي لاتيه"] },
+  "layla-haddad": { name: "ليلى حداد", specialty: "الحلويات العصرية وريادة مشروعات الطعام", city: "بيروت ← القاهرة", bio: "شيف حلويات ومؤسسة علامة كيك انتقلت من مطبخ المنزل إلى ثلاثة فروع.", story: "بدأت ليلى بيع كيك الفستق من شقتها. ومن دون تدريب في إدارة الأعمال، تعلمت حساب التكاليف وبناء العلامة بالطريقة الصعبة، والآن تدرّس الحرفة والتجارة معاً.", achievements: ["دبلوم حلويات لو كوردون بلو", "مؤسسة Maison Layla", "ظهور على فتافيت"], signature: ["كيك طبقات ببراليني الفستق", "تغطية لامعة", "ورقة حساب تكلفة الوصفة"] },
+  "noor-alami": { name: "نور العمامي", specialty: "الطبخ النباتي والصحي", city: "عمّان", bio: "شيف مدرّبة في التغذية تجعل الخضروات بطلة المائدة للعائلات والمطاعم.", story: "بعد أزمة صحية في عائلتها، أعادت نور بناء الأكلات التي نشأت عليها حول الخضروات والبقوليات. فلسفتها: لا تحذف النكهة أبداً.", achievements: ["دبلوم الشيف النباتي", "مؤلفة كتاب المزة الخضراء", "استشارية قوائم لـ 6 مقاهٍ"], signature: ["قرنبيط مشوي على طريقة الشاورما", "تتبيلة الطحينة لكل شيء", "طبق فريكة متكامل"] },
 };
 
 const productAr: Record<string, Partial<Product>> = {
@@ -151,4 +151,38 @@ export function localizeProduct(product: Product, lang: Lang): Product {
 
 export function localizePath(path: Path, lang: Lang): Path {
   return lang === "en" ? path : { ...path, ...(pathAr[path.id] ?? {}) };
+}
+
+export type Review = { n: string; r: number; t: string };
+const reviewsByLang: Record<Lang, Review[]> = {
+  en: [
+    { n: "Rania", r: 5, t: "Buying one level at a time made it so easy to start." },
+    { n: "Daniel", r: 5, t: "Clear, warm teaching. The live feedback session was worth it." },
+    { n: "Mona", r: 4, t: "Loved it — I'd like even more close-up shots." },
+  ],
+  ar: [
+    { n: "رانية", r: 5, t: "شراء مستوى واحد في كل مرة جعل البداية سهلة جداً." },
+    { n: "دانيال", r: 5, t: "شرح واضح ودافئ. جلسة التقييم المباشر كانت تستحق كل قرش." },
+    { n: "منى", r: 4, t: "أحببته — أتمنى لقطات أقرب أكثر." },
+  ],
+};
+export function getReviews(lang: Lang): Review[] {
+  return reviewsByLang[lang];
+}
+
+export type Testimonial = { q: string; n: string };
+const testimonialsByLang: Record<Lang, Testimonial[]> = {
+  en: [
+    { q: "I bought just the dough level first. Two weeks later I had the whole masterclass — and my family won't order pizza anymore.", n: "Omar K., Riyadh" },
+    { q: "Layla's costing module paid for itself with my first cake order.", n: "Sara M., Cairo" },
+    { q: "Finally plant-based food that tastes like my grandmother's cooking.", n: "Hana A., Amman" },
+  ],
+  ar: [
+    { q: "اشتريت مستوى العجين أولاً. وبعد أسبوعين أكملت الكورس كله — وعائلتي لم تعد تطلب البيتزا.", n: "عمر ك.، الرياض" },
+    { q: "دورة حساب التكاليف مع ليلى دفعت ثمنها من أول طلب كيك.", n: "سارة م.، القاهرة" },
+    { q: "أخيراً أكل نباتي بطعم أكلات جدتي.", n: "هناء أ.، عمّان" },
+  ],
+};
+export function getTestimonials(lang: Lang): Testimonial[] {
+  return testimonialsByLang[lang];
 }

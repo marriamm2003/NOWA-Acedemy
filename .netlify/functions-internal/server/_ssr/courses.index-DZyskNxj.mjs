@@ -1,11 +1,11 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, c as fromPrice, l as getChef, m as levels, r as categories, v as useStore } from "./store-j1dqSumQ.mjs";
+import { a as courses, c as fromPrice, l as getChef, m as levels, r as categories, v as useStore } from "./store-C5BeBkQw.mjs";
 import { b as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
-import { r as label } from "./Shell-BNDwuvOg.mjs";
-import { a as SectionTitle, r as CourseCard } from "./Cards-DWXfb0u1.mjs";
-import { t as Route } from "./courses.index-C8gOBZjM.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-D1S-7Foi.js
+import { a as label, c as localizeCourse, s as localizeChef } from "./Shell-Ha3YYJf2.mjs";
+import { a as SectionTitle, r as CourseCard } from "./Cards-C5UTE-ge.mjs";
+import { t as Route } from "./courses.index-DkqDfUiG.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-DZyskNxj.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Discover() {
@@ -19,16 +19,16 @@ function Discover() {
 	const list = (0, import_react.useMemo)(() => {
 		const q = (s.q ?? "").toLowerCase();
 		let r = courses.filter((c) => (!s.cat || c.category === s.cat) && (!s.level || c.level === s.level) && (!q || [
-			c.title,
-			c.tagline,
-			c.category,
-			getChef(c.chef).name
+			localizeCourse(c, lang).title,
+			localizeCourse(c, lang).tagline,
+			label(c.category, lang),
+			localizeChef(getChef(c.chef), lang).name
 		].join(" ").toLowerCase().includes(q)));
 		if (s.sort === "price") r = [...r].sort((a, b) => fromPrice(a) - fromPrice(b));
 		else if (s.sort === "rating") r = [...r].sort((a, b) => b.rating - a.rating);
 		else if (s.sort === "new") r = [...r].sort((a, b) => b.createdAt - a.createdAt);
 		return r;
-	}, [s]);
+	}, [s, lang]);
 	const chip = (on) => `rounded-full px-4 py-2 text-sm font-bold transition ${on ? "bg-tomato text-primary-foreground" : "bg-card hover:bg-muted"}`;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "mx-auto max-w-7xl px-5 py-12",

@@ -1,12 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
+import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-C5BeBkQw.mjs";
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { i as Search, o as MessageCircle, r as ShoppingBag, s as Menu, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay, i as DialogDescription, n as DialogClose, o as DialogPortal, r as DialogContent, s as DialogTitle, t as Dialog } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Shell-BNDwuvOg.js
+//#region node_modules/.nitro/vite/services/ssr/assets/Shell-Ha3YYJf2.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var categoryAr = {
@@ -157,6 +157,7 @@ var courseAr = {
 };
 var chefAr = {
 	"marco-bellini": {
+		name: "ماركو بيليني",
 		specialty: "البيتزا النابولية والصلصات الكلاسيكية",
 		city: "نابولي ← دبي",
 		bio: "شيف بيتزا من الجيل الثالث يدرّب طهاة البيتزا المحترفين في أنحاء الخليج.",
@@ -173,6 +174,7 @@ var chefAr = {
 		]
 	},
 	"layla-haddad": {
+		name: "ليلى حداد",
 		specialty: "الحلويات العصرية وريادة مشروعات الطعام",
 		city: "بيروت ← القاهرة",
 		bio: "شيف حلويات ومؤسسة علامة كيك انتقلت من مطبخ المنزل إلى ثلاثة فروع.",
@@ -189,6 +191,7 @@ var chefAr = {
 		]
 	},
 	"noor-alami": {
+		name: "نور العمامي",
 		specialty: "الطبخ النباتي والصحي",
 		city: "عمّان",
 		bio: "شيف مدرّبة في التغذية تجعل الخضروات بطلة المائدة للعائلات والمطاعم.",
@@ -342,6 +345,78 @@ function localizePath(path, lang) {
 		...path,
 		...pathAr[path.id] ?? {}
 	};
+}
+var reviewsByLang = {
+	en: [
+		{
+			n: "Rania",
+			r: 5,
+			t: "Buying one level at a time made it so easy to start."
+		},
+		{
+			n: "Daniel",
+			r: 5,
+			t: "Clear, warm teaching. The live feedback session was worth it."
+		},
+		{
+			n: "Mona",
+			r: 4,
+			t: "Loved it — I'd like even more close-up shots."
+		}
+	],
+	ar: [
+		{
+			n: "رانية",
+			r: 5,
+			t: "شراء مستوى واحد في كل مرة جعل البداية سهلة جداً."
+		},
+		{
+			n: "دانيال",
+			r: 5,
+			t: "شرح واضح ودافئ. جلسة التقييم المباشر كانت تستحق كل قرش."
+		},
+		{
+			n: "منى",
+			r: 4,
+			t: "أحببته — أتمنى لقطات أقرب أكثر."
+		}
+	]
+};
+function getReviews(lang) {
+	return reviewsByLang[lang];
+}
+var testimonialsByLang = {
+	en: [
+		{
+			q: "I bought just the dough level first. Two weeks later I had the whole masterclass — and my family won't order pizza anymore.",
+			n: "Omar K., Riyadh"
+		},
+		{
+			q: "Layla's costing module paid for itself with my first cake order.",
+			n: "Sara M., Cairo"
+		},
+		{
+			q: "Finally plant-based food that tastes like my grandmother's cooking.",
+			n: "Hana A., Amman"
+		}
+	],
+	ar: [
+		{
+			q: "اشتريت مستوى العجين أولاً. وبعد أسبوعين أكملت الكورس كله — وعائلتي لم تعد تطلب البيتزا.",
+			n: "عمر ك.، الرياض"
+		},
+		{
+			q: "دورة حساب التكاليف مع ليلى دفعت ثمنها من أول طلب كيك.",
+			n: "سارة م.، القاهرة"
+		},
+		{
+			q: "أخيراً أكل نباتي بطعم أكلات جدتي.",
+			n: "هناء أ.، عمّان"
+		}
+	]
+};
+function getTestimonials(lang) {
+	return testimonialsByLang[lang];
 }
 function cn(...inputs) {
 	return twMerge(clsx(inputs));
@@ -807,4 +882,4 @@ function Shell({ children }) {
 	});
 }
 //#endregion
-export { localizeChef as a, localizeProduct as c, languageLabel as i, money as l, cn as n, localizeCourse as o, label as r, localizePath as s, Shell as t };
+export { label as a, localizeCourse as c, money as d, getTestimonials as i, localizePath as l, cn as n, languageLabel as o, getReviews as r, localizeChef as s, Shell as t, localizeProduct as u };

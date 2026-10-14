@@ -1,40 +1,13 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, f as images, g as products, h as paths, i as chefs, r as categories, v as useStore } from "./store-j1dqSumQ.mjs";
+import { a as courses, f as images, g as products, h as paths, i as chefs, r as categories, v as useStore } from "./store-C5BeBkQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { r as label, s as localizePath } from "./Shell-BNDwuvOg.mjs";
-import { a as SectionTitle, i as ProductCard, n as ChefCard, o as toneBg, r as CourseCard } from "./Cards-DWXfb0u1.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CLwwpz4g.js
+import { a as label, i as getTestimonials, l as localizePath } from "./Shell-Ha3YYJf2.mjs";
+import { a as SectionTitle, i as ProductCard, n as ChefCard, o as toneBg, r as CourseCard } from "./Cards-C5UTE-ge.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CdjobZdf.js
 var import_jsx_runtime = require_jsx_runtime();
-var testimonialsEn = [
-	{
-		q: "I bought just the dough level first. Two weeks later I had the whole masterclass — and my family won't order pizza anymore.",
-		n: "Omar K., Riyadh"
-	},
-	{
-		q: "Layla's costing module paid for itself with my first cake order.",
-		n: "Sara M., Cairo"
-	},
-	{
-		q: "Finally plant-based food that tastes like my grandmother's cooking.",
-		n: "Hana A., Amman"
-	}
-];
 function Home() {
 	const { t, lang } = useStore();
-	const testimonials = lang === "ar" ? [
-		{
-			q: "اشتريت مستوى العجين أولاً. وبعد أسبوعين أكملت الكورس كله — وعائلتي لم تعد تطلب البيتزا.",
-			n: "عمر ك.، الرياض"
-		},
-		{
-			q: "دورة حساب التكاليف مع ليلى دفعت ثمنها من أول طلب كيك.",
-			n: "سارة م.، القاهرة"
-		},
-		{
-			q: "أخيراً أكل نباتي بطعم أكلات جدتي.",
-			n: "هناء أ.، عمّان"
-		}
-	] : testimonialsEn;
+	const testimonials = getTestimonials(lang);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 			className: "relative mx-auto grid max-w-7xl items-center gap-10 overflow-hidden px-5 py-14 lg:grid-cols-2",
@@ -99,7 +72,7 @@ function Home() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 						src: images.pizza,
-						alt: lang === "ar" ? "بيتزا نابولية متفحمة الأطراف على لوح خشبي" : "Blistered Neapolitan pizza on a wooden peel",
+						alt: t("heroImgAlt"),
 						width: 1280,
 						height: 1280,
 						className: "relative aspect-square w-full rounded-full object-cover shadow-soft"
@@ -164,8 +137,8 @@ function Home() {
 				className: "flex items-end justify-between gap-4",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionTitle, {
 					eyebrow: t("featured"),
-					title: lang === "ar" ? "اطبخ ما" : "Cook what",
-					accent: lang === "ar" ? "يحمّسك" : "excites you"
+					title: t("cookWhat"),
+					accent: t("excitesYou")
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 					to: "/courses",
 					className: "font-bold underline",
@@ -228,8 +201,8 @@ function Home() {
 			className: "mx-auto max-w-7xl px-5 py-20",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionTitle, {
 				eyebrow: t("meetChefs"),
-				title: lang === "ar" ? "شيفات لديهم" : "Chefs with a",
-				accent: lang === "ar" ? "حكاية" : "story"
+				title: t("chefsWith"),
+				accent: t("storyWord")
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 				className: "mt-8 grid gap-6 md:grid-cols-3",
 				children: chefs.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChefCard, { chef: c }, c.slug))

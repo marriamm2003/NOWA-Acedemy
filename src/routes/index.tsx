@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { courses, chefs, products, paths, categories, images } from "@/lib/data";
-import { label as localizeLabel, localizePath } from "@/lib/localized";
+import { label as localizeLabel, localizePath, getTestimonials } from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseCard, ChefCard, ProductCard, SectionTitle, toneBg } from "@/components/humm/Cards";
 
@@ -26,22 +26,10 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const testimonialsEn = [
-  {
-    q: "I bought just the dough level first. Two weeks later I had the whole masterclass — and my family won't order pizza anymore.",
-    n: "Omar K., Riyadh",
-  },
-  { q: "Layla's costing module paid for itself with my first cake order.", n: "Sara M., Cairo" },
-  { q: "Finally plant-based food that tastes like my grandmother's cooking.", n: "Hana A., Amman" },
-];
-
 function Home() {
   const { t, lang } = useStore();
-  const testimonials = lang === "ar" ? [
-    { q: "اشتريت مستوى العجين أولاً. وبعد أسبوعين أكملت الكورس كله — وعائلتي لم تعد تطلب البيتزا.", n: "عمر ك.، الرياض" },
-    { q: "دورة حساب التكاليف مع ليلى دفعت ثمنها من أول طلب كيك.", n: "سارة م.، القاهرة" },
-    { q: "أخيراً أكل نباتي بطعم أكلات جدتي.", n: "هناء أ.، عمّان" },
-  ] : testimonialsEn;
+  const testimonials = getTestimonials(lang);
+
   return (
     <>
       <section className="relative mx-auto grid max-w-7xl items-center gap-10 overflow-hidden px-5 py-14 lg:grid-cols-2">
@@ -83,7 +71,7 @@ function Home() {
           />
           <img
             src={images.pizza}
-            alt={lang === "ar" ? "بيتزا نابولية متفحمة الأطراف على لوح خشبي" : "Blistered Neapolitan pizza on a wooden peel"}
+            alt={t("heroImgAlt")}
             width={1280}
             height={1280}
             className="relative aspect-square w-full rounded-full object-cover shadow-soft"
@@ -137,7 +125,7 @@ function Home() {
 
       <section className="mx-auto max-w-7xl px-5">
         <div className="flex items-end justify-between gap-4">
-          <SectionTitle eyebrow={t("featured")} title={lang === "ar" ? "اطبخ ما" : "Cook what"} accent={lang === "ar" ? "يحمّسك" : "excites you"} />
+          <SectionTitle eyebrow={t("featured")} title={t("cookWhat")} accent={t("excitesYou")} />
           <Link to="/courses" className="font-bold underline">
             {t("browseAll")}
           </Link>
@@ -176,7 +164,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <SectionTitle eyebrow={t("meetChefs")} title={lang === "ar" ? "شيفات لديهم" : "Chefs with a"} accent={lang === "ar" ? "حكاية" : "story"} />
+        <SectionTitle eyebrow={t("meetChefs")} title={t("chefsWith")} accent={t("storyWord")} />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {chefs.map((c) => (
             <ChefCard key={c.slug} chef={c} />

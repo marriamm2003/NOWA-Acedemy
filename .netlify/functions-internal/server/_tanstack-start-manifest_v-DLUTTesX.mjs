@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-GaeEZVxa.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-DLUTTesX.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/__root.tsx",
@@ -15,34 +15,34 @@ var tsrStartManifest = () => ({ routes: {
 			"/courses/"
 		],
 		preloads: [
-			"/assets/index-CDFH6OPw.js",
-			"/assets/store-W1qzX9oe.js",
-			"/assets/Shell-C6k8EEGZ.js",
+			"/assets/index-MMfNDJH9.js",
+			"/assets/store-DM8RQo9K.js",
+			"/assets/Shell-CWFJXK7K.js",
 			"/assets/not-found-i5RsCZif.js",
-			"/assets/preload-helper-CYJkiRMm.js"
+			"/assets/preload-helper-UUW7aAm0.js"
 		],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-CDFH6OPw.js"
+			src: "/assets/index-MMfNDJH9.js"
 		} }]
 	},
 	"/": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/index.tsx",
 		children: void 0,
-		preloads: ["/assets/routes-BbRR9XO-.js", "/assets/Cards-CsN6l846.js"]
+		preloads: ["/assets/routes-Ct8TpwuW.js", "/assets/Cards-DZNWbMjf.js"]
 	},
 	"/checkout": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/checkout.tsx",
 		children: void 0,
-		preloads: ["/assets/checkout-DO8wzTq9.js", "/assets/types-CVKYa72O.js"]
+		preloads: ["/assets/checkout-Dr0Rjsz1.js", "/assets/types-CVKYa72O.js"]
 	},
 	"/creators": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/creators.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/creators-Dw-ZzEuf.js",
-			"/assets/Cards-CsN6l846.js",
+			"/assets/creators-CjD6ZWAp.js",
+			"/assets/Cards-DZNWbMjf.js",
 			"/assets/types-CVKYa72O.js"
 		]
 	},
@@ -50,49 +50,49 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/kitchen.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/kitchen-B-9IG3-I.js",
-			"/assets/Cards-CsN6l846.js",
-			"/assets/dist-oyTYkxfL.js"
+			"/assets/kitchen-BEjwTiX-.js",
+			"/assets/Cards-DZNWbMjf.js",
+			"/assets/dist-CPZ_sFjy.js"
 		]
 	},
 	"/market": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/market.tsx",
 		children: void 0,
-		preloads: ["/assets/market-Cn5FDGZv.js", "/assets/Cards-CsN6l846.js"]
+		preloads: ["/assets/market-B8T0llOW.js", "/assets/Cards-DZNWbMjf.js"]
 	},
 	"/paths": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/paths.tsx",
 		children: void 0,
-		preloads: ["/assets/paths-CWTgLUsS.js", "/assets/Cards-CsN6l846.js"]
+		preloads: ["/assets/paths-CVhrfGbD.js", "/assets/Cards-DZNWbMjf.js"]
 	},
 	"/chefs/$slug": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/chefs.$slug.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/chefs._slug-BdGrtg2e.js",
-			"/assets/chefs._slug-DZYGUsG_.js",
-			"/assets/Cards-CsN6l846.js"
+			"/assets/chefs._slug-Bo5CcH9K.js",
+			"/assets/Cards-DZNWbMjf.js",
+			"/assets/chefs._slug-jSGiLfZB.js"
 		]
 	},
 	"/courses/$slug": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/courses.$slug.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/courses._slug-BkD-Kqaj.js",
-			"/assets/courses._slug-DY-okEiD.js",
-			"/assets/Cards-CsN6l846.js",
-			"/assets/dist-oyTYkxfL.js"
+			"/assets/courses._slug-C0UMR59W.js",
+			"/assets/Cards-DZNWbMjf.js",
+			"/assets/dist-CPZ_sFjy.js",
+			"/assets/courses._slug-DuHBwgBI.js"
 		]
 	},
 	"/chefs/": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/chefs.index.tsx",
 		children: void 0,
-		preloads: ["/assets/chefs.index-ZWOPoGCR.js", "/assets/Cards-CsN6l846.js"]
+		preloads: ["/assets/chefs.index-CL5PSk60.js", "/assets/Cards-DZNWbMjf.js"]
 	},
 	"/courses/": {
 		filePath: "/tmp/cc-agent/71974667/project/src/routes/courses.index.tsx",
 		children: void 0,
-		preloads: ["/assets/courses.index-Ckfpx3-6.js", "/assets/Cards-CsN6l846.js"]
+		preloads: ["/assets/courses.index-CYg3ViG9.js", "/assets/Cards-DZNWbMjf.js"]
 	}
 } });
 //#endregion

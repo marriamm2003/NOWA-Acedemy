@@ -1,13 +1,13 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as AccordionTrigger$1, i as AccordionItem$1, n as AccordionContent$1, r as AccordionHeader, t as Accordion$1, v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as quoteCourse, a as courses, d as getProduct, l as getChef, p as interpolate, t as BUNDLE_DISCOUNT, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
+import { _ as quoteCourse, a as courses, d as getProduct, l as getChef, p as interpolate, t as BUNDLE_DISCOUNT, u as getCourse, v as useStore } from "./store-C5BeBkQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { _ as BookOpen, a as Radio, c as Lock, d as Gift, g as Check, h as ChevronDown, m as CirclePlay, n as Star, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay$1, i as DialogDescription$1, n as DialogClose, o as DialogPortal$1, r as DialogContent$1, s as DialogTitle$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
-import { a as localizeChef, i as languageLabel, l as money, n as cn, o as localizeCourse, r as label } from "./Shell-BNDwuvOg.mjs";
-import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DWXfb0u1.mjs";
-import { t as Route } from "./courses._slug-CEEsmac9.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-CVr-f2uS.js
+import { a as label, c as localizeCourse, d as money, n as cn, o as languageLabel, r as getReviews, s as localizeChef } from "./Shell-Ha3YYJf2.mjs";
+import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-C5UTE-ge.mjs";
+import { t as Route } from "./courses._slug-puWmF6j_.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-CFimh0jO.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function CourseBuilder({ course }) {
@@ -261,40 +261,6 @@ var DialogDescription = import_react.forwardRef(({ className, ...props }, ref) =
 	...props
 }));
 DialogDescription.displayName = DialogDescription$1.displayName;
-var reviewsAr = [
-	{
-		n: "رانية",
-		r: 5,
-		t: "شراء مستوى واحد في كل مرة جعل البداية سهلة جداً."
-	},
-	{
-		n: "دانيال",
-		r: 5,
-		t: "شرح واضح ودافئ. جلسة التقييم المباشر كانت تستحق كل قرش."
-	},
-	{
-		n: "منى",
-		r: 4,
-		t: "أحببته — أتمنى لقطات أقرب أكثر."
-	}
-];
-var reviewsEn = [
-	{
-		n: "Rania",
-		r: 5,
-		t: "Buying one level at a time made it so easy to start."
-	},
-	{
-		n: "Daniel",
-		r: 5,
-		t: "Clear, warm teaching. The live feedback session was worth it."
-	},
-	{
-		n: "Mona",
-		r: 4,
-		t: "Loved it — I'd like even more close-up shots."
-	}
-];
 function CoursePage() {
 	const { slug } = Route.useParams();
 	const c = getCourse(slug);
@@ -474,7 +440,7 @@ function CoursePage() {
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 					className: "mt-3 space-y-3",
-					children: (lang === "ar" ? reviewsAr : reviewsEn).map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					children: getReviews(lang).map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "rounded-2xl bg-card p-4",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: r.n }),

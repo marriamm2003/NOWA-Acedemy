@@ -1,9 +1,9 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { c as fromPrice, f as images, l as getChef, v as useStore } from "./store-j1dqSumQ.mjs";
+import { c as fromPrice, f as images, l as getChef, v as useStore } from "./store-C5BeBkQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { f as ExternalLink, n as Star, u as Heart } from "../_libs/lucide-react.mjs";
-import { a as localizeChef, c as localizeProduct, i as languageLabel, l as money, o as localizeCourse, r as label } from "./Shell-BNDwuvOg.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Cards-DWXfb0u1.js
+import { a as label, c as localizeCourse, d as money, o as languageLabel, s as localizeChef, u as localizeProduct } from "./Shell-Ha3YYJf2.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/Cards-C5UTE-ge.js
 var import_jsx_runtime = require_jsx_runtime();
 var toneBg = {
 	mustard: "bg-mustard",
@@ -128,10 +128,10 @@ function ChefCard({ chef }) {
 		]
 	});
 }
-function ProductCard({ p, label: label$1 }) {
+function ProductCard({ p, label }) {
 	const { lang, t } = useStore();
 	const localizedProduct = localizeProduct(p, lang);
-	const badge = label$1 ?? (p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended"));
+	const badge = label ?? (p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended"));
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
 		className: "flex flex-col overflow-hidden rounded-[1.5rem] bg-card shadow-soft",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -152,7 +152,7 @@ function ProductCard({ p, label: label$1 }) {
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "text-xs text-muted-foreground",
-					children: label(p.category, lang)
+					children: localizedProduct.category
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
 					className: "font-extrabold",

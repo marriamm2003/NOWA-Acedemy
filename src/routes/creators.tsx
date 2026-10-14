@@ -76,8 +76,8 @@ function Creators() {
     }
     setSent(r.data.name.split(" ")[0]);
   };
-  const services = lang === "ar" ? ["اكتشاف المواهب وتمثيلها", "إدارة المشروعات", "إنتاج الكورسات", "بناء العلامة الشخصية", "تصوير الطعام وتخطيط المحتوى", "دعم تطوير المنتجات", "إرشاد التسعير وحساب التكاليف", "استراتيجية الإطلاق", "شراكات العلامات والمنتجات"] : ["Talent discovery & representation", "Project management", "Course production", "Personal branding", "Food photography & content planning", "Product development support", "Pricing & costing guidance", "Launch strategy", "Brand & product partnerships"];
-  const steps = lang === "ar" ? ["قدّم الطلب", "مكالمة تعارف", "خطط ونفّذ", "أطلق وطوّر"] : ["Apply", "Discovery call", "Plan & produce", "Launch & grow"];
+  const services = [t("svcTalent"), t("svcProject"), t("svcCourse"), t("svcBranding"), t("svcPhoto"), t("svcProduct"), t("svcPricing"), t("svcLaunch"), t("svcPartners")];
+  const steps = [t("stepApply"), t("stepCall"), t("stepPlan"), t("stepLaunch")];
   const field =
     "mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 outline-none focus:border-tomato";
   const Err = ({ k }: { k: string }) =>

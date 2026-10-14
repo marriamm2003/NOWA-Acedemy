@@ -1,10 +1,10 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, d as getProduct, h as paths, l as getChef, v as useStore } from "./store-j1dqSumQ.mjs";
+import { a as courses, d as getProduct, h as paths, l as getChef, v as useStore } from "./store-C5BeBkQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as localizeChef, s as localizePath } from "./Shell-BNDwuvOg.mjs";
-import { t as Route } from "./chefs._slug-PQCHU0--.mjs";
-import { i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DWXfb0u1.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-Ci2SbmVp.js
+import { l as localizePath, s as localizeChef } from "./Shell-Ha3YYJf2.mjs";
+import { t as Route } from "./chefs._slug-PIKx7Wo3.mjs";
+import { i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-C5UTE-ge.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-Vt7DEqpV.js
 var import_jsx_runtime = require_jsx_runtime();
 function ChefPage() {
 	const { slug } = Route.useParams();
@@ -57,7 +57,7 @@ function ChefPage() {
 						children: t("achievements")
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
 						className: "mt-3 space-y-2",
-						children: chef.achievements.map((a) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["★ ", a] }, a))
+						children: displayChef.achievements.map((a) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["★ ", a] }, a))
 					})]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "rounded-[1.75rem] bg-mustard p-7",
@@ -66,7 +66,7 @@ function ChefPage() {
 						children: t("techniques")
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
 						className: "mt-3 space-y-2",
-						children: chef.signature.map((a) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["✺ ", a] }, a))
+						children: displayChef.signature.map((a) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["✺ ", a] }, a))
 					})]
 				})]
 			}),
@@ -102,7 +102,7 @@ function ChefPage() {
 					t("inKitchen"),
 					" ",
 					displayChef.name.split(" ")[0],
-					lang === "ar" ? "" : "'s"
+					t("inKitchenSuffix")
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {

@@ -114,7 +114,7 @@ export function ProductCard({ p, label }: { p: Product; label?: string }) {
         </span>
       </div>
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-xs text-muted-foreground">{localizeLabel(p.category, lang)}</p>
+        <p className="text-xs text-muted-foreground">{localizedProduct.category}</p>
         <h3 className="font-extrabold">{localizedProduct.name}</h3>
         <p className="mt-1 flex-1 text-sm">{localizedProduct.description}</p>
         <div className="mt-3 flex items-center justify-between">

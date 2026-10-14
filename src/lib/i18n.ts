@@ -21,6 +21,10 @@ const en = {
   previewTitle: "Free preview",
   previewCopy: "Video previews are not available in this prototype. The full lesson plays after you add the module to your bag.",
   previewClose: "Close",
+  cookWhat: "Cook what", excitesYou: "excites you", chefsWith: "Chefs with a", storyWord: "story", hoursShort: "h", inKitchenSuffix: "'s",
+  heroImgAlt: "Blistered Neapolitan pizza on a wooden peel",
+  svcTalent: "Talent discovery & representation", svcProject: "Project management", svcCourse: "Course production", svcBranding: "Personal branding", svcPhoto: "Food photography & content planning", svcProduct: "Product development support", svcPricing: "Pricing & costing guidance", svcLaunch: "Launch strategy", svcPartners: "Brand & product partnerships",
+  stepApply: "Apply", stepCall: "Discovery call", stepPlan: "Plan & produce", stepLaunch: "Launch & grow",
 };
 
 const ar: typeof en = {
@@ -32,6 +36,10 @@ const ar: typeof en = {
   previewTitle: "معاينة مجانية",
   previewCopy: "معاينات الفيديو غير متاحة في هذا النموذج التجريبي. الدرس الكامل يعمل بعد إضافة الوحدة إلى الحقيبة.",
   previewClose: "إغلاق",
+  cookWhat: "اطبخ ما", excitesYou: "يحمّسك", chefsWith: "شيفات لديهم", storyWord: "حكاية", hoursShort: "س", inKitchenSuffix: "",
+  heroImgAlt: "بيتزا نابولية متفحمة الأطراف على لوح خشبي",
+  svcTalent: "اكتشاف المواهب وتمثيلها", svcProject: "إدارة المشروعات", svcCourse: "إنتاج الكورسات", svcBranding: "بناء العلامة الشخصية", svcPhoto: "تصوير الطعام وتخطيط المحتوى", svcProduct: "دعم تطوير المنتجات", svcPricing: "إرشاد التسعير وحساب التكاليف", svcLaunch: "استراتيجية الإطلاق", svcPartners: "شراكات العلامات والمنتجات",
+  stepApply: "قدّم الطلب", stepCall: "مكالمة تعارف", stepPlan: "خطط ونفّذ", stepLaunch: "أطلق وطوّر",
 };
 
 export const dict = { en, ar };

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/chefs/")({
     const { t, lang } = useStore();
     return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle eyebrow={t("chefs")} title={lang === "ar" ? "شيفات لديهم" : "Chefs with a"} accent={lang === "ar" ? "حكاية" : "story"} />
+      <SectionTitle eyebrow={t("chefs")} title={t("chefsWith")} accent={t("storyWord")} />
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         {chefs.map((c) => (
           <ChefCard key={c.slug} chef={c} />

@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/store-j1dqSumQ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/store-C5BeBkQw.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var hero_pizza_default = "/assets/hero-pizza-Ca2IvMB5.jpg";
@@ -993,7 +993,27 @@ var en = {
 	currency: "$",
 	previewTitle: "Free preview",
 	previewCopy: "Video previews are not available in this prototype. The full lesson plays after you add the module to your bag.",
-	previewClose: "Close"
+	previewClose: "Close",
+	cookWhat: "Cook what",
+	excitesYou: "excites you",
+	chefsWith: "Chefs with a",
+	storyWord: "story",
+	hoursShort: "h",
+	inKitchenSuffix: "'s",
+	heroImgAlt: "Blistered Neapolitan pizza on a wooden peel",
+	svcTalent: "Talent discovery & representation",
+	svcProject: "Project management",
+	svcCourse: "Course production",
+	svcBranding: "Personal branding",
+	svcPhoto: "Food photography & content planning",
+	svcProduct: "Product development support",
+	svcPricing: "Pricing & costing guidance",
+	svcLaunch: "Launch strategy",
+	svcPartners: "Brand & product partnerships",
+	stepApply: "Apply",
+	stepCall: "Discovery call",
+	stepPlan: "Plan & produce",
+	stepLaunch: "Launch & grow"
 };
 var dict = {
 	en,
@@ -1230,7 +1250,27 @@ var dict = {
 		currency: "$",
 		previewTitle: "معاينة مجانية",
 		previewCopy: "معاينات الفيديو غير متاحة في هذا النموذج التجريبي. الدرس الكامل يعمل بعد إضافة الوحدة إلى الحقيبة.",
-		previewClose: "إغلاق"
+		previewClose: "إغلاق",
+		cookWhat: "اطبخ ما",
+		excitesYou: "يحمّسك",
+		chefsWith: "شيفات لديهم",
+		storyWord: "حكاية",
+		hoursShort: "س",
+		inKitchenSuffix: "",
+		heroImgAlt: "بيتزا نابولية متفحمة الأطراف على لوح خشبي",
+		svcTalent: "اكتشاف المواهب وتمثيلها",
+		svcProject: "إدارة المشروعات",
+		svcCourse: "إنتاج الكورسات",
+		svcBranding: "بناء العلامة الشخصية",
+		svcPhoto: "تصوير الطعام وتخطيط المحتوى",
+		svcProduct: "دعم تطوير المنتجات",
+		svcPricing: "إرشاد التسعير وحساب التكاليف",
+		svcLaunch: "استراتيجية الإطلاق",
+		svcPartners: "شراكات العلامات والمنتجات",
+		stepApply: "قدّم الطلب",
+		stepCall: "مكالمة تعارف",
+		stepPlan: "خطط ونفّذ",
+		stepLaunch: "أطلق وطوّر"
 	}
 };
 function interpolate(value, values) {

@@ -74,7 +74,7 @@ function ChefPage() {
         <div className="rounded-[1.75rem] bg-leaf p-7">
           <h2 className="text-2xl font-extrabold">{t("achievements")}</h2>
           <ul className="mt-3 space-y-2">
-            {chef.achievements.map((a) => (
+            {displayChef.achievements.map((a) => (
               <li key={a}>★ {a}</li>
             ))}
           </ul>
@@ -82,7 +82,7 @@ function ChefPage() {
         <div className="rounded-[1.75rem] bg-mustard p-7">
           <h2 className="text-2xl font-extrabold">{t("techniques")}</h2>
           <ul className="mt-3 space-y-2">
-            {chef.signature.map((a) => (
+            {displayChef.signature.map((a) => (
               <li key={a}>✺ {a}</li>
             ))}
           </ul>
@@ -104,7 +104,7 @@ function ChefPage() {
           ))}
         </p>
       )}
-      <h2 className="mt-14 text-3xl font-extrabold">{t("inKitchen")} {displayChef.name.split(" ")[0]}{lang === "ar" ? "" : "'s"}</h2>
+      <h2 className="mt-14 text-3xl font-extrabold">{t("inKitchen")} {displayChef.name.split(" ")[0]}{t("inKitchenSuffix")}</h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {chef.products.map((id) => (
           <ProductCard key={id} p={getProduct(id)!} label={t("chefRecommended")} />
