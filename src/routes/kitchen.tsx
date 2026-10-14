@@ -58,7 +58,7 @@ function Kitchen() {
           {interpolate(t("orderConfirmed"), { order })}
         </p>
       )}
-      <SectionTitle eyebrow={t("kitchen")} title={t("welcome")} accent={t("chef")}  />
+      <SectionTitle eyebrow={t("kitchen")} title={t("welcome")} accent={t("chef")} />
       <Tabs defaultValue="courses" className="mt-8">
         <TabsList className="flex h-auto flex-wrap justify-start bg-transparent p-0">
           {["courses", "saved", "recipes", "certificates", "orders", "settings"].map((tab) => (
@@ -67,7 +67,9 @@ function Kitchen() {
               value={tab}
               className="rounded-full capitalize data-[state=active]:bg-tomato data-[state=active]:text-primary-foreground"
             >
-              {tab === "courses" ? t("myCourses") : t(tab as "saved" | "recipes" | "certificates" | "orders" | "settings")}
+              {tab === "courses"
+                ? t("myCourses")
+                : t(tab as "saved" | "recipes" | "certificates" | "orders" | "settings")}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -75,7 +77,7 @@ function Kitchen() {
         <TabsContent value="courses" className="mt-6 space-y-6">
           {myCourses.length === 0 && (
             <p>
-              {t("noModules")} {" "}
+              {t("noModules")}{" "}
               <Link to="/courses" className="underline">
                 {t("browse")}
               </Link>
@@ -115,8 +117,15 @@ function Kitchen() {
                         className={`flex items-center gap-3 rounded-xl p-3 text-sm ${has ? "bg-leaf/50" : "bg-muted text-muted-foreground"}`}
                       >
                         {has ? <Unlock className="size-4" /> : <Lock className="size-4" />}
-                        <span className="flex-1">{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</span>
-                        {has ? <b>{demoProgress[m.id] ?? 0}%</b> : <span>{money(m.price, lang)}</span>}
+                        <span className="flex-1">
+                          {localizeCourse(c, lang).modules.find((item) => item.id === m.id)
+                            ?.title ?? m.title}
+                        </span>
+                        {has ? (
+                          <b>{demoProgress[m.id] ?? 0}%</b>
+                        ) : (
+                          <span>{money(m.price, lang)}</span>
+                        )}
                       </li>
                     );
                   })}
@@ -144,11 +153,16 @@ function Kitchen() {
               .filter((m) => owned.has(m.id))
               .map((m) => (
                 <div key={m.id} className="rounded-2xl bg-card p-5">
-                  <b>{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</b>
+                  <b>
+                    {localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ??
+                      m.title}
+                  </b>
                   <p className="text-xs text-muted-foreground">{localizeCourse(c, lang).title}</p>
                   <button
                     onClick={() =>
-                      setRecipeMsg(`${localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title} — ${t("recipeDemo")}`)
+                      setRecipeMsg(
+                        `${localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title} — ${t("recipeDemo")}`,
+                      )
                     }
                     className="mt-3 flex items-center gap-2 text-sm font-bold text-tomato"
                   >
@@ -169,14 +183,15 @@ function Kitchen() {
                   <Award className="size-8" />
                   <div>
                     <b>{t("certificate")}</b>
-                    <p className="text-sm">{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</p>
+                    <p className="text-sm">
+                      {localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ??
+                        m.title}
+                    </p>
                   </div>
                 </div>
               )),
           )}
-          <p className="mt-3 text-sm text-muted-foreground">
-            {t("certificateHint")}
-          </p>
+          <p className="mt-3 text-sm text-muted-foreground">{t("certificateHint")}</p>
         </TabsContent>
 
         <TabsContent value="orders" className="mt-6 space-y-3">
@@ -207,13 +222,9 @@ function Kitchen() {
 
         <TabsContent value="settings" className="mt-6 max-w-lg space-y-3 rounded-2xl bg-card p-6">
           <p className="font-bold">{t("accountSettings")}</p>
-          <p className="text-sm text-muted-foreground">
-            {t("accountCopy")}
-          </p>
+          <p className="text-sm text-muted-foreground">{t("accountCopy")}</p>
           <p className="font-bold">{t("help")}</p>
-          <p className="text-sm text-muted-foreground">
-            {t("helpCopy")}
-          </p>
+          <p className="text-sm text-muted-foreground">{t("helpCopy")}</p>
         </TabsContent>
       </Tabs>
     </div>

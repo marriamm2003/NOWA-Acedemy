@@ -15,8 +15,9 @@ export function Logo({
   variant?: "dark" | "light";
   className?: string;
 }) {
+  const { t } = useStore();
   return (
-    <Link to="/" className="inline-block shrink-0" aria-label="NOWA Studio home">
+    <Link to="/" className="inline-block shrink-0" aria-label={t("homeAria")}>
       <img
         src="/assets/images/Organic_Sage_Nowa_Studio_Badge.png"
         alt="NOWA Studio"
@@ -64,7 +65,9 @@ function Nav() {
                 {({ isActive }) => (
                   <>
                     {l.label}
-                    {isActive && <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-tomato" />}
+                    {isActive && (
+                      <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-tomato" />
+                    )}
                   </>
                 )}
               </Link>
@@ -183,7 +186,11 @@ function BagSheet() {
                         <li key={id} className="flex items-center justify-between gap-2">
                           <span>{c.modules.find((item) => item.id === id)?.title ?? m.title}</span>
                           <span className="flex items-center gap-2 whitespace-nowrap">
-                            {free ? <b className="text-tomato">{t("free")}</b> : money(m.price, lang)}
+                            {free ? (
+                              <b className="text-tomato">{t("free")}</b>
+                            ) : (
+                              money(m.price, lang)
+                            )}
                             {bag.includes(id) && (
                               <button
                                 onClick={() => toggleBag(id)}
@@ -276,7 +283,10 @@ function Chatbot() {
       return t("chatbotCreator");
     const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0] ?? ""));
     if (c)
-      return interpolate(t("chatbotCourse"), { course: localizeCourse(c, lang).title, amount: money(Math.min(...c.modules.map((m) => m.price)), lang) });
+      return interpolate(t("chatbotCourse"), {
+        course: localizeCourse(c, lang).title,
+        amount: money(Math.min(...c.modules.map((m) => m.price)), lang),
+      });
     return t("chatbotFallback");
   };
   return (
@@ -316,7 +326,7 @@ function Chatbot() {
               maxLength={300}
               className="flex-1 rounded-full bg-muted px-3 text-sm outline-none"
               placeholder={t("askNowa")}
-              aria-label={t("message")} 
+              aria-label={t("message")}
             />
             <button className="rounded-full bg-tomato px-3 py-2 text-xs font-bold text-primary-foreground">
               {t("send")}
@@ -346,15 +356,45 @@ function Footer() {
         </div>
         <div className="grid gap-2 text-sm">
           <b className="mb-1 text-mustard">{t("learn")}</b>
-          <Link to="/courses" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("courses")}</Link>
-          <Link to="/paths" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("paths")}</Link>
-          <Link to="/chefs" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("chefs")}</Link>
+          <Link
+            to="/courses"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("courses")}
+          </Link>
+          <Link
+            to="/paths"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("paths")}
+          </Link>
+          <Link
+            to="/chefs"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("chefs")}
+          </Link>
         </div>
         <div className="grid gap-2 text-sm">
           <b className="mb-1 text-mustard">{t("growColumn")}</b>
-          <Link to="/creators" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("creators")}</Link>
-          <Link to="/market" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("market")}</Link>
-          <Link to="/kitchen" className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard">{t("kitchen")}</Link>
+          <Link
+            to="/creators"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("creators")}
+          </Link>
+          <Link
+            to="/market"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("market")}
+          </Link>
+          <Link
+            to="/kitchen"
+            className="w-fit opacity-80 transition-colors hover:opacity-100 hover:text-mustard"
+          >
+            {t("kitchen")}
+          </Link>
         </div>
         <div className="text-xs leading-relaxed opacity-70">
           <p>{t("footerNotice")}</p>

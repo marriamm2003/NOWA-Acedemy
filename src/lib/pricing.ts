@@ -53,9 +53,17 @@ export function quoteCourse(modules: Module[], selectedIds: string[], withWorkbo
 
   let nextHint: Quote["nextHint"];
   if (bonusModule && eligibleCount < BONUS_THRESHOLD)
-    nextHint = { kind: "bonus", remaining: BONUS_THRESHOLD - eligibleCount, bonusTitle: bonusModule.title.replace(/^Mini-course — /, "") };
+    nextHint = {
+      kind: "bonus",
+      remaining: BONUS_THRESHOLD - eligibleCount,
+      bonusTitle: bonusModule.title.replace(/^Mini-course — /, ""),
+    };
   else if (eligibleCount < DISCOUNT_THRESHOLD)
-    nextHint = { kind: "discount", remaining: DISCOUNT_THRESHOLD - eligibleCount, percent: BUNDLE_DISCOUNT * 100 };
+    nextHint = {
+      kind: "discount",
+      remaining: DISCOUNT_THRESHOLD - eligibleCount,
+      percent: BUNDLE_DISCOUNT * 100,
+    };
 
   return {
     original,

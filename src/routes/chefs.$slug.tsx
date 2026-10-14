@@ -53,7 +53,9 @@ function ChefPage() {
       <section className="grid items-center gap-10 rounded-[2.5rem] bg-card p-8 shadow-soft md:grid-cols-[auto_1fr] md:p-12">
         <ChefAvatar chef={chef} size="size-40 text-6xl" />
         <div>
-          <p className="text-sm font-bold uppercase tracking-widest text-forest">{displayChef.city}</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-forest">
+            {displayChef.city}
+          </p>
           <h1 className="text-5xl font-extrabold tracking-tight md:text-7xl">{displayChef.name}</h1>
           <p className="mt-2 font-serif text-2xl italic text-tomato">{displayChef.specialty}</p>
           <p className="mt-4 max-w-2xl leading-relaxed">{displayChef.story}</p>
@@ -88,7 +90,9 @@ function ChefPage() {
           </ul>
         </div>
       </section>
-      <h2 className="mt-14 text-3xl font-extrabold">{t("coursesBy")} {displayChef.name.split(" ")[0]}</h2>
+      <h2 className="mt-14 text-3xl font-extrabold">
+        {t("coursesBy")} {displayChef.name.split(" ")[0]}
+      </h2>
       <div className="mt-6 grid gap-6 md:grid-cols-3">
         {theirs.map((c) => (
           <CourseCard key={c.slug} c={c} />
@@ -104,17 +108,20 @@ function ChefPage() {
           ))}
         </p>
       )}
-      <h2 className="mt-14 text-3xl font-extrabold">{t("inKitchen")} {displayChef.name.split(" ")[0]}{t("inKitchenSuffix")}</h2>
+      <h2 className="mt-14 text-3xl font-extrabold">
+        {t("inKitchen")} {displayChef.name.split(" ")[0]}
+        {t("inKitchenSuffix")}
+      </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {chef.products.map((id) => (
           <ProductCard key={id} p={getProduct(id)!} label={t("chefRecommended")} />
         ))}
       </div>
       <div className="mt-14 rounded-[2rem] bg-deep p-10 text-cream">
-        <h2 className="text-3xl font-extrabold">{t("workWith")} {displayChef.name}</h2>
-        <p className="mt-2 opacity-80">
-          {t("partnershipCopy")}
-        </p>
+        <h2 className="text-3xl font-extrabold">
+          {t("workWith")} {displayChef.name}
+        </h2>
+        <p className="mt-2 opacity-80">{t("partnershipCopy")}</p>
         <Link
           to="/creators"
           className="mt-5 inline-block rounded-full bg-tomato px-6 py-3 font-extrabold text-primary-foreground shadow-pop"

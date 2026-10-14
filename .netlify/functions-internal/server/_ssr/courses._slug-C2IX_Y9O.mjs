@@ -1,13 +1,13 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as AccordionTrigger$1, i as AccordionItem$1, n as AccordionContent$1, r as AccordionHeader, t as Accordion$1, v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as quoteCourse, a as courses, d as getProduct, l as getChef, p as interpolate, t as BUNDLE_DISCOUNT, u as getCourse, v as useStore } from "./store-C5BeBkQw.mjs";
+import { _ as quoteCourse, a as courses, d as getProduct, l as getChef, p as interpolate, t as BUNDLE_DISCOUNT, u as getCourse, v as useStore } from "./store-DqMNyVQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { _ as BookOpen, a as Radio, c as Lock, d as Gift, g as Check, h as ChevronDown, m as CirclePlay, n as Star, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay$1, i as DialogDescription$1, n as DialogClose, o as DialogPortal$1, r as DialogContent$1, s as DialogTitle$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
-import { a as label, c as localizeCourse, d as money, n as cn, o as languageLabel, r as getReviews, s as localizeChef } from "./Shell-CxGIj84P.mjs";
-import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DJrCx6ne.mjs";
-import { t as Route } from "./courses._slug-C6jR6qmb.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-DRzpE3i4.js
+import { a as label, c as localizeCourse, d as money, n as cn, o as languageLabel, r as getReviews, s as localizeChef } from "./Shell-BJ-ZsTQu.mjs";
+import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DkTfdWze.mjs";
+import { t as Route } from "./courses._slug-DQKn8qwN.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-C2IX_Y9O.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function CourseBuilder({ course }) {
@@ -164,10 +164,14 @@ function CourseBuilder({ course }) {
 					className: "mt-4 space-y-1 text-xs opacity-80",
 					children: [
 						hasBonus && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: ["• ", interpolate(t("bonusRule"), { count: 2 })] }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: ["• ", interpolate(t("discountRule"), {
-							count: 3,
-							percent: BUNDLE_DISCOUNT * 100
-						})] }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
+							"•",
+							" ",
+							interpolate(t("discountRule"), {
+								count: 3,
+								percent: BUNDLE_DISCOUNT * 100
+							})
+						] }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: ["• ", t("bonusRuleTwo")] }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: ["• ", t("workbookRule")] })
 					]

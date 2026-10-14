@@ -47,7 +47,12 @@ function Market() {
             onClick={() => setCat(c)}
             className={`rounded-full px-4 py-2 text-sm font-bold ${cat === c ? "bg-tomato text-primary-foreground" : "bg-card"}`}
           >
-            {localizeProduct(products.find((p) => p.category === c)!, lang).category}
+            {
+              localizeProduct(
+                products.find((p) => p.category === c)!,
+                lang,
+              ).category
+            }
           </button>
         ))}
       </div>

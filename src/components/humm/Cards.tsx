@@ -1,7 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { ExternalLink, Heart, Star } from "lucide-react";
 import { fromPrice, getChef, type Chef, type Course, type Product, images } from "@/lib/data";
-import { localizeChef, localizeCourse, localizeProduct, label as localizeLabel, languageLabel } from "@/lib/localized";
+import {
+  localizeChef,
+  localizeCourse,
+  localizeProduct,
+  label as localizeLabel,
+  languageLabel,
+} from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { money } from "./Shell";
 
@@ -35,11 +41,15 @@ export function CourseCard({ c }: { c: Course }) {
         </div>
         <div className="flex flex-1 flex-col p-5">
           <div className="flex flex-wrap gap-2 text-[11px] font-bold uppercase tracking-wider">
-            <span className="rounded-full bg-leaf px-2 py-1">{localizeLabel(c.category, lang)}</span>
+            <span className="rounded-full bg-leaf px-2 py-1">
+              {localizeLabel(c.category, lang)}
+            </span>
             <span className="rounded-full bg-muted px-2 py-1">{localizeLabel(c.level, lang)}</span>
           </div>
           <h3 className="mt-3 text-xl font-extrabold leading-tight">{localizedCourse.title}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">{t("with")} {chef.name}</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {t("with")} {chef.name}
+          </p>
           <ul className="mt-3 space-y-1 text-sm">
             {localizedCourse.outcomes.slice(0, 2).map((o) => (
               <li key={o}>— {o}</li>
@@ -50,10 +60,13 @@ export function CourseCard({ c }: { c: Course }) {
               <Star className="size-4 fill-mustard text-mustard" />
               {c.rating}{" "}
               <span className="text-muted-foreground">
-                ({c.reviews}) · {c.hours} {t("hoursTotal")} · {c.languages.map((x) => languageLabel(x, lang)).join("/")}
+                ({c.reviews}) · {c.hours} {t("hoursTotal")} ·{" "}
+                {c.languages.map((x) => languageLabel(x, lang)).join("/")}
               </span>
             </span>
-            <b className="shrink-0">{t("from")} {money(fromPrice(c), lang)}</b>
+            <b className="shrink-0">
+              {t("from")} {money(fromPrice(c), lang)}
+            </b>
           </div>
         </div>
       </Link>
@@ -91,7 +104,8 @@ export function ChefCard({ chef }: { chef: Chef }) {
 export function ProductCard({ p, label }: { p: Product; label?: string }) {
   const { lang, t } = useStore();
   const localizedProduct = localizeProduct(p, lang);
-  const badge = label ?? (p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended"));
+  const badge =
+    label ?? (p.badge === "Used in This Course" ? t("usedCourse") : t("chefRecommended"));
   return (
     <article className="flex flex-col overflow-hidden rounded-[1.5rem] bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-lg">
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -128,9 +142,7 @@ export function ProductCard({ p, label }: { p: Product; label?: string }) {
             {t("shopAt")} {localizedProduct.seller} <ExternalLink className="size-3" />
           </a>
         </div>
-        <p className="mt-2 text-[10px] text-muted-foreground">
-          {t("affiliateNote")}
-        </p>
+        <p className="mt-2 text-[10px] text-muted-foreground">{t("affiliateNote")}</p>
       </div>
     </article>
   );

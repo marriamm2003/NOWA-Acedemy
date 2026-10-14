@@ -1,7 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { courses, fromPrice, getChef, getCourse, paths, type Category } from "@/lib/data";
-import { label as localizeLabel, localizeChef, localizeCourse, localizePath } from "@/lib/localized";
+import {
+  label as localizeLabel,
+  localizeChef,
+  localizeCourse,
+  localizePath,
+} from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { interpolate } from "@/lib/i18n";
 import { CourseCard, SectionTitle, toneBg } from "@/components/humm/Cards";
@@ -68,7 +73,8 @@ function Finder() {
         ))}
       </div>
       <label className="mt-4 block font-bold" htmlFor="budget">
-        3. {t("budget")}: {t("currency")}{budget}
+        3. {t("budget")}: {t("currency")}
+        {budget}
       </label>
       <input
         id="budget"
@@ -107,45 +113,49 @@ function Paths() {
         {paths.map((p, i) => {
           const displayPath = localizePath(p, lang);
           return (
-          <section
-            key={p.id}
-            id={p.id}
-            className="scroll-mt-28 rounded-[2rem] bg-card p-8 shadow-soft"
-          >
-            <div className="flex flex-wrap items-center gap-4">
-              <span
-                className={`grid size-16 place-items-center rounded-full font-serif text-3xl ${toneBg[p.tone]}`}
-              >
-                0{i + 1}
-              </span>
-              <div>
-                <h2 className="text-3xl font-extrabold">{displayPath.title}</h2>
-                <p className="text-muted-foreground">
-                  {displayPath.blurb} · ~{p.weeks} {t("weeks")}
-                </p>
+            <section
+              key={p.id}
+              id={p.id}
+              className="scroll-mt-28 rounded-[2rem] bg-card p-8 shadow-soft"
+            >
+              <div className="flex flex-wrap items-center gap-4">
+                <span
+                  className={`grid size-16 place-items-center rounded-full font-serif text-3xl ${toneBg[p.tone]}`}
+                >
+                  0{i + 1}
+                </span>
+                <div>
+                  <h2 className="text-3xl font-extrabold">{displayPath.title}</h2>
+                  <p className="text-muted-foreground">
+                    {displayPath.blurb} · ~{p.weeks} {t("weeks")}
+                  </p>
+                </div>
               </div>
-            </div>
-            <ol className="mt-6 grid gap-4 md:grid-cols-3">
-              {p.courses.map((s, k) => {
-                const c = getCourse(s)!;
-                return (
-                  <li key={s}>
-                    <Link
-                      to="/courses/$slug"
-                      params={{ slug: s }}
-                      className="block rounded-2xl bg-muted p-5 hover:bg-leaf"
-                    >
-                      <small className="font-bold text-tomato">{t("step")} {k + 1}</small>
-                      <b className="block text-lg">{localizeCourse(c, lang).title}</b>
-                      <small>
-                        {c.hours}{t("hoursShort")} · {t("with")} {localizeChef(getChef(c.chef)!, lang).name}
-                      </small>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ol>
-          </section>
+              <ol className="mt-6 grid gap-4 md:grid-cols-3">
+                {p.courses.map((s, k) => {
+                  const c = getCourse(s)!;
+                  return (
+                    <li key={s}>
+                      <Link
+                        to="/courses/$slug"
+                        params={{ slug: s }}
+                        className="block rounded-2xl bg-muted p-5 hover:bg-leaf"
+                      >
+                        <small className="font-bold text-tomato">
+                          {t("step")} {k + 1}
+                        </small>
+                        <b className="block text-lg">{localizeCourse(c, lang).title}</b>
+                        <small>
+                          {c.hours}
+                          {t("hoursShort")} · {t("with")}{" "}
+                          {localizeChef(getChef(c.chef)!, lang).name}
+                        </small>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
           );
         })}
         <Finder />

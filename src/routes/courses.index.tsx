@@ -52,7 +52,12 @@ function Discover() {
         (!s.cat || c.category === s.cat) &&
         (!s.level || c.level === s.level) &&
         (!q ||
-          [localizeCourse(c, lang).title, localizeCourse(c, lang).tagline, localizeLabel(c.category, lang), localizeChef(getChef(c.chef)!, lang).name]
+          [
+            localizeCourse(c, lang).title,
+            localizeCourse(c, lang).tagline,
+            localizeLabel(c.category, lang),
+            localizeChef(getChef(c.chef)!, lang).name,
+          ]
             .join(" ")
             .toLowerCase()
             .includes(q)),
@@ -74,7 +79,7 @@ function Discover() {
           value={s.q ?? ""}
           onChange={(e) => set({ q: e.target.value || undefined })}
           placeholder={t("search")}
-          aria-label={t("search")} 
+          aria-label={t("search")}
           maxLength={80}
           className="flex-1 rounded-full border border-border bg-card px-5 py-3 outline-none focus:border-tomato"
         />
@@ -127,9 +132,7 @@ function Discover() {
       ) : (
         <div className="mt-6 rounded-3xl bg-card p-10 text-center">
           <p className="text-xl font-extrabold">{t("noCourses")}</p>
-          <p className="text-muted-foreground">
-            {t("noCoursesCopy")}
-          </p>
+          <p className="text-muted-foreground">{t("noCoursesCopy")}</p>
           <button
             onClick={() => nav({ search: {} })}
             className="mt-4 rounded-full bg-forest px-5 py-2 font-bold text-cream"

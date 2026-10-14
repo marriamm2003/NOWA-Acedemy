@@ -1,8 +1,8 @@
-import { u as getCourse } from "./store-C5BeBkQw.mjs";
+import { u as getCourse } from "./store-DqMNyVQw.mjs";
 import { _ as createFileRoute, g as lazyRouteComponent, q as notFound } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-C6jR6qmb.js
-var $$splitComponentImporter = () => import("./courses._slug-DRzpE3i4.mjs");
-var $$splitNotFoundComponentImporter = () => import("./courses._slug-nCfTRMsR.mjs");
+//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-DQKn8qwN.js
+var $$splitComponentImporter = () => import("./courses._slug-C2IX_Y9O.mjs");
+var $$splitNotFoundComponentImporter = () => import("./courses._slug-BUHQJ74o.mjs");
 var Route = createFileRoute("/courses/$slug")({
 	loader: ({ params }) => {
 		const course = getCourse(params.slug);

@@ -2,7 +2,13 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { Heart, PlayCircle, Star } from "lucide-react";
 import { courses, getChef, getCourse, getProduct } from "@/lib/data";
-import { localizeChef, localizeCourse, label as localizeLabel, languageLabel, getReviews } from "@/lib/localized";
+import {
+  localizeChef,
+  localizeCourse,
+  label as localizeLabel,
+  languageLabel,
+  getReviews,
+} from "@/lib/localized";
 import { useStore } from "@/lib/store";
 import { CourseBuilder } from "@/components/humm/Builder";
 import { ChefAvatar, CourseCard, ProductCard, SectionTitle } from "@/components/humm/Cards";
@@ -88,9 +94,15 @@ function CoursePage() {
               <b>{c.rating}</b> ({c.reviews} {t("reviews")})
             </span>
             <span>{localizeLabel(c.level, lang)}</span>
-            <span>{c.hours} {t("hoursTotal")}</span>
-            <span>{t("audio")}: {c.languages.map((x) => languageLabel(x, lang)).join(", ")}</span>
-            <span>{t("subtitles")}: {c.subtitles.map((x) => languageLabel(x, lang)).join(", ")}</span>
+            <span>
+              {c.hours} {t("hoursTotal")}
+            </span>
+            <span>
+              {t("audio")}: {c.languages.map((x) => languageLabel(x, lang)).join(", ")}
+            </span>
+            <span>
+              {t("subtitles")}: {c.subtitles.map((x) => languageLabel(x, lang)).join(", ")}
+            </span>
           </div>
           <Link
             to="/chefs/$slug"
@@ -180,11 +192,9 @@ function CoursePage() {
         <SectionTitle
           eyebrow={t("builderEyebrow")}
           title={t("builderTitle")}
-          accent={t("builderAccent")} 
+          accent={t("builderAccent")}
         />
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          {t("builderCopy")}
-        </p>
+        <p className="mt-3 max-w-2xl text-muted-foreground">{t("builderCopy")}</p>
         <div className="mt-8">
           <CourseBuilder course={c} />
         </div>

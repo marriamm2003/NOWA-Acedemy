@@ -61,7 +61,8 @@ function Home() {
             </Link>
           </div>
           <p className="mt-8 text-sm text-muted-foreground">
-            <b className="text-foreground">4.9★</b> {t("statLearners")} · 3 {t("statChefs")} · 6 {t("statCourses")}
+            <b className="text-foreground">4.9★</b> {t("statLearners")} · 3 {t("statChefs")} · 6{" "}
+            {t("statCourses")}
           </p>
         </div>
         <div className="relative mx-auto max-w-md lg:max-w-none">
@@ -144,19 +145,19 @@ function Home() {
             {paths.map((p, i) => {
               const displayPath = localizePath(p, lang);
               return (
-              <Link
-                key={p.id}
-                to="/paths"
-                hash={p.id}
-                className={`rounded-[1.75rem] p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-lg ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}
-              >
-                <span className="font-serif text-5xl md:text-6xl">0{i + 1}</span>
-                <h3 className="mt-3 text-2xl font-extrabold">{displayPath.title}</h3>
-                <p className="mt-2 leading-relaxed">{displayPath.blurb}</p>
-                <p className="mt-4 text-sm font-bold">
-                  ~{p.weeks} {t("weeks")} · {p.courses.length} {t("coursesCount")}
-                </p>
-              </Link>
+                <Link
+                  key={p.id}
+                  to="/paths"
+                  hash={p.id}
+                  className={`rounded-[1.75rem] p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-lg ${i === 1 ? "bg-cream" : toneBg[p.tone]}`}
+                >
+                  <span className="font-serif text-5xl md:text-6xl">0{i + 1}</span>
+                  <h3 className="mt-3 text-2xl font-extrabold">{displayPath.title}</h3>
+                  <p className="mt-2 leading-relaxed">{displayPath.blurb}</p>
+                  <p className="mt-4 text-sm font-bold">
+                    ~{p.weeks} {t("weeks")} · {p.courses.length} {t("coursesCount")}
+                  </p>
+                </Link>
               );
             })}
           </div>
@@ -174,7 +175,11 @@ function Home() {
 
       <section className="mx-auto max-w-7xl px-5">
         <div className="flex items-end justify-between">
-          <SectionTitle eyebrow={t("curated")} title={t("marketTitle")} accent={t("marketAccent")} />
+          <SectionTitle
+            eyebrow={t("curated")}
+            title={t("marketTitle")}
+            accent={t("marketAccent")}
+          />
           <Link to="/market" className="font-bold underline">
             {t("browseAll")}
           </Link>

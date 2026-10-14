@@ -1,12 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-C5BeBkQw.mjs";
+import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-DqMNyVQw.mjs";
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { i as Search, o as MessageCircle, r as ShoppingBag, s as Menu, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay, i as DialogDescription, n as DialogClose, o as DialogPortal, r as DialogContent, s as DialogTitle, t as Dialog } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Shell-CxGIj84P.js
+//#region node_modules/.nitro/vite/services/ssr/assets/Shell-BJ-ZsTQu.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var categoryAr = {
@@ -474,10 +474,11 @@ var SheetDescription = import_react.forwardRef(({ className, ...props }, ref) =>
 }));
 SheetDescription.displayName = DialogDescription.displayName;
 function Logo({ variant = "dark", className = "h-11" }) {
+	const { t } = useStore();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 		to: "/",
 		className: "inline-block shrink-0",
-		"aria-label": "NOWA Studio home",
+		"aria-label": t("homeAria"),
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
 			src: "/assets/images/Organic_Sage_Nowa_Studio_Badge.png",
 			alt: "NOWA Studio",

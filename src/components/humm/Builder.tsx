@@ -98,10 +98,18 @@ export function CourseBuilder({ course }: { course: Course }) {
           <span className="text-sm font-extrabold">+{money(WORKBOOK_PRICE, lang)}</span>
         </button>
         <div className="mt-4 space-y-2 text-sm">
-          <Row label={t("originalPrice")} value={<s className="opacity-70">{money(q.original, lang)}</s>} />
-          {q.bonusUnlocked && <Row label={t("bonusCourse")} value={`−${money(q.bonusSavings, lang)}`} />}
+          <Row
+            label={t("originalPrice")}
+            value={<s className="opacity-70">{money(q.original, lang)}</s>}
+          />
+          {q.bonusUnlocked && (
+            <Row label={t("bonusCourse")} value={`−${money(q.bonusSavings, lang)}`} />
+          )}
           {q.discountApplied && (
-            <Row label={interpolate(t("bundleOff"), { percent: BUNDLE_DISCOUNT * 100 })} value={`−${money(q.discount, lang)}`} />
+            <Row
+              label={interpolate(t("bundleOff"), { percent: BUNDLE_DISCOUNT * 100 })}
+              value={`−${money(q.discount, lang)}`}
+            />
           )}
           {q.workbookPrice > 0 && (
             <Row label={t("workbookPrice")} value={`+${money(q.workbookPrice, lang)}`} />
@@ -119,15 +127,26 @@ export function CourseBuilder({ course }: { course: Course }) {
         {q.nextHint && (
           <p className="mt-4 rounded-xl bg-forest p-3 text-sm">
             {q.nextHint.kind === "bonus"
-              ? interpolate(t("hintBonus"), { count: q.nextHint.remaining, s: q.nextHint.remaining > 1 ? "s" : "", title: q.nextHint.bonusTitle })
-              : interpolate(t("hintDiscount"), { count: q.nextHint.remaining, percent: q.nextHint.percent })}
+              ? interpolate(t("hintBonus"), {
+                  count: q.nextHint.remaining,
+                  s: q.nextHint.remaining > 1 ? "s" : "",
+                  title: q.nextHint.bonusTitle,
+                })
+              : interpolate(t("hintDiscount"), {
+                  count: q.nextHint.remaining,
+                  percent: q.nextHint.percent,
+                })}
           </p>
         )}
         <div className="mt-4 space-y-1 text-xs opacity-80">
-          {hasBonus && (
-            <p>• {interpolate(t("bonusRule"), { count: BONUS_THRESHOLD })}</p>
-          )}
-          <p>• {interpolate(t("discountRule"), { count: DISCOUNT_THRESHOLD, percent: BUNDLE_DISCOUNT * 100 })}</p>
+          {hasBonus && <p>• {interpolate(t("bonusRule"), { count: BONUS_THRESHOLD })}</p>}
+          <p>
+            •{" "}
+            {interpolate(t("discountRule"), {
+              count: DISCOUNT_THRESHOLD,
+              percent: BUNDLE_DISCOUNT * 100,
+            })}
+          </p>
           <p>• {t("bonusRuleTwo")}</p>
           <p>• {t("workbookRule")}</p>
         </div>

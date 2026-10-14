@@ -1,15 +1,15 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, p as interpolate, u as getCourse, v as useStore } from "./store-C5BeBkQw.mjs";
+import { a as courses, p as interpolate, u as getCourse, v as useStore } from "./store-DqMNyVQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { c as Lock, l as LockOpen, p as Download, v as Award } from "../_libs/lucide-react.mjs";
-import { c as localizeCourse, d as money, n as cn, o as languageLabel } from "./Shell-CxGIj84P.mjs";
-import { a as SectionTitle, r as CourseCard } from "./Cards-DJrCx6ne.mjs";
-import { t as Route } from "./kitchen-CX9MKT9I.mjs";
+import { c as localizeCourse, d as money, n as cn, o as languageLabel } from "./Shell-BJ-ZsTQu.mjs";
+import { a as SectionTitle, r as CourseCard } from "./Cards-DkTfdWze.mjs";
+import { t as Route } from "./kitchen-Cr711Y1T.mjs";
 import { n as toast } from "../_libs/sonner.mjs";
 import { i as TabsTrigger$1, n as TabsContent$1, r as TabsList$1, t as Tabs$1 } from "../_libs/radix-ui__react-tabs.mjs";
 import { n as ProgressIndicator, t as Progress$1 } from "../_libs/radix-ui__react-progress.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/kitchen-BU3ag2YU.js
+//#region node_modules/.nitro/vite/services/ssr/assets/kitchen-BoD5rT_5.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Tabs = Tabs$1;
@@ -104,7 +104,6 @@ function Kitchen() {
 						className: "mt-6 space-y-6",
 						children: [myCourses.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { children: [
 							t("noModules"),
-							" ",
 							" ",
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
 								to: "/courses",

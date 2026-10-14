@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/store-C5BeBkQw.js
+//#region node_modules/.nitro/vite/services/ssr/assets/store-DqMNyVQw.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var hero_pizza_default = "/assets/hero-pizza-Ca2IvMB5.jpg";
@@ -1013,7 +1013,8 @@ var en = {
 	stepApply: "Apply",
 	stepCall: "Discovery call",
 	stepPlan: "Plan & produce",
-	stepLaunch: "Launch & grow"
+	stepLaunch: "Launch & grow",
+	homeAria: "NOWA Studio home"
 };
 var dict = {
 	en,
@@ -1270,7 +1271,8 @@ var dict = {
 		stepApply: "قدّم الطلب",
 		stepCall: "مكالمة تعارف",
 		stepPlan: "خطط ونفّذ",
-		stepLaunch: "أطلق وطوّر"
+		stepLaunch: "أطلق وطوّر",
+		homeAria: "NOWA Studio الرئيسية"
 	}
 };
 function interpolate(value, values) {

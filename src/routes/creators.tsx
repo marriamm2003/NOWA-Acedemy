@@ -27,8 +27,6 @@ export const Route = createFileRoute("/creators")({
   component: Creators,
 });
 
-
-
 function Creators() {
   const { t, lang } = useStore();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -76,7 +74,17 @@ function Creators() {
     }
     setSent(r.data.name.split(" ")[0]);
   };
-  const services = [t("svcTalent"), t("svcProject"), t("svcCourse"), t("svcBranding"), t("svcPhoto"), t("svcProduct"), t("svcPricing"), t("svcLaunch"), t("svcPartners")];
+  const services = [
+    t("svcTalent"),
+    t("svcProject"),
+    t("svcCourse"),
+    t("svcBranding"),
+    t("svcPhoto"),
+    t("svcProduct"),
+    t("svcPricing"),
+    t("svcLaunch"),
+    t("svcPartners"),
+  ];
   const steps = [t("stepApply"), t("stepCall"), t("stepPlan"), t("stepLaunch")];
   const field =
     "mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 outline-none focus:border-tomato";
@@ -89,11 +97,7 @@ function Creators() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
-      <SectionTitle
-        eyebrow={t("fromPassion")}
-        title={t("gotRecipe")}
-        accent={t("buildBusiness")} 
-      />
+      <SectionTitle eyebrow={t("fromPassion")} title={t("gotRecipe")} accent={t("buildBusiness")} />
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <div
@@ -117,10 +121,10 @@ function Creators() {
         {sent ? (
           <div className="text-center" role="status">
             <p className="text-5xl">🎉</p>
-            <h2 className="mt-3 text-3xl font-extrabold">{interpolate(t("thanks"), { name: sent })}</h2>
-            <p className="mt-2 text-muted-foreground">
-              {t("applicationCaptured")}
-            </p>
+            <h2 className="mt-3 text-3xl font-extrabold">
+              {interpolate(t("thanks"), { name: sent })}
+            </h2>
+            <p className="mt-2 text-muted-foreground">{t("applicationCaptured")}</p>
             <button
               onClick={() => setSent(undefined)}
               className="mt-5 rounded-full bg-forest px-5 py-2 font-bold text-cream"

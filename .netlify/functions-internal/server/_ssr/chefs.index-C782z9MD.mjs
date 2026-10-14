@@ -1,10 +1,10 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { i as chefs, v as useStore } from "./store-C5BeBkQw.mjs";
-import { a as SectionTitle, n as ChefCard } from "./Cards-DJrCx6ne.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-BIs14irx.js
+import { i as chefs, v as useStore } from "./store-DqMNyVQw.mjs";
+import { a as SectionTitle, n as ChefCard } from "./Cards-DkTfdWze.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-C782z9MD.js
 var import_jsx_runtime = require_jsx_runtime();
-var SplitComponent = () => {
-	const { t, lang } = useStore();
+function ChefsPage() {
+	const { t } = useStore();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "mx-auto max-w-7xl px-5 py-12",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionTitle, {
@@ -16,6 +16,6 @@ var SplitComponent = () => {
 			children: chefs.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChefCard, { chef: c }, c.slug))
 		})]
 	});
-};
+}
 //#endregion
-export { SplitComponent as component };
+export { ChefsPage as component };

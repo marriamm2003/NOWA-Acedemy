@@ -1,9 +1,9 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { c as fromPrice, f as images, l as getChef, v as useStore } from "./store-C5BeBkQw.mjs";
+import { c as fromPrice, f as images, l as getChef, v as useStore } from "./store-DqMNyVQw.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { f as ExternalLink, n as Star, u as Heart } from "../_libs/lucide-react.mjs";
-import { a as label, c as localizeCourse, d as money, o as languageLabel, s as localizeChef, u as localizeProduct } from "./Shell-CxGIj84P.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Cards-DJrCx6ne.js
+import { a as label, c as localizeCourse, d as money, o as languageLabel, s as localizeChef, u as localizeProduct } from "./Shell-BJ-ZsTQu.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/Cards-DkTfdWze.js
 var import_jsx_runtime = require_jsx_runtime();
 var toneBg = {
 	mustard: "bg-mustard",
@@ -83,7 +83,8 @@ function CourseCard({ c }) {
 										c.hours,
 										" ",
 										t("hoursTotal"),
-										" · ",
+										" ·",
+										" ",
 										c.languages.map((x) => languageLabel(x, lang)).join("/")
 									]
 								})

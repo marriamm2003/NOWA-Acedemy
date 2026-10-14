@@ -127,7 +127,9 @@ function Checkout() {
           disabled={busy}
           className="w-full rounded-full bg-tomato py-4 text-lg font-extrabold text-primary-foreground shadow-pop disabled:opacity-60"
         >
-          {busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total, lang) })}
+          {busy
+            ? t("processing")
+            : interpolate(t("payDemo"), { amount: money(bagQuote.total, lang) })}
         </button>
       </form>
       <aside className="h-fit rounded-[2rem] bg-card p-6 shadow-soft">

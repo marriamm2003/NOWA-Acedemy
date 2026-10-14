@@ -17,9 +17,12 @@ export const Route = createFileRoute("/chefs/")({
       { name: "twitter:card", content: "summary" },
     ],
   }),
-  component: () => {
-    const { t, lang } = useStore();
-    return (
+  component: ChefsPage,
+});
+
+function ChefsPage() {
+  const { t } = useStore();
+  return (
     <div className="mx-auto max-w-7xl px-5 py-12">
       <SectionTitle eyebrow={t("chefs")} title={t("chefsWith")} accent={t("storyWord")} />
       <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -28,6 +31,5 @@ export const Route = createFileRoute("/chefs/")({
         ))}
       </div>
     </div>
-    );
-  },
-});
+  );
+}
