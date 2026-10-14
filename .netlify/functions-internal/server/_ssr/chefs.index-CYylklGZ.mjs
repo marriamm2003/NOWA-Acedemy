@@ -1,7 +1,7 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { i as chefs, v as useStore } from "./store-DqMNyVQw.mjs";
-import { a as SectionTitle, n as ChefCard } from "./Cards-DkTfdWze.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-C782z9MD.js
+import { i as chefs, v as useStore } from "./store-C9KxHDSc.mjs";
+import { a as SectionTitle, n as ChefCard } from "./Cards-DPHkcBe_.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-CYylklGZ.js
 var import_jsx_runtime = require_jsx_runtime();
 function ChefsPage() {
 	const { t } = useStore();

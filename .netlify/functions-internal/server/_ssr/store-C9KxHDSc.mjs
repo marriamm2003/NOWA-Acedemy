@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/store-DqMNyVQw.js
+//#region node_modules/.nitro/vite/services/ssr/assets/store-C9KxHDSc.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var hero_pizza_default = "/assets/hero-pizza-Ca2IvMB5.jpg";
@@ -1103,7 +1103,7 @@ var dict = {
 		inKitchen: "في مطبخ",
 		workWith: "اعمل مع",
 		partnership: "طلب شراكة",
-		partnershipCopy: "تدير NOWA talent شراكات العلامات التجارية والدروس الخاصة والاستشارات.",
+		partnershipCopy: "تدير NOWA شراكات العلامات التجارية والدروس الخاصة والاستشارات.",
 		allChefs: "كل الشيفات",
 		chefNotFound: "الشيف غير موجود",
 		courseNotFound: "الكورس غير موجود",
@@ -1206,8 +1206,7 @@ var dict = {
 		affiliateNote: "رابط تجريبي. البائع مسؤول عن الشحن والإرجاع.",
 		chefRecommended: "اختيار الشيف",
 		learningPaths: "مسارات التعلّم",
-		threeWays: "ثلاث طرق لـ",
-		grow: "تنمو",
+		threeWays: "ثلاث طرق لتنمو",
 		weeks: "أسابيع",
 		step: "الخطوة",
 		smartFinder: "مساعد العثور على الكورس",

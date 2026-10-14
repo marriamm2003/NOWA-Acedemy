@@ -1,10 +1,10 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { p as interpolate, v as useStore } from "./store-DqMNyVQw.mjs";
+import { p as interpolate, v as useStore } from "./store-C9KxHDSc.mjs";
 import { a as unionType, i as stringType, n as literalType, r as objectType, t as enumType } from "../_libs/zod.mjs";
-import { a as SectionTitle } from "./Cards-DkTfdWze.mjs";
+import { a as SectionTitle } from "./Cards-DPHkcBe_.mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/creators-CdPgpksb.js
+//#region node_modules/.nitro/vite/services/ssr/assets/creators-CRP2fKly.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var url = {
@@ -209,9 +209,18 @@ function Creators() {
 										disabled: true,
 										children: t("select")
 									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: t("chef") }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: t("foodCreator") }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: t("smallFoodBusiness") })
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: "Chef",
+										children: t("chef")
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: "Food creator",
+										children: t("foodCreator")
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+										value: "Small food business",
+										children: t("smallFoodBusiness")
+									})
 								]
 							})]
 						}),

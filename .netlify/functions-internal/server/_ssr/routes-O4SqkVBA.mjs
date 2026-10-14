@@ -1,9 +1,9 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, f as images, g as products, h as paths, i as chefs, r as categories, v as useStore } from "./store-DqMNyVQw.mjs";
+import { a as courses, f as images, g as products, h as paths, i as chefs, r as categories, v as useStore } from "./store-C9KxHDSc.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as label, i as getTestimonials, l as localizePath } from "./Shell-BJ-ZsTQu.mjs";
-import { a as SectionTitle, i as ProductCard, n as ChefCard, o as toneBg, r as CourseCard } from "./Cards-DkTfdWze.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-2nILuaIb.js
+import { a as label, i as getTestimonials, l as localizePath } from "./Shell-Cd6CtBSl.mjs";
+import { a as SectionTitle, i as ProductCard, n as ChefCard, o as toneBg, r as CourseCard } from "./Cards-DPHkcBe_.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-O4SqkVBA.js
 var import_jsx_runtime = require_jsx_runtime();
 function Home() {
 	const { t, lang } = useStore();

@@ -151,9 +151,9 @@ function Creators() {
                 <option value="" disabled>
                   {t("select")}
                 </option>
-                <option>{t("chef")}</option>
-                <option>{t("foodCreator")}</option>
-                <option>{t("smallFoodBusiness")}</option>
+                <option value="Chef">{t("chef")}</option>
+                <option value="Food creator">{t("foodCreator")}</option>
+                <option value="Small food business">{t("smallFoodBusiness")}</option>
               </select>
             </label>
             <Err k="type" />

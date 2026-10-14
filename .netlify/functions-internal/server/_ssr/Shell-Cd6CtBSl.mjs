@@ -1,12 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-DqMNyVQw.mjs";
+import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-C9KxHDSc.mjs";
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { i as Search, o as MessageCircle, r as ShoppingBag, s as Menu, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay, i as DialogDescription, n as DialogClose, o as DialogPortal, r as DialogContent, s as DialogTitle, t as Dialog } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Shell-BJ-ZsTQu.js
+//#region node_modules/.nitro/vite/services/ssr/assets/Shell-Cd6CtBSl.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var categoryAr = {
@@ -56,7 +56,7 @@ var courseAr = {
 		tagline: "كيكات إسفنجية وغاناش وتغطيات مصممة للحصول على شريحة مثالية.",
 		outcomes: [
 			"خبز كيكات إسفنجية متساوية وطرية",
-			"ت temper الشوكولاتة وصب التغطيات اللامعة",
+			"تطبيق التمبرة على الشوكولاتة وصب التغطيات اللامعة",
 			"تجميع طبقات نظيفة وثابتة",
 			"حساب تكلفة الكيك للبيع"
 		],

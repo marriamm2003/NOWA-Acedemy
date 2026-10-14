@@ -1,16 +1,16 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { n as StoreProvider, v as useStore } from "./store-DqMNyVQw.mjs";
+import { n as StoreProvider, v as useStore } from "./store-C9KxHDSc.mjs";
 import { _ as createFileRoute, d as Scripts, f as HeadContent, g as lazyRouteComponent, h as Outlet, m as createRouter, v as createRootRouteWithContext, x as useRouter, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { t as Shell } from "./Shell-BJ-ZsTQu.mjs";
-import { t as Route$7 } from "./chefs._slug-BtovmR1O.mjs";
-import { t as Route$8 } from "./courses._slug-DQKn8qwN.mjs";
-import { t as Route$9 } from "./courses.index-Dbsm7o4-.mjs";
-import { t as Route$10 } from "./kitchen-Cr711Y1T.mjs";
+import { t as Shell } from "./Shell-Cd6CtBSl.mjs";
+import { t as Route$7 } from "./chefs._slug-A2lGtRNX.mjs";
+import { t as Route$8 } from "./courses._slug-BwGyaUSR.mjs";
+import { t as Route$9 } from "./courses.index-d7nnBnR6.mjs";
+import { t as Route$10 } from "./kitchen-CVKdrOvR.mjs";
 import { t as Toaster } from "../_libs/sonner.mjs";
 import { t as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CVSenQxH.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-B3f6Iyst.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var styles_default = "/assets/styles-C5Wtq4Pz.css";
@@ -193,7 +193,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(StoreProvider, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shell, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Toaster$1, {})] })
 	});
 }
-var $$splitComponentImporter$5 = () => import("./routes-2nILuaIb.mjs");
+var $$splitComponentImporter$5 = () => import("./routes-O4SqkVBA.mjs");
 var Route$5 = createFileRoute("/")({
 	head: () => ({ meta: [
 		{ title: "NOWA Studio — Make Food. Make Your Mark." },
@@ -220,7 +220,7 @@ var Route$5 = createFileRoute("/")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var $$splitComponentImporter$4 = () => import("./checkout--iTSdmRS.mjs");
+var $$splitComponentImporter$4 = () => import("./checkout-CIWOW_NM.mjs");
 var Route$4 = createFileRoute("/checkout")({
 	head: () => ({ meta: [
 		{ title: "Checkout — NOWA Studio" },
@@ -251,7 +251,7 @@ var Route$4 = createFileRoute("/checkout")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
-var $$splitComponentImporter$3 = () => import("./creators-CdPgpksb.mjs");
+var $$splitComponentImporter$3 = () => import("./creators-CRP2fKly.mjs");
 var Route$3 = createFileRoute("/creators")({
 	head: () => ({ meta: [
 		{ title: "From Passion to Business — NOWA Creators" },
@@ -278,7 +278,7 @@ var Route$3 = createFileRoute("/creators")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./market-2_q2YO5p.mjs");
+var $$splitComponentImporter$2 = () => import("./market-C9vKMSws.mjs");
 var Route$2 = createFileRoute("/market")({
 	head: () => ({ meta: [
 		{ title: "NOWA Market — Chef-Recommended Kitchen Tools" },
@@ -305,7 +305,7 @@ var Route$2 = createFileRoute("/market")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var $$splitComponentImporter$1 = () => import("./paths-C-m4wMjj.mjs");
+var $$splitComponentImporter$1 = () => import("./paths-DqiZEK3n.mjs");
 var Route$1 = createFileRoute("/paths")({
 	head: () => ({ meta: [
 		{ title: "Learning Paths & Course Finder — NOWA Studio" },
@@ -332,7 +332,7 @@ var Route$1 = createFileRoute("/paths")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var $$splitComponentImporter = () => import("./chefs.index-C782z9MD.mjs");
+var $$splitComponentImporter = () => import("./chefs.index-CYylklGZ.mjs");
 var Route = createFileRoute("/chefs/")({
 	head: () => ({ meta: [
 		{ title: "Our Chefs — NOWA Studio" },

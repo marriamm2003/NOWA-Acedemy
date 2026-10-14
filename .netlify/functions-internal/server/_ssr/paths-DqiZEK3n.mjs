@@ -1,10 +1,10 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, c as fromPrice, h as paths, l as getChef, p as interpolate, u as getCourse, v as useStore } from "./store-DqMNyVQw.mjs";
+import { a as courses, c as fromPrice, h as paths, l as getChef, p as interpolate, u as getCourse, v as useStore } from "./store-C9KxHDSc.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as label, c as localizeCourse, l as localizePath, s as localizeChef } from "./Shell-BJ-ZsTQu.mjs";
-import { a as SectionTitle, o as toneBg, r as CourseCard } from "./Cards-DkTfdWze.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/paths-C-m4wMjj.js
+import { a as label, c as localizeCourse, l as localizePath, s as localizeChef } from "./Shell-Cd6CtBSl.mjs";
+import { a as SectionTitle, o as toneBg, r as CourseCard } from "./Cards-DPHkcBe_.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/paths-DqiZEK3n.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var goals = [

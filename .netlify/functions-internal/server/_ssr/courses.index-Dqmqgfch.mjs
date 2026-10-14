@@ -1,11 +1,11 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { a as courses, c as fromPrice, l as getChef, m as levels, r as categories, v as useStore } from "./store-DqMNyVQw.mjs";
+import { a as courses, c as fromPrice, l as getChef, m as levels, r as categories, v as useStore } from "./store-C9KxHDSc.mjs";
 import { b as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as label, c as localizeCourse, s as localizeChef } from "./Shell-BJ-ZsTQu.mjs";
-import { a as SectionTitle, r as CourseCard } from "./Cards-DkTfdWze.mjs";
-import { t as Route } from "./courses.index-Dbsm7o4-.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-CmSG1MzV.js
+import { a as label, c as localizeCourse, s as localizeChef } from "./Shell-Cd6CtBSl.mjs";
+import { a as SectionTitle, r as CourseCard } from "./Cards-DPHkcBe_.mjs";
+import { t as Route } from "./courses.index-d7nnBnR6.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-Dqmqgfch.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Discover() {

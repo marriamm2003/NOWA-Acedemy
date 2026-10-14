@@ -1,7 +1,7 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { v as useStore } from "./store-DqMNyVQw.mjs";
+import { v as useStore } from "./store-C9KxHDSc.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-tqr-cpKm.js
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-BAHjzSt_.js
 var import_jsx_runtime = require_jsx_runtime();
 function ChefNotFound() {
 	const { t } = useStore();
