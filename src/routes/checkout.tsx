@@ -52,7 +52,7 @@ function Checkout() {
     const schema = z.object({
       name: z.string().trim().min(2, t("enterName")).max(100),
       email: z.string().trim().email(t("validEmail")).max(255),
-      card: z.string().regex(/^4242 ?4242 ?4242$/, t("testCard")),
+      card: z.string().regex(/^4242 ?4242 ?4242 ?4242$/, t("testCard")),
     });
     const r = schema.safeParse({
       name: f.get("name"),

@@ -19,7 +19,7 @@ export function CourseCard({ c }: { c: Course }) {
   const chef = localizeChef(getChef(c.chef)!, lang);
   const saved = wishlist.includes(c.slug);
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[1.75rem] bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-lg">
+    <article className="group relative flex flex-col overflow-hidden rounded-[1.75rem] bg-card shadow-soft transition hover:-translate-y-1 hover:shadow-lg">
       <button
         onClick={() => toggleWish(c.slug)}
         aria-label={saved ? t("removeWishlist") : t("saveWishlist")}
