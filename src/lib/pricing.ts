@@ -17,7 +17,10 @@ export type Quote = {
   discountApplied: boolean;
   /** module ids included in the order (selected + auto-added bonus, deduped) */
   lineIds: string[];
-  nextHint?: string | undefined;
+  nextHint?:
+    | { kind: "bonus"; remaining: number; bonusTitle: string }
+    | { kind: "discount"; remaining: number; percent: number }
+    | undefined;
 };
 
 const round = (n: number) => Math.round(n * 100) / 100;
@@ -48,11 +51,11 @@ export function quoteCourse(modules: Module[], selectedIds: string[], withWorkbo
     : 0;
   const total = round(Math.max(0, original - bonusSavings - discount));
 
-  let nextHint: string | undefined;
+  let nextHint: Quote["nextHint"];
   if (bonusModule && eligibleCount < BONUS_THRESHOLD)
-    nextHint = `Add ${BONUS_THRESHOLD - eligibleCount} more eligible module${BONUS_THRESHOLD - eligibleCount > 1 ? "s" : ""} to get "${bonusModule.title.replace(/^Mini-course — /, "")}" free.`;
+    nextHint = { kind: "bonus", remaining: BONUS_THRESHOLD - eligibleCount, bonusTitle: bonusModule.title.replace(/^Mini-course — /, "") };
   else if (eligibleCount < DISCOUNT_THRESHOLD)
-    nextHint = `Add ${DISCOUNT_THRESHOLD - eligibleCount} more eligible module to save ${BUNDLE_DISCOUNT * 100}% on the bundle.`;
+    nextHint = { kind: "discount", remaining: DISCOUNT_THRESHOLD - eligibleCount, percent: BUNDLE_DISCOUNT * 100 };
 
   return {
     original,

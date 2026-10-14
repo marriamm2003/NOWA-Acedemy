@@ -1,16 +1,52 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, f as interpolate } from "./store-D1rqBFkA.mjs";
+import { p as interpolate, v as useStore } from "./store-j1dqSumQ.mjs";
 import { a as unionType, i as stringType, n as literalType, r as objectType, t as enumType } from "../_libs/zod.mjs";
-import { a as SectionTitle } from "./Cards-BTMMzE-i.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/creators-Bck7cv8S.js
+import { a as SectionTitle } from "./Cards-DWXfb0u1.mjs";
+import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/creators-DehuV2Qe.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
+var url = {
+	"BASE_URL": "/",
+	"DEV": false,
+	"MODE": "production",
+	"PROD": true,
+	"SSR": true,
+	"TSS_DEV_SERVER": "false",
+	"TSS_DEV_SSR_STYLES_BASEPATH": "/",
+	"TSS_DEV_SSR_STYLES_ENABLED": "true",
+	"TSS_DISABLE_CSRF_MIDDLEWARE_WARNING": "false",
+	"TSS_INLINE_CSS_ENABLED": "false",
+	"TSS_ROUTER_BASEPATH": "",
+	"TSS_SERVER_FN_BASE": "/_serverFn/",
+	"VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpyeHFkYm12amtuc3NjcGhpamljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MTQyNDgsImV4cCI6MjEwNzQ5MDI0OH0.PuDwdpLjdU1rTIn0GlO8MISjF44-FDR9_rmxb4lypyM",
+	"VITE_SUPABASE_URL": "https://jrxqdbmvjknsscphijic.supabase.co"
+}["VITE_SUPABASE_URL"];
+var anonKey = {
+	"BASE_URL": "/",
+	"DEV": false,
+	"MODE": "production",
+	"PROD": true,
+	"SSR": true,
+	"TSS_DEV_SERVER": "false",
+	"TSS_DEV_SSR_STYLES_BASEPATH": "/",
+	"TSS_DEV_SSR_STYLES_ENABLED": "true",
+	"TSS_DISABLE_CSRF_MIDDLEWARE_WARNING": "false",
+	"TSS_INLINE_CSS_ENABLED": "false",
+	"TSS_ROUTER_BASEPATH": "",
+	"TSS_SERVER_FN_BASE": "/_serverFn/",
+	"VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpyeHFkYm12amtuc3NjcGhpamljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5MTQyNDgsImV4cCI6MjEwNzQ5MDI0OH0.PuDwdpLjdU1rTIn0GlO8MISjF44-FDR9_rmxb4lypyM",
+	"VITE_SUPABASE_URL": "https://jrxqdbmvjknsscphijic.supabase.co"
+}["VITE_SUPABASE_ANON_KEY"];
+var supabase = createClient(url, anonKey);
 function Creators() {
 	const { t, lang } = useStore();
 	const [errors, setErrors] = (0, import_react.useState)({});
 	const [sent, setSent] = (0, import_react.useState)();
-	const submit = (e) => {
+	const [submitting, setSubmitting] = (0, import_react.useState)(false);
+	const [submitError, setSubmitError] = (0, import_react.useState)();
+	const submit = async (e) => {
 		e.preventDefault();
 		const f = new FormData(e.currentTarget);
 		const r = objectType({
@@ -37,6 +73,21 @@ function Creators() {
 			return;
 		}
 		setErrors({});
+		setSubmitting(true);
+		setSubmitError(void 0);
+		const { error } = await supabase.from("creator_applications").insert({
+			name: r.data.name,
+			email: r.data.email,
+			type: r.data.type,
+			idea: r.data.idea,
+			link: r.data.link || null,
+			consent: true
+		});
+		setSubmitting(false);
+		if (error) {
+			setSubmitError(error.message);
+			return;
+		}
 		setSent(r.data.name.split(" ")[0]);
 	};
 	const services = lang === "ar" ? [
@@ -212,9 +263,15 @@ function Creators() {
 							]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Err, { k: "consent" }),
+						submitError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "rounded-xl bg-tomato/10 p-3 text-sm font-bold text-tomato",
+							role: "alert",
+							children: submitError
+						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							className: "w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground shadow-pop",
-							children: t("sendApplication")
+							disabled: submitting,
+							className: "w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground shadow-pop disabled:opacity-60",
+							children: submitting ? t("processing") : t("sendApplication")
 						})
 					]
 				})

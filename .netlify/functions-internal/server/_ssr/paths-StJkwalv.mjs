@@ -1,15 +1,15 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, a as courses, c as getChef, f as interpolate, l as getCourse, m as paths, s as fromPrice } from "./store-D1rqBFkA.mjs";
+import { a as courses, c as fromPrice, h as paths, l as getChef, p as interpolate, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as localizeChef, o as localizeCourse, r as label, s as localizePath } from "./Shell-BcWIQUqP.mjs";
-import { a as SectionTitle, o as toneBg, r as CourseCard } from "./Cards-BTMMzE-i.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/paths-C3g6ahyA.js
+import { a as localizeChef, o as localizeCourse, r as label, s as localizePath } from "./Shell-BNDwuvOg.mjs";
+import { a as SectionTitle, o as toneBg, r as CourseCard } from "./Cards-DWXfb0u1.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/paths-StJkwalv.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var goals = [
 	{
-		label: "Master a signature dish",
+		labelKey: "masterDish",
 		cats: [
 			"Pizza",
 			"Sauces",
@@ -17,11 +17,11 @@ var goals = [
 		]
 	},
 	{
-		label: "Eat healthier",
+		labelKey: "healthier",
 		cats: ["Plant-Based Cooking", "Healthy Cooking"]
 	},
 	{
-		label: "Start a food business",
+		labelKey: "foodBusinessGoal",
 		cats: [
 			"Food Business",
 			"Food Presentation",
@@ -69,16 +69,8 @@ function Finder() {
 				children: goals.map((g, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 					className: btn(goal === i),
 					onClick: () => setGoal(i),
-					children: lang === "ar" ? [
-						t("masterDish"),
-						t("healthier"),
-						t("foodBusinessGoal")
-					][i] : g.label
-				}, lang === "ar" ? [
-					t("masterDish"),
-					t("healthier"),
-					t("foodBusinessGoal")
-				][i] : g.label))
+					children: t(g.labelKey)
+				}, g.labelKey))
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
 				className: "mt-4 block font-bold",
@@ -86,7 +78,8 @@ function Finder() {
 				children: [
 					"3. ",
 					t("budget"),
-					": $",
+					": ",
+					t("currency"),
 					budget
 				]
 			}),
@@ -106,7 +99,7 @@ function Finder() {
 					children: recs.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CourseCard, { c }, c.slug))
 				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "rounded-2xl bg-cream p-4",
-					children: interpolate(t("noMatch"), { amount: `${budget}` })
+					children: interpolate(t("noMatch"), { amount: `${t("currency")}${budget}` })
 				})
 			})
 		]

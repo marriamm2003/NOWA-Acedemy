@@ -4,7 +4,7 @@ import { Heart, Menu, MessageCircle, Search, ShoppingBag, X } from "lucide-react
 import { useStore } from "@/lib/store";
 import { courses, findModule, getCourse } from "@/lib/data";
 import { localizeCourse } from "@/lib/localized";
-import { interpolate } from "@/lib/i18n";
+import { interpolate, dict, type Lang } from "@/lib/i18n";
 import { WORKBOOK_PRICE } from "@/lib/pricing";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
@@ -28,7 +28,10 @@ export function Logo({
   );
 }
 
-export const money = (n: number) => `$${n.toFixed(n % 1 ? 2 : 0)}`;
+export const money = (n: number, lang?: Lang) => {
+  const sym = lang ? dict[lang].currency : "$";
+  return `${sym}${n.toFixed(n % 1 ? 2 : 0)}`;
+};
 
 function Nav() {
   const { t, lang, setLang, bag, setBagOpen, wishlist } = useStore();
@@ -164,7 +167,7 @@ function BagSheet() {
                         <li key={id} className="flex items-center justify-between gap-2">
                           <span>{c.modules.find((item) => item.id === id)?.title ?? m.title}</span>
                           <span className="flex items-center gap-2 whitespace-nowrap">
-                            {free ? <b className="text-tomato">{t("free")}</b> : money(m.price)}
+                            {free ? <b className="text-tomato">{t("free")}</b> : money(m.price, lang)}
                             {bag.includes(id) && (
                               <button
                                 onClick={() => toggleBag(id)}
@@ -180,7 +183,7 @@ function BagSheet() {
                   </ul>
                   {g.quote.discountApplied && (
                     <p className="mt-2 text-xs font-bold text-forest">
-                      {t("bundleDiscount")} −{money(g.quote.discount)}
+                      {t("bundleDiscount")} −{money(g.quote.discount, lang)}
                     </p>
                   )}
                   {g.quote.workbookPrice > 0 && (
@@ -188,7 +191,7 @@ function BagSheet() {
                       <span>
                         <b className="block">{t("workbook")}</b>
                         <span className="text-muted-foreground">
-                          {money(g.quote.workbookPrice)}
+                          {money(g.quote.workbookPrice, lang)}
                         </span>
                       </span>
                       <button
@@ -207,7 +210,7 @@ function BagSheet() {
                       <span>
                         <b className="block">{t("workbook")}</b>
                         <span className="text-muted-foreground">
-                          {money(WORKBOOK_PRICE)} · {t("workbookCopy")}
+                          {money(WORKBOOK_PRICE, lang)} · {t("workbookCopy")}
                         </span>
                       </span>
                       <span className="font-bold text-forest">{t("add")}</span>
@@ -222,11 +225,11 @@ function BagSheet() {
           <div className="border-t border-border p-4">
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>{t("original")}</span>
-              <s>{money(bagQuote.original)}</s>
+              <s>{money(bagQuote.original, lang)}</s>
             </div>
             <div className="flex justify-between text-xl font-extrabold">
               <span>{t("total")}</span>
-              <span>{money(bagQuote.total)}</span>
+              <span>{money(bagQuote.total, lang)}</span>
             </div>
             <button
               onClick={() => {
@@ -257,7 +260,7 @@ function Chatbot() {
       return t("chatbotCreator");
     const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0] ?? ""));
     if (c)
-      return interpolate(t("chatbotCourse"), { course: localizeCourse(c, lang).title, amount: money(Math.min(...c.modules.map((m) => m.price))) });
+      return interpolate(t("chatbotCourse"), { course: localizeCourse(c, lang).title, amount: money(Math.min(...c.modules.map((m) => m.price)), lang) });
     return t("chatbotFallback");
   };
   return (

@@ -1,9 +1,9 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, h as products } from "./store-D1rqBFkA.mjs";
-import { c as localizeProduct } from "./Shell-BcWIQUqP.mjs";
-import { a as SectionTitle, i as ProductCard } from "./Cards-BTMMzE-i.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/market-BHXQSNcc.js
+import { g as products, v as useStore } from "./store-j1dqSumQ.mjs";
+import { c as localizeProduct } from "./Shell-BNDwuvOg.mjs";
+import { a as SectionTitle, i as ProductCard } from "./Cards-DWXfb0u1.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/market-BAbPkron.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Market() {

@@ -53,7 +53,7 @@ export function CourseCard({ c }: { c: Course }) {
                 ({c.reviews}) · {c.hours} {t("hoursTotal")} · {c.languages.map((x) => languageLabel(x, lang)).join("/")}
               </span>
             </span>
-            <b>{t("from")} {money(fromPrice(c))}</b>
+            <b>{t("from")} {money(fromPrice(c), lang)}</b>
           </div>
         </div>
       </Link>
@@ -118,7 +118,7 @@ export function ProductCard({ p, label }: { p: Product; label?: string }) {
         <h3 className="font-extrabold">{localizedProduct.name}</h3>
         <p className="mt-1 flex-1 text-sm">{localizedProduct.description}</p>
         <div className="mt-3 flex items-center justify-between">
-          <b>{money(p.price)}</b>
+          <b>{money(p.price, lang)}</b>
           <a
             href={p.url}
             target="_blank"

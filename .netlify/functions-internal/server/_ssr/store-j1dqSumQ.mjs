@@ -1,6 +1,6 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/store-D1rqBFkA.js
+//#region node_modules/.nitro/vite/services/ssr/assets/store-j1dqSumQ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var hero_pizza_default = "/assets/hero-pizza-Ca2IvMB5.jpg";
@@ -736,8 +736,16 @@ function quoteCourse(modules, selectedIds, withWorkbook = false) {
 	const discount = discountApplied ? round(eligible.reduce((s, m) => s + m.price, 0) * BUNDLE_DISCOUNT) : 0;
 	const total = round(Math.max(0, original - bonusSavings - discount));
 	let nextHint;
-	if (bonusModule && eligibleCount < 2) nextHint = `Add ${2 - eligibleCount} more eligible module${2 - eligibleCount > 1 ? "s" : ""} to get "${bonusModule.title.replace(/^Mini-course — /, "")}" free.`;
-	else if (eligibleCount < 3) nextHint = `Add ${3 - eligibleCount} more eligible module to save ${BUNDLE_DISCOUNT * 100}% on the bundle.`;
+	if (bonusModule && eligibleCount < 2) nextHint = {
+		kind: "bonus",
+		remaining: 2 - eligibleCount,
+		bonusTitle: bonusModule.title.replace(/^Mini-course — /, "")
+	};
+	else if (eligibleCount < 3) nextHint = {
+		kind: "discount",
+		remaining: 3 - eligibleCount,
+		percent: BUNDLE_DISCOUNT * 100
+	};
 	return {
 		original,
 		discount,
@@ -883,7 +891,6 @@ var en = {
 	enterName: "Enter your name",
 	validEmail: "Enter a valid email",
 	testCard: "Demo mode: use test card 4242 4242 4242 4242",
-	contactChoice: "How would you like us to contact you?",
 	fromPassion: "From passion to business",
 	gotRecipe: "Got the recipe? We'll help",
 	buildBusiness: "build the business",
@@ -980,7 +987,13 @@ var en = {
 	chatbotFallback: "I'm a demo assistant with scripted answers. Try asking about pizza, desserts, bundles or creators.",
 	learn: "Learn",
 	growColumn: "Grow",
-	footerNotice: "Prototype notice: payments, accounts, affiliate tracking and the chatbot are demo simulations. No real money is taken and no commission is tracked."
+	footerNotice: "Prototype notice: payments, accounts, affiliate tracking and the chatbot are demo simulations. No real money is taken and no commission is tracked.",
+	hintBonus: "Add {count} more eligible module{s} to get \"{title}\" free.",
+	hintDiscount: "Add {count} more eligible module to save {percent}% on the bundle.",
+	currency: "$",
+	previewTitle: "Free preview",
+	previewCopy: "Video previews are not available in this prototype. The full lesson plays after you add the module to your bag.",
+	previewClose: "Close"
 };
 var dict = {
 	en,
@@ -1211,7 +1224,13 @@ var dict = {
 		chatbotFallback: "أنا مساعد تجريبي بإجابات معدة مسبقاً. اسألني عن البيتزا أو الحلويات أو الباقات أو المبدعين.",
 		learn: "تعلّم",
 		growColumn: "طوّر",
-		footerNotice: "تنبيه تجريبي: الدفع والحسابات وتتبع العمولات والمساعد محاكاة فقط. لا يتم تحصيل أموال حقيقية ولا تُحتسب عمولات."
+		footerNotice: "تنبيه تجريبي: الدفع والحسابات وتتبع العمولات والمساعد محاكاة فقط. لا يتم تحصيل أموال حقيقية ولا تُحتسب عمولات.",
+		hintBonus: "أضف {count} وحدات مؤهلة أخرى للحصول على \"{title}\" مجاناً.",
+		hintDiscount: "أضف {count} وحدة مؤهلة أخرى لتحصل على خصم {percent}% على الباقة.",
+		currency: "$",
+		previewTitle: "معاينة مجانية",
+		previewCopy: "معاينات الفيديو غير متاحة في هذا النموذج التجريبي. الدرس الكامل يعمل بعد إضافة الوحدة إلى الحقيبة.",
+		previewClose: "إغلاق"
 	}
 };
 function interpolate(value, values) {
@@ -1334,4 +1353,4 @@ function useStore() {
 	return c;
 }
 //#endregion
-export { useStore as _, courses as a, getChef as c, images as d, interpolate as f, quoteCourse as g, products as h, chefs as i, getCourse as l, paths as m, StoreProvider as n, findModule as o, levels as p, categories as r, fromPrice as s, BUNDLE_DISCOUNT as t, getProduct as u };
+export { quoteCourse as _, courses as a, fromPrice as c, getProduct as d, images as f, products as g, paths as h, chefs as i, getChef as l, levels as m, StoreProvider as n, dict as o, interpolate as p, categories as r, findModule as s, BUNDLE_DISCOUNT as t, getCourse as u, useStore as v };

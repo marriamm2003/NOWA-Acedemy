@@ -113,6 +113,11 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="ar" dir="rtl">
       <head>
         <HeadContent />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var l=JSON.parse(localStorage.getItem("nowa-lang")||'"ar"');if(l==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}`,
+          }}
+        />
       </head>
       <body>
         {children}

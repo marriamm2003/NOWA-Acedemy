@@ -1,12 +1,13 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { a as AccordionTrigger$1, i as AccordionItem$1, n as AccordionContent$1, r as AccordionHeader, t as Accordion$1, v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, a as courses, c as getChef, f as interpolate, g as quoteCourse, l as getCourse, t as BUNDLE_DISCOUNT, u as getProduct } from "./store-D1rqBFkA.mjs";
+import { _ as quoteCourse, a as courses, d as getProduct, l as getChef, p as interpolate, t as BUNDLE_DISCOUNT, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { _ as BookOpen, a as Radio, c as Lock, d as Gift, g as Check, h as ChevronDown, m as CirclePlay, n as Star, u as Heart } from "../_libs/lucide-react.mjs";
-import { a as localizeChef, i as languageLabel, l as money, n as cn, o as localizeCourse, r as label } from "./Shell-BcWIQUqP.mjs";
-import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-BTMMzE-i.mjs";
-import { t as Route } from "./courses._slug-C4rurGKB.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-RtmrtEDL.js
+import { _ as BookOpen, a as Radio, c as Lock, d as Gift, g as Check, h as ChevronDown, m as CirclePlay, n as Star, t as X, u as Heart } from "../_libs/lucide-react.mjs";
+import { a as DialogOverlay$1, i as DialogDescription$1, n as DialogClose, o as DialogPortal$1, r as DialogContent$1, s as DialogTitle$1, t as Dialog$1 } from "../_libs/@radix-ui/react-dialog+[...].mjs";
+import { a as localizeChef, i as languageLabel, l as money, n as cn, o as localizeCourse, r as label } from "./Shell-BNDwuvOg.mjs";
+import { a as SectionTitle, i as ProductCard, r as CourseCard, t as ChefAvatar } from "./Cards-DWXfb0u1.mjs";
+import { t as Route } from "./courses._slug-CEEsmac9.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses._slug-CVr-f2uS.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function CourseBuilder({ course }) {
@@ -69,11 +70,11 @@ function CourseBuilder({ course }) {
 							className: "text-end font-extrabold",
 							children: isOwned ? t("owned") : freeBonus ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", {
 								className: "block text-xs text-muted-foreground",
-								children: money(m.price)
+								children: money(m.price, lang)
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-tomato",
 								children: t("free")
-							})] }) : money(m.price)
+							})] }) : money(m.price, lang)
 						})
 					]
 				}) }, m.id);
@@ -105,7 +106,7 @@ function CourseBuilder({ course }) {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 							className: "text-sm font-extrabold",
-							children: ["+", money(12)]
+							children: ["+", money(12, lang)]
 						})
 					]
 				}),
@@ -116,20 +117,20 @@ function CourseBuilder({ course }) {
 							label: t("originalPrice"),
 							value: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", {
 								className: "opacity-70",
-								children: money(q.original)
+								children: money(q.original, lang)
 							})
 						}),
 						q.bonusUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Row, {
 							label: t("bonusCourse"),
-							value: `−${money(q.bonusSavings)}`
+							value: `−${money(q.bonusSavings, lang)}`
 						}),
 						q.discountApplied && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Row, {
 							label: interpolate(t("bundleOff"), { percent: 15 }),
-							value: `−${money(q.discount)}`
+							value: `−${money(q.discount, lang)}`
 						}),
 						q.workbookPrice > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Row, {
 							label: t("workbookPrice"),
-							value: `+${money(q.workbookPrice)}`
+							value: `+${money(q.workbookPrice, lang)}`
 						})
 					]
 				}),
@@ -137,7 +138,7 @@ function CourseBuilder({ course }) {
 					className: "mt-4 flex items-end justify-between border-t border-cream/20 pt-4",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("total") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-4xl font-extrabold",
-						children: money(q.total)
+						children: money(q.total, lang)
 					})]
 				}),
 				q.original - q.total > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
@@ -145,14 +146,18 @@ function CourseBuilder({ course }) {
 					children: [
 						t("youSave"),
 						" ",
-						money(q.original - q.total)
+						money(q.original - q.total, lang)
 					]
 				}),
 				q.nextHint && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 					className: "mt-4 rounded-xl bg-forest p-3 text-sm",
-					children: interpolate(q.eligibleCount < 2 ? t("bonusRule") : t("discountRule"), {
-						count: q.eligibleCount < 2 ? 2 - q.eligibleCount : 3 - q.eligibleCount,
-						percent: 15
+					children: q.nextHint.kind === "bonus" ? interpolate(t("hintBonus"), {
+						count: q.nextHint.remaining,
+						s: q.nextHint.remaining > 1 ? "s" : "",
+						title: q.nextHint.bonusTitle
+					}) : interpolate(t("hintDiscount"), {
+						count: q.nextHint.remaining,
+						percent: q.nextHint.percent
 					})
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -213,6 +218,49 @@ var AccordionContent = import_react.forwardRef(({ className, children, ...props 
 	})
 }));
 AccordionContent.displayName = AccordionContent$1.displayName;
+var Dialog = Dialog$1;
+var DialogPortal = DialogPortal$1;
+var DialogOverlay = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogOverlay$1, {
+	ref,
+	className: cn("fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0", className),
+	...props
+}));
+DialogOverlay.displayName = DialogOverlay$1.displayName;
+var DialogContent = import_react.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogPortal, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogOverlay, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent$1, {
+	ref,
+	className: cn("fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 sm:rounded-lg", className),
+	...props,
+	children: [children, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogClose, {
+		className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background cursor-pointer transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "h-4 w-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+			className: "sr-only",
+			children: "Close"
+		})]
+	})]
+})] }));
+DialogContent.displayName = DialogContent$1.displayName;
+var DialogHeader = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	className: cn("flex flex-col space-y-1.5 text-center sm:text-left", className),
+	...props
+});
+DialogHeader.displayName = "DialogHeader";
+var DialogFooter = ({ className, ...props }) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	className: cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className),
+	...props
+});
+DialogFooter.displayName = "DialogFooter";
+var DialogTitle = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle$1, {
+	ref,
+	className: cn("text-lg font-semibold leading-none tracking-tight", className),
+	...props
+}));
+DialogTitle.displayName = DialogTitle$1.displayName;
+var DialogDescription = import_react.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogDescription$1, {
+	ref,
+	className: cn("text-sm text-muted-foreground", className),
+	...props
+}));
+DialogDescription.displayName = DialogDescription$1.displayName;
 var reviewsAr = [
 	{
 		n: "رانية",
@@ -252,6 +300,7 @@ function CoursePage() {
 	const c = getCourse(slug);
 	const chef = getChef(c.chef);
 	const { wishlist, toggleWish, lang, t } = useStore();
+	const [previewOpen, setPreviewOpen] = (0, import_react.useState)(false);
 	const displayCourse = localizeCourse(c, lang);
 	const displayChef = localizeChef(chef, lang);
 	const related = courses.filter((x) => x.slug !== c.slug && (x.category === c.category || x.chef === c.chef)).slice(0, 3);
@@ -344,6 +393,7 @@ function CoursePage() {
 					height: 768,
 					className: "aspect-[4/3] size-full object-cover"
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					onClick: () => setPreviewOpen(true),
 					className: "absolute inset-0 grid place-items-center bg-deep/20 text-cream",
 					"aria-label": t("playPreview"),
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
@@ -356,6 +406,15 @@ function CoursePage() {
 					})
 				})]
 			})]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dialog, {
+			open: previewOpen,
+			onOpenChange: setPreviewOpen,
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogContent, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(DialogHeader, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogTitle, { children: t("previewTitle") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DialogDescription, { children: t("previewCopy") })] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+				onClick: () => setPreviewOpen(false),
+				className: "mt-4 w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground",
+				children: t("previewClose")
+			})] })
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 			className: "mx-auto grid max-w-7xl gap-6 px-5 md:grid-cols-2",

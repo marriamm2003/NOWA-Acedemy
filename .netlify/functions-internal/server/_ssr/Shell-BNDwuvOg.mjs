@@ -1,12 +1,12 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, a as courses, f as interpolate, l as getCourse, o as findModule } from "./store-D1rqBFkA.mjs";
+import { a as courses, o as dict, p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { i as Search, o as MessageCircle, r as ShoppingBag, s as Menu, t as X, u as Heart } from "../_libs/lucide-react.mjs";
 import { a as DialogOverlay, i as DialogDescription, n as DialogClose, o as DialogPortal, r as DialogContent, s as DialogTitle, t as Dialog } from "../_libs/@radix-ui/react-dialog+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Shell-BcWIQUqP.js
+//#region node_modules/.nitro/vite/services/ssr/assets/Shell-BNDwuvOg.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var categoryAr = {
@@ -412,7 +412,9 @@ function Logo({ variant = "dark", className = "h-11" }) {
 		})
 	});
 }
-var money = (n) => `$${n.toFixed(n % 1 ? 2 : 0)}`;
+var money = (n, lang) => {
+	return `${lang ? dict[lang].currency : "$"}${n.toFixed(n % 1 ? 2 : 0)}`;
+};
 function Nav() {
 	const { t, lang, setLang, bag, setBagOpen, wishlist } = useStore();
 	const [open, setOpen] = (0, import_react.useState)(false);
@@ -568,7 +570,7 @@ function BagSheet() {
 												children: [free ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", {
 													className: "text-tomato",
 													children: t("free")
-												}) : money(m.price), bag.includes(id) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+												}) : money(m.price, lang), bag.includes(id) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 													onClick: () => toggleBag(id),
 													"aria-label": `${t("remove")} ${m.title}`,
 													children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "size-3" })
@@ -582,7 +584,7 @@ function BagSheet() {
 									children: [
 										t("bundleDiscount"),
 										" −",
-										money(g.quote.discount)
+										money(g.quote.discount, lang)
 									]
 								}),
 								g.quote.workbookPrice > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -592,7 +594,7 @@ function BagSheet() {
 										children: t("workbook")
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 										className: "text-muted-foreground",
-										children: money(g.quote.workbookPrice)
+										children: money(g.quote.workbookPrice, lang)
 									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 										onClick: () => toggleWorkbook(g.slug),
 										className: "font-bold text-tomato",
@@ -608,7 +610,7 @@ function BagSheet() {
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 										className: "text-muted-foreground",
 										children: [
-											money(12),
+											money(12, lang),
 											" · ",
 											t("workbookCopy")
 										]
@@ -626,11 +628,11 @@ function BagSheet() {
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex justify-between text-sm text-muted-foreground",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("original") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", { children: money(bagQuote.original) })]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("original") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", { children: money(bagQuote.original, lang) })]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "flex justify-between text-xl font-extrabold",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("total") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(bagQuote.total) })]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("total") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(bagQuote.total, lang) })]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							onClick: () => {
@@ -658,7 +660,7 @@ function Chatbot() {
 		const c = courses.find((c) => s.includes(c.category.toLowerCase().split(" ")[0] ?? ""));
 		if (c) return interpolate(t("chatbotCourse"), {
 			course: localizeCourse(c, lang).title,
-			amount: money(Math.min(...c.modules.map((m) => m.price)))
+			amount: money(Math.min(...c.modules.map((m) => m.price)), lang)
 		});
 		return t("chatbotFallback");
 	};

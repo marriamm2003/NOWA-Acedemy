@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
 import { Heart, PlayCircle, Star } from "lucide-react";
 import { courses, getChef, getCourse, getProduct } from "@/lib/data";
 import { localizeChef, localizeCourse, label as localizeLabel, languageLabel } from "@/lib/localized";
@@ -11,6 +12,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/courses/$slug")({
   loader: ({ params }) => {
@@ -62,6 +70,7 @@ function CoursePage() {
   const c = getCourse(slug)!;
   const chef = getChef(c.chef)!;
   const { wishlist, toggleWish, lang, t } = useStore();
+  const [previewOpen, setPreviewOpen] = useState(false);
   const displayCourse = localizeCourse(c, lang);
   const displayChef = localizeChef(chef, lang);
   const related = courses
@@ -133,6 +142,7 @@ function CoursePage() {
             className="aspect-[4/3] size-full object-cover"
           />
           <button
+            onClick={() => setPreviewOpen(true)}
             className="absolute inset-0 grid place-items-center bg-deep/20 text-cream"
             aria-label={t("playPreview")}
           >
@@ -142,6 +152,21 @@ function CoursePage() {
           </button>
         </div>
       </section>
+
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t("previewTitle")}</DialogTitle>
+            <DialogDescription>{t("previewCopy")}</DialogDescription>
+          </DialogHeader>
+          <button
+            onClick={() => setPreviewOpen(false)}
+            className="mt-4 w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground"
+          >
+            {t("previewClose")}
+          </button>
+        </DialogContent>
+      </Dialog>
 
       <section className="mx-auto grid max-w-7xl gap-6 px-5 md:grid-cols-2">
         <div className="rounded-[1.75rem] bg-leaf p-7">

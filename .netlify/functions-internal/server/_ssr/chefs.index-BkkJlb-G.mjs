@@ -1,7 +1,7 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, i as chefs } from "./store-D1rqBFkA.mjs";
-import { a as SectionTitle, n as ChefCard } from "./Cards-BTMMzE-i.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-DUw5mr2m.js
+import { i as chefs, v as useStore } from "./store-j1dqSumQ.mjs";
+import { a as SectionTitle, n as ChefCard } from "./Cards-DWXfb0u1.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs.index-BkkJlb-G.js
 var import_jsx_runtime = require_jsx_runtime();
 var SplitComponent = () => {
 	const { t, lang } = useStore();

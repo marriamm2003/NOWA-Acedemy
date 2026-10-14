@@ -1,9 +1,9 @@
 import { v as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, c as getChef, d as images, s as fromPrice } from "./store-D1rqBFkA.mjs";
+import { c as fromPrice, f as images, l as getChef, v as useStore } from "./store-j1dqSumQ.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { f as ExternalLink, n as Star, u as Heart } from "../_libs/lucide-react.mjs";
-import { a as localizeChef, c as localizeProduct, i as languageLabel, l as money, o as localizeCourse, r as label } from "./Shell-BcWIQUqP.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/Cards-BTMMzE-i.js
+import { a as localizeChef, c as localizeProduct, i as languageLabel, l as money, o as localizeCourse, r as label } from "./Shell-BNDwuvOg.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/Cards-DWXfb0u1.js
 var import_jsx_runtime = require_jsx_runtime();
 var toneBg = {
 	mustard: "bg-mustard",
@@ -90,7 +90,7 @@ function CourseCard({ c }) {
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
 							t("from"),
 							" ",
-							money(fromPrice(c))
+							money(fromPrice(c), lang)
 						] })]
 					})
 				]
@@ -164,7 +164,7 @@ function ProductCard({ p, label: label$1 }) {
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "mt-3 flex items-center justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: money(p.price) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: money(p.price, lang) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
 						href: p.url,
 						target: "_blank",
 						rel: "noopener noreferrer sponsored",

@@ -1,11 +1,11 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, a as courses, c as getChef, p as levels, r as categories, s as fromPrice } from "./store-D1rqBFkA.mjs";
+import { a as courses, c as fromPrice, l as getChef, m as levels, r as categories, v as useStore } from "./store-j1dqSumQ.mjs";
 import { b as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
-import { r as label } from "./Shell-BcWIQUqP.mjs";
-import { a as SectionTitle, r as CourseCard } from "./Cards-BTMMzE-i.mjs";
-import { t as Route } from "./courses.index-C0MA39i_.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-CZ-r7DoC.js
+import { r as label } from "./Shell-BNDwuvOg.mjs";
+import { a as SectionTitle, r as CourseCard } from "./Cards-DWXfb0u1.mjs";
+import { t as Route } from "./courses.index-C8gOBZjM.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/courses.index-D1S-7Foi.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Discover() {

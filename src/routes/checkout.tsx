@@ -127,7 +127,7 @@ function Checkout() {
           disabled={busy}
           className="w-full rounded-full bg-tomato py-4 text-lg font-extrabold text-primary-foreground shadow-pop disabled:opacity-60"
         >
-          {busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total) })}
+          {busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total, lang) })}
         </button>
       </form>
       <aside className="h-fit rounded-[2rem] bg-card p-6 shadow-soft">
@@ -142,31 +142,31 @@ function Checkout() {
               return (
                 <p key={id} className="flex justify-between text-sm">
                   <span>{displayModule.title}</span>
-                  <span>{m.bonus && g.quote.bonusUnlocked ? t("free") : money(m.price)}</span>
+                  <span>{m.bonus && g.quote.bonusUnlocked ? t("free") : money(m.price, lang)}</span>
                 </p>
               );
             })}
             {g.quote.discountApplied && (
               <p className="flex justify-between text-sm font-bold text-forest">
                 <span>{t("bundleDiscount")}</span>
-                <span>−{money(g.quote.discount)}</span>
+                <span>−{money(g.quote.discount, lang)}</span>
               </p>
             )}
             {g.quote.workbookPrice > 0 && (
               <p className="flex justify-between text-sm">
                 <span>{t("workbook")}</span>
-                <span>{money(g.quote.workbookPrice)}</span>
+                <span>{money(g.quote.workbookPrice, lang)}</span>
               </p>
             )}
           </div>
         ))}
         <p className="mt-4 flex justify-between text-sm">
           <span>{t("original")}</span>
-          <s>{money(bagQuote.original)}</s>
+          <s>{money(bagQuote.original, lang)}</s>
         </p>
         <p className="flex justify-between text-2xl font-extrabold">
           <span>{t("total")}</span>
-          <span>{money(bagQuote.total)}</span>
+          <span>{money(bagQuote.total, lang)}</span>
         </p>
         <p className="mt-3 text-xs text-muted-foreground">
           {t(contactMethod === "whatsapp" ? "whatsapp" : "websiteMessage")}: {t("demoNotice")}

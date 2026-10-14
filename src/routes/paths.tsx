@@ -27,10 +27,11 @@ export const Route = createFileRoute("/paths")({
   component: Paths,
 });
 
-const goals: { label: string; cats: Category[] }[] = [
-  { label: "Master a signature dish", cats: ["Pizza", "Sauces", "Desserts"] },
-  { label: "Eat healthier", cats: ["Plant-Based Cooking", "Healthy Cooking"] },
-  { label: "Start a food business", cats: ["Food Business", "Food Presentation", "Desserts"] },
+const goalKeys = ["masterDish", "healthier", "foodBusinessGoal"] as const;
+const goals: { labelKey: (typeof goalKeys)[number]; cats: Category[] }[] = [
+  { labelKey: "masterDish", cats: ["Pizza", "Sauces", "Desserts"] },
+  { labelKey: "healthier", cats: ["Plant-Based Cooking", "Healthy Cooking"] },
+  { labelKey: "foodBusinessGoal", cats: ["Food Business", "Food Presentation", "Desserts"] },
 ];
 
 function Finder() {
@@ -61,13 +62,13 @@ function Finder() {
       <p className="mt-4 font-bold">2. {t("goal")}</p>
       <div className="mt-2 flex flex-wrap gap-2">
         {goals.map((g, i) => (
-          <button key={lang === "ar" ? [t("masterDish"), t("healthier"), t("foodBusinessGoal")][i] : g.label} className={btn(goal === i)} onClick={() => setGoal(i)}>
-            {lang === "ar" ? [t("masterDish"), t("healthier"), t("foodBusinessGoal")][i] : g.label}
+          <button key={g.labelKey} className={btn(goal === i)} onClick={() => setGoal(i)}>
+            {t(g.labelKey)}
           </button>
         ))}
       </div>
       <label className="mt-4 block font-bold" htmlFor="budget">
-        3. {t("budget")}: ${budget}
+        3. {t("budget")}: {t("currency")}{budget}
       </label>
       <input
         id="budget"
@@ -88,7 +89,7 @@ function Finder() {
             </div>
           ) : (
             <p className="rounded-2xl bg-cream p-4">
-              {interpolate(t("noMatch"), { amount: `${budget}` })}
+              {interpolate(t("noMatch"), { amount: `${t("currency")}${budget}` })}
             </p>
           )}
         </div>

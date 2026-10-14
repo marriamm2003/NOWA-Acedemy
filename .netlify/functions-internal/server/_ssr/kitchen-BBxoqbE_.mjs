@@ -1,14 +1,15 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, a as courses, f as interpolate, l as getCourse } from "./store-D1rqBFkA.mjs";
+import { a as courses, p as interpolate, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
 import { y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { c as Lock, l as LockOpen, p as Download, v as Award } from "../_libs/lucide-react.mjs";
-import { i as languageLabel, l as money, n as cn, o as localizeCourse } from "./Shell-BcWIQUqP.mjs";
-import { a as SectionTitle, r as CourseCard } from "./Cards-BTMMzE-i.mjs";
-import { t as Route } from "./kitchen-rfr7sUxW.mjs";
+import { i as languageLabel, l as money, n as cn, o as localizeCourse } from "./Shell-BNDwuvOg.mjs";
+import { a as SectionTitle, r as CourseCard } from "./Cards-DWXfb0u1.mjs";
+import { t as Route } from "./kitchen-DMOh5nhK.mjs";
+import { n as toast } from "../_libs/sonner.mjs";
 import { i as TabsTrigger$1, n as TabsContent$1, r as TabsList$1, t as Tabs$1 } from "../_libs/radix-ui__react-tabs.mjs";
 import { n as ProgressIndicator, t as Progress$1 } from "../_libs/radix-ui__react-progress.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/kitchen-DyGzCCCv.js
+//#region node_modules/.nitro/vite/services/ssr/assets/kitchen-BBxoqbE_.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var Tabs = Tabs$1;
@@ -49,8 +50,15 @@ var demoProgress = {
 function Kitchen() {
 	const { order } = Route.useSearch();
 	const { owned, orders, wishlist, t, lang } = useStore();
+	const [recipeMsg, setRecipeMsg] = (0, import_react.useState)(null);
 	const myCourses = courses.filter((c) => c.modules.some((m) => owned.has(m.id)));
 	const saved = courses.filter((c) => wishlist.includes(c.slug));
+	(0, import_react.useEffect)(() => {
+		if (recipeMsg) {
+			toast.info(recipeMsg, { duration: 4e3 });
+			setRecipeMsg(null);
+		}
+	}, [recipeMsg]);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "mx-auto max-w-7xl px-5 py-12",
 		children: [
@@ -152,7 +160,7 @@ function Kitchen() {
 														className: "flex-1",
 														children: localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title
 													}),
-													has ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [demoProgress[m.id] ?? 0, "%"] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(m.price) })
+													has ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [demoProgress[m.id] ?? 0, "%"] }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(m.price, lang) })
 												]
 											}, m.id);
 										})
@@ -181,7 +189,7 @@ function Kitchen() {
 									children: localizeCourse(c, lang).title
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-									onClick: () => alert(t("recipeDemo")),
+									onClick: () => setRecipeMsg(`${localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title} — ${t("recipeDemo")}`),
 									className: "mt-3 flex items-center gap-2 text-sm font-bold text-tomato",
 									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "size-4" }), t("recipeDownload")]
 								})
@@ -212,7 +220,7 @@ function Kitchen() {
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: o.id }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
 									o.date,
 									" · ",
-									money(o.total),
+									money(o.total, lang),
 									" ·",
 									" ",
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {

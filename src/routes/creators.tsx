@@ -4,6 +4,7 @@ import { z } from "zod";
 import { SectionTitle } from "@/components/humm/Cards";
 import { useStore } from "@/lib/store";
 import { interpolate } from "@/lib/i18n";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/creators")({
   head: () => ({
@@ -32,7 +33,9 @@ function Creators() {
   const { t, lang } = useStore();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState<string>();
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string>();
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     const schema = z.object({
@@ -56,6 +59,21 @@ function Creators() {
       return;
     }
     setErrors({});
+    setSubmitting(true);
+    setSubmitError(undefined);
+    const { error } = await supabase.from("creator_applications").insert({
+      name: r.data.name,
+      email: r.data.email,
+      type: r.data.type,
+      idea: r.data.idea,
+      link: r.data.link || null,
+      consent: true,
+    });
+    setSubmitting(false);
+    if (error) {
+      setSubmitError(error.message);
+      return;
+    }
     setSent(r.data.name.split(" ")[0]);
   };
   const services = lang === "ar" ? ["اكتشاف المواهب وتمثيلها", "إدارة المشروعات", "إنتاج الكورسات", "بناء العلامة الشخصية", "تصوير الطعام وتخطيط المحتوى", "دعم تطوير المنتجات", "إرشاد التسعير وحساب التكاليف", "استراتيجية الإطلاق", "شراكات العلامات والمنتجات"] : ["Talent discovery & representation", "Project management", "Course production", "Personal branding", "Food photography & content planning", "Product development support", "Pricing & costing guidance", "Launch strategy", "Brand & product partnerships"];
@@ -149,8 +167,16 @@ function Creators() {
               <input type="checkbox" name="consent" /> {t("consent")}
             </label>
             <Err k="consent" />
-            <button className="w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground shadow-pop">
-              {t("sendApplication")}
+            {submitError && (
+              <p className="rounded-xl bg-tomato/10 p-3 text-sm font-bold text-tomato" role="alert">
+                {submitError}
+              </p>
+            )}
+            <button
+              disabled={submitting}
+              className="w-full rounded-full bg-tomato py-3 font-extrabold text-primary-foreground shadow-pop disabled:opacity-60"
+            >
+              {submitting ? t("processing") : t("sendApplication")}
             </button>
           </form>
         )}

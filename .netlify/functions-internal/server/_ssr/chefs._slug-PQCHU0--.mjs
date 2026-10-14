@@ -1,8 +1,8 @@
-import { c as getChef } from "./store-D1rqBFkA.mjs";
+import { l as getChef } from "./store-j1dqSumQ.mjs";
 import { _ as createFileRoute, g as lazyRouteComponent, q as notFound } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-CkNx3dz5.js
-var $$splitComponentImporter = () => import("./chefs._slug-B9a6HPDh.mjs");
-var $$splitNotFoundComponentImporter = () => import("./chefs._slug-DACLHsPX.mjs");
+//#region node_modules/.nitro/vite/services/ssr/assets/chefs._slug-PQCHU0--.js
+var $$splitComponentImporter = () => import("./chefs._slug-Ci2SbmVp.mjs");
+var $$splitNotFoundComponentImporter = () => import("./chefs._slug-st-3Gr_d.mjs");
 var Route = createFileRoute("/chefs/$slug")({
 	loader: ({ params }) => {
 		const c = getChef(params.slug);

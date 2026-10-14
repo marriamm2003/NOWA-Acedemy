@@ -68,11 +68,11 @@ export function CourseBuilder({ course }: { course: Course }) {
                     t("owned")
                   ) : freeBonus ? (
                     <>
-                      <s className="block text-xs text-muted-foreground">{money(m.price)}</s>
+                      <s className="block text-xs text-muted-foreground">{money(m.price, lang)}</s>
                       <span className="text-tomato">{t("free")}</span>
                     </>
                   ) : (
-                    money(m.price)
+                    money(m.price, lang)
                   )}
                 </span>
               </button>
@@ -95,28 +95,34 @@ export function CourseBuilder({ course }: { course: Course }) {
             <b className="block">{t("workbook")}</b>
             <span className="text-xs opacity-75">{t("workbookCopy")}</span>
           </span>
-          <span className="text-sm font-extrabold">+{money(WORKBOOK_PRICE)}</span>
+          <span className="text-sm font-extrabold">+{money(WORKBOOK_PRICE, lang)}</span>
         </button>
         <div className="mt-4 space-y-2 text-sm">
-          <Row label={t("originalPrice")} value={<s className="opacity-70">{money(q.original)}</s>} />
-          {q.bonusUnlocked && <Row label={t("bonusCourse")} value={`−${money(q.bonusSavings)}`} />}
+          <Row label={t("originalPrice")} value={<s className="opacity-70">{money(q.original, lang)}</s>} />
+          {q.bonusUnlocked && <Row label={t("bonusCourse")} value={`−${money(q.bonusSavings, lang)}`} />}
           {q.discountApplied && (
-            <Row label={interpolate(t("bundleOff"), { percent: BUNDLE_DISCOUNT * 100 })} value={`−${money(q.discount)}`} />
+            <Row label={interpolate(t("bundleOff"), { percent: BUNDLE_DISCOUNT * 100 })} value={`−${money(q.discount, lang)}`} />
           )}
           {q.workbookPrice > 0 && (
-            <Row label={t("workbookPrice")} value={`+${money(q.workbookPrice)}`} />
+            <Row label={t("workbookPrice")} value={`+${money(q.workbookPrice, lang)}`} />
           )}
         </div>
         <div className="mt-4 flex items-end justify-between border-t border-cream/20 pt-4">
           <span>{t("total")}</span>
-          <span className="text-4xl font-extrabold">{money(q.total)}</span>
+          <span className="text-4xl font-extrabold">{money(q.total, lang)}</span>
         </div>
         {q.original - q.total > 0 && (
           <p className="mt-1 text-end text-sm font-bold text-mustard">
-            {t("youSave")} {money(q.original - q.total)}
+            {t("youSave")} {money(q.original - q.total, lang)}
           </p>
         )}
-        {q.nextHint && <p className="mt-4 rounded-xl bg-forest p-3 text-sm">{interpolate(q.eligibleCount < BONUS_THRESHOLD ? t("bonusRule") : t("discountRule"), { count: q.eligibleCount < BONUS_THRESHOLD ? BONUS_THRESHOLD - q.eligibleCount : DISCOUNT_THRESHOLD - q.eligibleCount, percent: BUNDLE_DISCOUNT * 100 })}</p>}
+        {q.nextHint && (
+          <p className="mt-4 rounded-xl bg-forest p-3 text-sm">
+            {q.nextHint.kind === "bonus"
+              ? interpolate(t("hintBonus"), { count: q.nextHint.remaining, s: q.nextHint.remaining > 1 ? "s" : "", title: q.nextHint.bonusTitle })
+              : interpolate(t("hintDiscount"), { count: q.nextHint.remaining, percent: q.nextHint.percent })}
+          </p>
+        )}
         <div className="mt-4 space-y-1 text-xs opacity-80">
           {hasBonus && (
             <p>• {interpolate(t("bonusRule"), { count: BONUS_THRESHOLD })}</p>

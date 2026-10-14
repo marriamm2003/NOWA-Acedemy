@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Download, Lock, Unlock, Award } from "lucide-react";
+import { useEffect, useState } from "react";
 import { courses, getCourse } from "@/lib/data";
 import { localizeCourse, languageLabel } from "@/lib/localized";
 import { useStore } from "@/lib/store";
@@ -8,6 +9,7 @@ import { CourseCard, SectionTitle } from "@/components/humm/Cards";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { money } from "@/components/humm/Shell";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/kitchen")({
   validateSearch: (s: Record<string, unknown>): { order?: string | undefined } => ({
@@ -35,8 +37,16 @@ const demoProgress: Record<string, number> = { "pt-1": 100, "pt-2": 60, "pt-4": 
 function Kitchen() {
   const { order } = Route.useSearch();
   const { owned, orders, wishlist, t, lang } = useStore();
+  const [recipeMsg, setRecipeMsg] = useState<string | null>(null);
   const myCourses = courses.filter((c) => c.modules.some((m) => owned.has(m.id)));
   const saved = courses.filter((c) => wishlist.includes(c.slug));
+
+  useEffect(() => {
+    if (recipeMsg) {
+      toast.info(recipeMsg, { duration: 4000 });
+      setRecipeMsg(null);
+    }
+  }, [recipeMsg]);
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12">
@@ -106,7 +116,7 @@ function Kitchen() {
                       >
                         {has ? <Unlock className="size-4" /> : <Lock className="size-4" />}
                         <span className="flex-1">{localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title}</span>
-                        {has ? <b>{demoProgress[m.id] ?? 0}%</b> : <span>{money(m.price)}</span>}
+                        {has ? <b>{demoProgress[m.id] ?? 0}%</b> : <span>{money(m.price, lang)}</span>}
                       </li>
                     );
                   })}
@@ -138,7 +148,7 @@ function Kitchen() {
                   <p className="text-xs text-muted-foreground">{localizeCourse(c, lang).title}</p>
                   <button
                     onClick={() =>
-                      alert(t("recipeDemo"))
+                      setRecipeMsg(`${localizeCourse(c, lang).modules.find((item) => item.id === m.id)?.title ?? m.title} — ${t("recipeDemo")}`)
                     }
                     className="mt-3 flex items-center gap-2 text-sm font-bold text-tomato"
                   >
@@ -175,7 +185,7 @@ function Kitchen() {
               <div className="flex justify-between">
                 <b>{o.id}</b>
                 <span>
-                  {o.date} · {money(o.total)} ·{" "}
+                  {o.date} · {money(o.total, lang)} ·{" "}
                   <span className="text-xs font-bold text-tomato">{t("demo")}</span>
                 </span>
               </div>

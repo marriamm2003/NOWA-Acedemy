@@ -1,10 +1,10 @@
 import { r as __toESM } from "../_runtime.mjs";
 import { v as require_jsx_runtime, y as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { _ as useStore, f as interpolate, l as getCourse, o as findModule } from "./store-D1rqBFkA.mjs";
+import { p as interpolate, s as findModule, u as getCourse, v as useStore } from "./store-j1dqSumQ.mjs";
 import { b as useNavigate, y as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { l as money, o as localizeCourse } from "./Shell-BcWIQUqP.mjs";
+import { l as money, o as localizeCourse } from "./Shell-BNDwuvOg.mjs";
 import { i as stringType, r as objectType } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/checkout-CHl7DTYA.js
+//#region node_modules/.nitro/vite/services/ssr/assets/checkout-Dh-8bQLy.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Checkout() {
@@ -142,7 +142,7 @@ function Checkout() {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 					disabled: busy,
 					className: "w-full rounded-full bg-tomato py-4 text-lg font-extrabold text-primary-foreground shadow-pop disabled:opacity-60",
-					children: busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total) })
+					children: busy ? t("processing") : interpolate(t("payDemo"), { amount: money(bagQuote.total, lang) })
 				})
 			]
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {
@@ -161,26 +161,26 @@ function Checkout() {
 							const displayModule = localizeCourse(getCourse(g.slug), lang).modules.find((item) => item.id === id) ?? m;
 							return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 								className: "flex justify-between text-sm",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: displayModule.title }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: m.bonus && g.quote.bonusUnlocked ? t("free") : money(m.price) })]
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: displayModule.title }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: m.bonus && g.quote.bonusUnlocked ? t("free") : money(m.price, lang) })]
 							}, id);
 						}),
 						g.quote.discountApplied && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "flex justify-between text-sm font-bold text-forest",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("bundleDiscount") }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: ["−", money(g.quote.discount)] })]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("bundleDiscount") }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: ["−", money(g.quote.discount, lang)] })]
 						}),
 						g.quote.workbookPrice > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "flex justify-between text-sm",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("workbook") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(g.quote.workbookPrice) })]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("workbook") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(g.quote.workbookPrice, lang) })]
 						})
 					]
 				}, g.slug)),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 					className: "mt-4 flex justify-between text-sm",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("original") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", { children: money(bagQuote.original) })]
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("original") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("s", { children: money(bagQuote.original, lang) })]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 					className: "flex justify-between text-2xl font-extrabold",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("total") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(bagQuote.total) })]
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: t("total") }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: money(bagQuote.total, lang) })]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 					className: "mt-3 text-xs text-muted-foreground",
